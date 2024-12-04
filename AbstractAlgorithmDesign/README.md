@@ -1,6 +1,7 @@
 # Important Notes and requirements
-## Do **NOT** edit the API.cpp or API.h files.
-Main.cpp will be the run file for the algorithm for use solely with the simulator. It will later be implemented using the hardware API for use on the actual mouse.
+## Do *NOT* edit the API.cpp or API.h files.
+### Main.cpp will be the run file for the algorithm for use solely with the simulator. It will later be implemented using the hardware API for use on the actual mouse.
+### Do *not* push your a.exe to remote
 
 *Exploration Mode:*
 The mouse will not know the layout of the walls ahead of time. It will begin in exploration mode, updating it's own knowledge of the maze with every new cell it explores.
