@@ -10,6 +10,7 @@ unsigned long sensorTimer = millis() + 250;
 enum Direction {NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3};
 Direction currDirect;
 int x, y;
+void changeDirect(char turn);
 void setup() {
   // put your setup code here, to run once:
   pinMode(SensorL, INPUT);
@@ -77,7 +78,7 @@ void drive(char D){
       analogWrite(rightSideB,0);
   }
 }
-void changeDirec(char turn) {
+void changeDirect(char turn) {
     if(turn == 'R') {
         currDirect = Direction((currDirect + 1) % 4);
     } else if(turn == 'L') {
