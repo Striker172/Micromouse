@@ -9,6 +9,50 @@ void log(const std::string& text) { //DO NOT TOUCH
     std::cerr << text << std::endl; //DO NOT TOUCH
 }
 
+//position of mouse in the maze
+int xPos;
+int yPos;
+int mouseDir = 1; //direction the mouse is facing, 0:WEST, 1:NORTH, 2:EAST, 3:SOUTH
+
+//always call after moveForward, must be later implemented into firmware API
+void updatePos() {
+    switch (mouseDir)
+    {
+    case 0:
+        --xPos;
+        break;
+    
+    case 1:
+        ++yPos;
+        break;
+    
+    case 2:
+        ++xPos;
+        break;
+    
+    case 3:
+        --yPos;
+        break;
+    
+    default:
+        break;
+    }
+}
+
+//update orientation of mouse, must be later implemented in firmware, 0:turn left, 1: turn right. Call after every turn 
+void updateDir(int direction) {
+    if (direction == 0) {
+        --mouseDir;
+    } if (direction == 1) {
+        ++mouseDir;
+    }
+    if (mouseDir == 4) {
+        mouseDir = 0;
+    } if (mouseDir == -1) {
+        mouseDir = 3;
+    }
+}
+
 struct mazeCell
 {
     bool isExplored = false; //has the cell been explored yet
@@ -68,7 +112,7 @@ void floodfillUtil(int x, int y, int curDistance) {
 void floodfillUpdate() {
 
     //set center goal cells
-    for (int i: {7, 8}) {
+    for (int i: {7, 8}) { // TODO!! MOVE LOOP TO MAIN METHOD
         for (int j: {7, 8}) {
             maze[i][j].toGoalDistance = 0; 
             maze[i][j].floodfillChecked = false;
@@ -86,6 +130,39 @@ void floodfillUpdate() {
         }
     }
 
+}
+
+//mouse will mark the current cell as explored, and determine it's wall configuration
+void surveyCell() {
+
+    mazeCell *curCell = &maze[xPos][yPos]; // store pointer to current cell for readability
+
+    //check for walls in the current cell in front of and to the sides of the mouse, behind the mouse is irrelevant as we would only survey upon entering a new cell, in which we would know that the way we from which we came (behind the mouse) has no wall
+    int front = static_cast<int>(API::wallFront());
+    int left = static_cast<int>(API::wallLeft());
+    int right = static_cast<int>(API::wallRight());
+
+    switch (mouseDir)
+    {
+    case 0: //if facing west/left
+        curCell->wallConfig = curCell->wallConfig + (front << 3) + (left) + (right << 2);
+        break;
+    
+    case 1: //if facing north/up
+        curCell->wallConfig = curCell->wallConfig + (front << 2) + (left << 3) + (right << 1);
+        break;
+    
+    case 2: //if facing east/right
+        curCell->wallConfig = curCell->wallConfig + (front << 1) + (left << 2) + (right);
+        break;
+    
+    case 3: //if facing south/down
+        curCell->wallConfig = curCell->wallConfig + (front) + (left << 1) + (right << 3);
+        break;
+    
+    default:
+        break;
+    }
 }
 
 int main(int argc, char* argv[]) {
@@ -106,7 +183,9 @@ int main(int argc, char* argv[]) {
     }
 
     //the mouses run loop
+    int i;
     while (true) {
+
         if (!API::wallLeft()) {
             API::turnLeft();
         }
@@ -114,6 +193,9 @@ int main(int argc, char* argv[]) {
             API::turnRight();
         }
         API::moveForward();
+        updatePos();
+        surveyCell();
+
     }
 
     // const int LENGTH = 16;
