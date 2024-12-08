@@ -111,5 +111,28 @@ int main(int argc, char* argv[]) {
         }
         API::moveForward();
     }
+
+    // const int LENGTH = 16;
+    // std::queue<short> floodFillAlg;
+    // int horiWalls[LENGTH][LENGTH] = {};
+    // int verWalls[LENGTH][LENGTH] = {};
+    // int distances[2 * (LENGTH - 2)][2 * (LENGTH - 2)] = {};
+    // typedef struct Node{
+    //     short floodval;
+    //     short row;
+    //     short column;
+    //     short visited;
+
+    //     /* pointers to neighbors */
+    //     struct Node *left;
+    //     struct Node *right;
+    //     struct Node *up;
+    //     struct Node *down;
+    // } Node;
+
+    // typedef struct Maze {
+    //     Node *map[LENGTH][LENGTH];
+    // } Maze;
+
 }
 

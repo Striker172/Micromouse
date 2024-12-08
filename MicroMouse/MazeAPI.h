@@ -1,15 +1,16 @@
 #ifndef MAZEAPI_H
 #define MAZEAPI_H
-//#include "Arduino.h"
+#include "Arduino.h"
+
 class MazeAPI {
 public:
 	void mazeUpdate();
 	MazeAPI();
-	
+	void addWalls(int x, int y, unsigned int direction);
+	unsigned int getDistance(int row, int col);
+	String getWalls(unsigned short int walls);
 private:
-	const int objecX = 8;
-	const int objecY = 8;
-	struct cell{
+	struct cell {
 		short unsigned int walls;
 		unsigned int distance;
 		int x, y;
