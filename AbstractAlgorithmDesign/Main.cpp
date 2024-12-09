@@ -123,7 +123,6 @@ void floodfillUpdate() {
         for (int j : {6,7,8,9}) {
             if((i != 6 && i != 9)||(j != 6 && j != 9)){
                floodfillQueue.push({i,j,1}); 
-               cout << i << j << endl;
             }
         }
     }
