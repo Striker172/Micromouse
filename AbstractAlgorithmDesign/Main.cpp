@@ -4,7 +4,7 @@
 #include <array>
 
 #include "API.h"
-
+using namespace std;
 void log(const std::string& text) { //DO NOT TOUCH
     std::cerr << text << std::endl; //DO NOT TOUCH
 }
@@ -75,10 +75,16 @@ void floodfillUpdate() {
             maze[i][j].isGoal = true;
             }
     }
-
-
-    floodfillUtil(7, 7, 0);
-
+    for (int i : {6,7,8,9}) {
+        for (int j : {6,7,8,9}) {
+            if((i != 6 && i != 9)||(j != 6 && j != 9)){
+               floodfillQueue.push({i,j,1}); 
+               cout << i << j << endl;
+            }
+        }
+    }
+    
+    floodfillUtil(floodfillQueue.front()[0],floodfillQueue.front()[1],floodfillQueue.front()[2]);
     //reset floodfillChecked status
     for (int i = 0; i < 16; ++i) { 
         for (int j = 0; j < 16; ++j) {
@@ -100,9 +106,8 @@ int main(int argc, char* argv[]) {
     //print maze cell distances for testing/debugging
     for (int i = 0; i < 16; ++i) {
         for (int j = 0; j < 16; ++j) {
-            std::cout << maze[i][j].toGoalDistance << " ";
+            API::setText(i,j,std::to_string(maze[i][j].toGoalDistance));
         }
-        std::cout << std::endl;
     }
 
     //the mouses run loop
@@ -139,4 +144,5 @@ int main(int argc, char* argv[]) {
     // } Maze;
 
 }
+
 
