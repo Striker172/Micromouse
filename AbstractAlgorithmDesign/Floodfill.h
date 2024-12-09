@@ -1,3 +1,4 @@
+//An example algorithm we can use to structure ours off of
 #ifndef Floodfill_H_
 #define Floodfill_H_
 
