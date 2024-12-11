@@ -14,24 +14,44 @@ void log(const std::string& text) { //DO NOT TOUCH
 //position of mouse in the maze
 int xPos;
 int yPos;
-enum Direction {NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3};
-Direction currDirect;
+int mouseDir = 1; //direction the mouse is facing, 0:WEST, 1:NORTH, 2:EAST, 3:SOUTH
+
 //always call after moveForward, must be later implemented into firmware API
 void updatePos() {
- switch(currDirect) {
-            case NORTH: yPos += 1; break;
-            case EAST:  xPos += 1; break;
-            case SOUTH: yPos -= 1; break;
-            case WEST:  xPos -= 1; break;
-        }
+    switch (mouseDir)
+    {
+    case 0:
+        --xPos;
+        break;
+    
+    case 1:
+        ++yPos;
+        break;
+    
+    case 2:
+        ++xPos;
+        break;
+    
+    case 3:
+        --yPos;
+        break;
+    
+    default:
+        break;
+    }
 }
 
 //update orientation of mouse, must be later implemented in firmware, 0:turn left, 1: turn right. Call after every turn 
-void changeDirect(char turn) {
-    if(turn == 'R') {
-        currDirect = Direction((currDirect + 1) % 4);
-    } else if(turn == 'L') {
-        currDirect = Direction((currDirect + 3) % 4);
+void updateDir(int direction) {
+    if (direction == 0) {
+        --mouseDir;
+    } if (direction == 1) {
+        ++mouseDir;
+    }
+    if (mouseDir == 4) {
+        mouseDir = 0;
+    } if (mouseDir == -1) {
+        mouseDir = 3;
     }
 }
 
@@ -135,6 +155,7 @@ void surveyCell() {
     // mazeCell *northCell = &maze[xPos][yPos+1];
     // mazeCell *eastCell = &maze[xPos+1][yPos];
     // mazeCell *southCell = &maze[xPos][yPos-1];
+
     curCell->isExplored = true;
 
     //check for walls in the current cell in front of and to the sides of the mouse, behind the mouse is irrelevant as we would only survey upon entering a new cell, in which we would know that the way we from which we came (behind the mouse) has no wall
@@ -143,68 +164,64 @@ void surveyCell() {
     int right = static_cast<int>(API::wallRight());
 
     // based on the direction of the mouse and its surveyings, update the walls of the current cell and the connected cells
-    switch (currDirect)
+    switch (mouseDir)
     {
-    case WEST: //if facing west/left
-        curCell->wallConfig = (front << 3) + (left) + (right << 2);
+    case 0: //if facing west/left
+        curCell->wallConfig = curCell->wallConfig + (front << 3) + (left) + (right << 2);
+        // westCell->wallConfig = curCell->wallConfig + (front << 1);
+        // northCell->wallConfig = curCell->wallConfig + (right);
+        // southCell->wallConfig = curCell->wallConfig + (left << 2);
+        // break;
     
-    case NORTH: //if facing north/up
-        curCell->wallConfig = (front << 2) + (left << 3) + (right << 1);
+    case 1: //if facing north/up
+        curCell->wallConfig = curCell->wallConfig + (front << 2) + (left << 3) + (right << 1);
+        // northCell->wallConfig = curCell->wallConfig + (front);
+        // westCell->wallConfig = curCell->wallConfig + (left << 1);
+        // eastCell->wallConfig = curCell->wallConfig + (right << 3);
         break;
     
-    case EAST: //if facing east/right
-        curCell->wallConfig = (front << 1) + (left << 2) + (right);
+    case 2: //if facing east/right
+        curCell->wallConfig = curCell->wallConfig + (front << 1) + (left << 2) + (right);
+        // eastCell->wallConfig = curCell->wallConfig + (front << 3);
+        // northCell->wallConfig = curCell->wallConfig + (left);
+        // southCell->wallConfig = curCell->wallConfig + (right << 2);
         break;
     
-    case SOUTH: //if facing south/down
-        curCell->wallConfig = (front) + (left << 1) + (right << 3);
+    case 3: //if facing south/down
+        curCell->wallConfig = curCell->wallConfig + (front) + (left << 1) + (right << 3);
+        // southCell->wallConfig = curCell->wallConfig + (front << 2);
+        // westCell->wallConfig = curCell->wallConfig + (right << 1);
+        // eastCell->wallConfig = curCell->wallConfig + (left << 3);
         break;
     
     default:
         break;
     }
 }
- void markCell(int wallConfig) {
-    if(wallConfig < 15 && wallConfig >= 8){
-        API::setWall(xPos,yPos,'w');
-        markCell(wallConfig-8);
-    } else if (wallConfig <= 7 && wallConfig >= 4){
-        API::setWall(xPos,yPos,'n');
-        markCell(wallConfig-4);
-    }else if(wallConfig == 3 || wallConfig == 2){
-        API::setWall(xPos,yPos,'e');
-        markCell(wallConfig-2);
-    } else if(wallConfig == 1){
-        API::setWall(xPos,yPos,'s');
-        markCell(wallConfig-1);
-    }
-    return;
-    }
 
 int main(int argc, char* argv[]) {
     log("Running..."); //DO NOT TOUCH
     API::setColor(0, 0, 'G'); //DO NOT TOUCH
     API::setText(0, 0, "abc"); //DO NOT TOUCH
-    floodfillUpdate();
-    markCell(maze[xPos][yPos].wallConfig);
+
+    
     surveyCell();
+    cout << maze[0][1].wallConfig << endl;
+    floodfillUpdate();
+
     //the mouses run loop
     while (true) {
+
         if (!API::wallLeft()) {
-            changeDirect('L');
             API::turnLeft();
         }
         while (API::wallFront()) {
-            changeDirect('R');
             API::turnRight();
         }
         API::moveForward();
         updatePos();
-        cout << "X: " << xPos << " Y: " << yPos << endl;
         if (!maze[xPos][yPos].isExplored) {
-            cout<< currDirect << endl;
             surveyCell();
-            markCell(maze[xPos][yPos].wallConfig);
             floodfillUpdate();
         }
 
@@ -233,5 +250,4 @@ int main(int argc, char* argv[]) {
     // } Maze;
 
 }
-
 
