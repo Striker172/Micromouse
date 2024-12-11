@@ -4,7 +4,9 @@
 #include <array>
 
 #include "API.h"
+
 using namespace std;
+
 void log(const std::string& text) { //DO NOT TOUCH
     std::cerr << text << std::endl; //DO NOT TOUCH
 }
@@ -119,16 +121,16 @@ void floodfillUpdate() {
             maze[i][j].isGoal = true;
             }
     }
-    for (int i : {6,7,8,9}) {
+    for (int i : {6,7,8,9}) { //push the cells surrounding the goal into queue 
         for (int j : {6,7,8,9}) {
             if((i != 6 && i != 9)||(j != 6 && j != 9)){
                floodfillQueue.push({i,j,1}); 
-               cout << i << j << endl;
             }
         }
     }
     
-    floodfillUtil(floodfillQueue.front()[0],floodfillQueue.front()[1],floodfillQueue.front()[2]);
+    floodfillUtil(floodfillQueue.front()[0],floodfillQueue.front()[1],floodfillQueue.front()[2]); //begin recursion
+
     //reset floodfillChecked status
     for (int i = 0; i < 16; ++i) { 
         for (int j = 0; j < 16; ++j) {
@@ -136,34 +138,60 @@ void floodfillUpdate() {
         }
     }
 
+    //print maze cell distances for testing/debugging
+    for (int i = 0; i < 16; ++i) {
+        for (int j = 0; j < 16; ++j) {
+            API::setText(i,j,std::to_string(maze[i][j].toGoalDistance));
+        }
+    }
 }
 
 //mouse will mark the current cell as explored, and determine it's wall configuration
 void surveyCell() {
 
-    mazeCell *curCell = &maze[xPos][yPos]; // store pointer to current cell for readability
+    // store pointers to cells for readability
+    mazeCell *curCell = &maze[xPos][yPos];
+    // mazeCell *westCell = &maze[xPos-1][yPos]; // OUT OF BOUNDS INDEXING ERROR
+    // mazeCell *northCell = &maze[xPos][yPos+1];
+    // mazeCell *eastCell = &maze[xPos+1][yPos];
+    // mazeCell *southCell = &maze[xPos][yPos-1];
+
+    curCell->isExplored = true;
 
     //check for walls in the current cell in front of and to the sides of the mouse, behind the mouse is irrelevant as we would only survey upon entering a new cell, in which we would know that the way we from which we came (behind the mouse) has no wall
     int front = static_cast<int>(API::wallFront());
     int left = static_cast<int>(API::wallLeft());
     int right = static_cast<int>(API::wallRight());
 
+    // based on the direction of the mouse and its surveyings, update the walls of the current cell and the connected cells
     switch (mouseDir)
     {
     case 0: //if facing west/left
         curCell->wallConfig = curCell->wallConfig + (front << 3) + (left) + (right << 2);
-        break;
+        // westCell->wallConfig = curCell->wallConfig + (front << 1);
+        // northCell->wallConfig = curCell->wallConfig + (right);
+        // southCell->wallConfig = curCell->wallConfig + (left << 2);
+        // break;
     
     case 1: //if facing north/up
         curCell->wallConfig = curCell->wallConfig + (front << 2) + (left << 3) + (right << 1);
+        // northCell->wallConfig = curCell->wallConfig + (front);
+        // westCell->wallConfig = curCell->wallConfig + (left << 1);
+        // eastCell->wallConfig = curCell->wallConfig + (right << 3);
         break;
     
     case 2: //if facing east/right
         curCell->wallConfig = curCell->wallConfig + (front << 1) + (left << 2) + (right);
+        // eastCell->wallConfig = curCell->wallConfig + (front << 3);
+        // northCell->wallConfig = curCell->wallConfig + (left);
+        // southCell->wallConfig = curCell->wallConfig + (right << 2);
         break;
     
     case 3: //if facing south/down
         curCell->wallConfig = curCell->wallConfig + (front) + (left << 1) + (right << 3);
+        // southCell->wallConfig = curCell->wallConfig + (front << 2);
+        // westCell->wallConfig = curCell->wallConfig + (right << 1);
+        // eastCell->wallConfig = curCell->wallConfig + (left << 3);
         break;
     
     default:
@@ -177,18 +205,11 @@ int main(int argc, char* argv[]) {
     API::setText(0, 0, "abc"); //DO NOT TOUCH
 
     
-
+    surveyCell();
+    cout << maze[0][1].wallConfig << endl;
     floodfillUpdate();
 
-    //print maze cell distances for testing/debugging
-    for (int i = 0; i < 16; ++i) {
-        for (int j = 0; j < 16; ++j) {
-            API::setText(i,j,std::to_string(maze[i][j].toGoalDistance));
-        }
-    }
-
     //the mouses run loop
-    int i;
     while (true) {
 
         if (!API::wallLeft()) {
@@ -199,7 +220,10 @@ int main(int argc, char* argv[]) {
         }
         API::moveForward();
         updatePos();
-        surveyCell();
+        if (!maze[xPos][yPos].isExplored) {
+            surveyCell();
+            floodfillUpdate();
+        }
 
     }
 
