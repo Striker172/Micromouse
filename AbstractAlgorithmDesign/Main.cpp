@@ -147,6 +147,7 @@ void surveyCell() {
     {
     case WEST: //if facing west/left
         curCell->wallConfig = (front << 3) + (left) + (right << 2);
+        break;
     
     case NORTH: //if facing north/up
         curCell->wallConfig = (front << 2) + (left << 3) + (right << 1);
@@ -209,28 +210,6 @@ int main(int argc, char* argv[]) {
         }
 
     }
-
-    // const int LENGTH = 16;
-    // std::queue<short> floodFillAlg;
-    // int horiWalls[LENGTH][LENGTH] = {};
-    // int verWalls[LENGTH][LENGTH] = {};
-    // int distances[2 * (LENGTH - 2)][2 * (LENGTH - 2)] = {};
-    // typedef struct Node{
-    //     short floodval;
-    //     short row;
-    //     short column;
-    //     short visited;
-
-    //     /* pointers to neighbors */
-    //     struct Node *left;
-    //     struct Node *right;
-    //     struct Node *up;
-    //     struct Node *down;
-    // } Node;
-
-    // typedef struct Maze {
-    //     Node *map[LENGTH][LENGTH];
-    // } Maze;
 
 }
 
