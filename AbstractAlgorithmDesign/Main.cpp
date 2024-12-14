@@ -125,16 +125,20 @@ void floodfillUpdate() {
         }
     }
 }
-
+void updateAdjacentWalls(mazeCell* cell, int wallBit, bool hasWall){
+    if(cell != nullptr){
+        cell->wallConfig |= (hasWall << wallBit);
+    }
+}
 //mouse will mark the current cell as explored, and determine it's wall configuration
 void surveyCell() {
 
     // store pointers to cells for readability
     mazeCell *curCell = &maze[xPos][yPos];
-    // mazeCell *westCell = &maze[xPos-1][yPos]; // OUT OF BOUNDS INDEXING ERROR
-    // mazeCell *northCell = &maze[xPos][yPos+1];
-    // mazeCell *eastCell = &maze[xPos+1][yPos];
-    // mazeCell *southCell = &maze[xPos][yPos-1];
+    mazeCell *westCell = (xPos > 0) ? &maze[xPos-1][yPos] : nullptr;
+    mazeCell *northCell = (yPos < 15) ? &maze[xPos][yPos+1] : nullptr;
+    mazeCell *eastCell = (xPos < 15) ? &maze[xPos+1][yPos] : nullptr;
+    mazeCell *southCell = (yPos > 0) ? &maze[xPos][yPos-1] : nullptr;
     curCell->isExplored = true;
 
     //check for walls in the current cell in front of and to the sides of the mouse, behind the mouse is irrelevant as we would only survey upon entering a new cell, in which we would know that the way we from which we came (behind the mouse) has no wall
@@ -146,19 +150,30 @@ void surveyCell() {
     switch (currDirect)
     {
     case WEST: //if facing west/left
-        curCell->wallConfig = (front << 3) + (left) + (right << 2);
+        curCell->wallConfig |= (front << 3) + (left) + (right << 2);
+        updateAdjacentWalls(westCell,1,front);
+        updateAdjacentWalls(northCell, 0, right);
+        updateAdjacentWalls(southCell,2,left);
         break;
-    
     case NORTH: //if facing north/up
-        curCell->wallConfig = (front << 2) + (left << 3) + (right << 1);
+        curCell->wallConfig |= (front << 2) + (left << 3) + (right << 1);
+        updateAdjacentWalls(northCell,0,front);
+        updateAdjacentWalls(westCell,1,left);
+        updateAdjacentWalls(eastCell,3,right);
         break;
     
     case EAST: //if facing east/right
-        curCell->wallConfig = (front << 1) + (left << 2) + (right);
+        curCell->wallConfig |= (front << 1) + (left << 2) + (right);
+        updateAdjacentWalls(eastCell,3,front);
+        updateAdjacentWalls(northCell,0,left);
+        updateAdjacentWalls(southCell,2,right);
         break;
     
     case SOUTH: //if facing south/down
-        curCell->wallConfig = (front) + (left << 1) + (right << 3);
+        curCell->wallConfig |= (front) + (left << 1) + (right << 3);
+        updateAdjacentWalls(southCell,2,front);
+        updateAdjacentWalls(westCell,1,right);
+        updateAdjacentWalls(eastCell,3,left);
         break;
     
     default:
@@ -201,16 +216,12 @@ int main(int argc, char* argv[]) {
         }
         API::moveForward();
         updatePos();
-        cout << "X: " << xPos << " Y: " << yPos << endl;
+
         if (!maze[xPos][yPos].isExplored) {
-            cout<< currDirect << endl;
             surveyCell();
             markCell(maze[xPos][yPos].wallConfig);
             floodfillUpdate();
         }
 
     }
-
 }
-
-
