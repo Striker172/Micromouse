@@ -180,6 +180,86 @@ void surveyCell() {
         break;
     }
 }
+void Move(char movement) {
+    switch(movement) {
+        case 'F':
+            API::moveForward();
+            break;
+        case 'B':
+            API::turnLeft();
+            API::turnLeft();
+            currDirect = static_cast<Direction>((currDirect + 2) % 4); // Update direction after 180° turn
+            API::moveForward();
+            break;
+        case 'L':
+            API::turnLeft();
+            changeDirect('L'); // Update direction
+            API::moveForward();
+            break;
+        case 'R':
+            API::turnRight();
+            API::moveForward();
+            changeDirect('R'); // Update direction
+            break;
+    }
+}
+char translateMove(char move) {
+    if(currDirect == NORTH){
+        return move; // No translation needed when facing North
+    }
+    else if(currDirect == SOUTH){
+        if(move == 'F'){
+            return 'B';
+        } else if (move == 'B'){
+            return 'F';
+        } else if (move == 'R'){
+            return 'L';
+        } else if(move == 'L'){
+            return 'R';
+        }
+    }
+    else if(currDirect == EAST){
+        if(move == 'F'){
+            return 'L';
+        } else if (move == 'B'){
+            return 'R';
+        } else if (move == 'R'){
+            return 'F';
+        } else if(move == 'L'){
+            return 'B';
+        }
+    }
+    else if(currDirect == WEST){
+        if(move == 'F'){
+            return 'L';
+        } else if (move == 'B'){
+            return 'R';
+        } else if (move == 'R'){
+            return 'B';
+        } else if(move == 'L'){
+            return 'F';
+        }
+    }
+    return move; // Default case
+}
+void getWalls(int wallConfig,string& walls) {
+    if(wallConfig < 15 && wallConfig >= 8){
+        walls +='L';
+        getWalls(wallConfig-8,walls);
+    } else if (wallConfig <= 7 && wallConfig >= 4){
+        API::setWall(xPos,yPos,'n');
+        walls +='U';
+        getWalls(wallConfig-4,walls);
+    }else if(wallConfig == 3 || wallConfig == 2){
+        walls += 'R';
+        getWalls(wallConfig-2,walls);
+    } else if(wallConfig == 1){
+        walls += 'D';
+        getWalls(wallConfig-1,walls);
+    }
+    return;
+    }
+
  void markCell(int wallConfig) {
     if(wallConfig < 15 && wallConfig >= 8){
         API::setWall(xPos,yPos,'w');
@@ -204,24 +284,50 @@ int main(int argc, char* argv[]) {
     floodfillUpdate();
     markCell(maze[xPos][yPos].wallConfig);
     surveyCell();
+    char bestMove = 'X';  // X means no move found
+    currDirect = NORTH;
+    int bestDistance = maze[xPos][yPos].toGoalDistance;
     //the mouses run loop
-    while (true) {
-        if (!API::wallLeft()) {
-            changeDirect('L');
-            API::turnLeft();
-        }
-        while (API::wallFront()) {
-            changeDirect('R');
-            API::turnRight();
-        }
-        API::moveForward();
-        updatePos();
-
-        if (!maze[xPos][yPos].isExplored) {
-            surveyCell();
-            markCell(maze[xPos][yPos].wallConfig);
-            floodfillUpdate();
-        }
-
+    while (!API::wasReset()) {
+    string Walls = "";
+    getWalls(maze[xPos][yPos].wallConfig,Walls);
+    if(yPos < 15 && Walls.find('U') == string::npos && maze[xPos][yPos+1].toGoalDistance < bestDistance ){
+        bestMove = 'F';
+        bestDistance = maze[xPos][yPos+1].toGoalDistance;
     }
+    if(yPos > 0 &&  Walls.find('D') == string::npos && maze[xPos][yPos-1].toGoalDistance < bestDistance){
+        bestMove = 'B';
+        bestDistance = maze[xPos][yPos-1].toGoalDistance;
+    } 
+    if(xPos < 15 && Walls.find('R') == string::npos && maze[xPos+1][yPos].toGoalDistance < bestDistance){
+        bestMove = 'R';
+        bestDistance = maze[xPos+1][yPos].toGoalDistance;
+    }
+    if(xPos > 0 && Walls.find('L') == string::npos && maze[xPos-1][yPos].toGoalDistance < bestDistance){
+        bestMove = 'L';
+        bestDistance = maze[xPos-1][yPos].toGoalDistance;
+    }
+    if(xPos > 0 && Walls.find("LUR") != string::npos && maze[xPos][yPos-1].toGoalDistance > bestDistance){
+        bestMove = 'B';
+        bestDistance = maze[xPos][yPos-1].toGoalDistance;
+    }
+
+// Execute best move if one was found
+if(bestMove != 'X'){
+    cout << "Curr: " << bestMove << " Translated: " << translateMove(bestMove)<<endl;
+    Move(translateMove(bestMove));
+    updatePos();
+    bestMove = 'X';
+    bestDistance = maze[xPos][yPos].toGoalDistance;
+    // Survey new cell if unexplored
+    if (!maze[xPos][yPos].isExplored) {
+        surveyCell();
+        markCell(maze[xPos][yPos].wallConfig);
+        floodfillUpdate();
+        bestDistance = maze[xPos][yPos].toGoalDistance;
+    }
+    // cout << "Best Distance: " <<bestDistance << endl;
+    // cout << "X: " << xPos << " Y: " << yPos << endl;
+}
+}
 }
