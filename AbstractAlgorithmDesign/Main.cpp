@@ -147,17 +147,30 @@ void surveyCell() {
     {
     case WEST: //if facing west/left
         curCell->wallConfig = (front << 3) + (left) + (right << 2);
+        if (xPos-1 >= 0) maze[xPos-1][yPos].wallConfig = curCell->wallConfig + (front << 1); //west cell
+        if (yPos+1 < 16) maze[xPos][yPos+1].wallConfig = curCell->wallConfig + (right); //north cell
+        if (yPos-1 >= 0) maze[xPos][yPos-1].wallConfig = curCell->wallConfig + (left << 2); //south cell
+        break;
     
     case NORTH: //if facing north/up
         curCell->wallConfig = (front << 2) + (left << 3) + (right << 1);
+        if (yPos+1 < 16) maze[xPos][yPos+1].wallConfig = curCell->wallConfig + (front); //north cell
+        if (xPos-1 >= 0) maze[xPos-1][yPos].wallConfig = curCell->wallConfig + (left << 1); //west cell
+        if (xPos+1 < 16) maze[xPos+1][yPos].wallConfig = curCell->wallConfig + (right << 3); //east cell
         break;
     
     case EAST: //if facing east/right
         curCell->wallConfig = (front << 1) + (left << 2) + (right);
+        if (xPos+1 < 16) maze[xPos+1][yPos].wallConfig = curCell->wallConfig + (front << 3); //east cell
+        if (yPos+1 < 16) maze[xPos][yPos+1].wallConfig = curCell->wallConfig + (left); //north cell
+        if (yPos-1 >= 0) maze[xPos][yPos-1].wallConfig = curCell->wallConfig + (right << 2); //south cell
         break;
     
     case SOUTH: //if facing south/down
         curCell->wallConfig = (front) + (left << 1) + (right << 3);
+        if (yPos-1 >= 0) maze[xPos][yPos-1].wallConfig = curCell->wallConfig + (front << 2); //south cell
+        if (xPos-1 >= 0) maze[xPos-1][yPos].wallConfig = curCell->wallConfig + (right << 1); //west cell
+        if (xPos+1 < 16) maze[xPos+1][yPos].wallConfig = curCell->wallConfig + (left << 3); //east cell
         break;
     
     default:
@@ -185,9 +198,9 @@ int main(int argc, char* argv[]) {
     log("Running..."); //DO NOT TOUCH
     API::setColor(0, 0, 'G'); //DO NOT TOUCH
     API::setText(0, 0, "abc"); //DO NOT TOUCH
+    surveyCell();
     floodfillUpdate();
     markCell(maze[xPos][yPos].wallConfig);
-    surveyCell();
     //the mouses run loop
     while (true) {
         if (!API::wallLeft()) {
