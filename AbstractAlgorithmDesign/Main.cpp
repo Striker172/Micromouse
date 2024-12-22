@@ -99,16 +99,10 @@ void floodfillUpdate() {
             maze[i][j].toGoalDistance = 0; 
             maze[i][j].floodfillChecked = false;
             maze[i][j].isGoal = true;
+            floodfillQueue.push({i,j,0});
             }
-    }
-    for (int i : {6,7,8,9}) { //push the cells surrounding the goal into queue 
-        for (int j : {6,7,8,9}) {
-            if((i != 6 && i != 9)||(j != 6 && j != 9)){
-               floodfillQueue.push({i,j,1}); 
-            }
-        }
-    }
-    
+        
+    }  
     floodfillUtil(floodfillQueue.front()[0],floodfillQueue.front()[1],floodfillQueue.front()[2]); //begin recursion
 
     //reset floodfillChecked status
@@ -231,9 +225,9 @@ char translateMove(char move) {
     }
     else if(currDirect == WEST){
         if(move == 'F'){
-            return 'L';
-        } else if (move == 'B'){
             return 'R';
+        } else if (move == 'B'){
+            return 'L';
         } else if (move == 'R'){
             return 'B';
         } else if(move == 'L'){
@@ -314,6 +308,7 @@ int main(int argc, char* argv[]) {
 
 // Execute best move if one was found
 if(bestMove != 'X'){
+    cout << "Current Direction: " << currDirect << endl;
     cout << "Curr: " << bestMove << " Translated: " << translateMove(bestMove)<<endl;
     Move(translateMove(bestMove));
     updatePos();
