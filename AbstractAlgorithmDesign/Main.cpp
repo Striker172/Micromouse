@@ -99,16 +99,10 @@ void floodfillUpdate() {
             maze[i][j].toGoalDistance = 0; 
             maze[i][j].floodfillChecked = false;
             maze[i][j].isGoal = true;
+            floodfillQueue.push({i,j,0});
             }
-    }
-    for (int i : {6,7,8,9}) { //push the cells surrounding the goal into queue 
-        for (int j : {6,7,8,9}) {
-            if((i != 6 && i != 9)||(j != 6 && j != 9)){
-               floodfillQueue.push({i,j,1}); 
-            }
-        }
-    }
-    
+        
+    }  
     floodfillUtil(floodfillQueue.front()[0],floodfillQueue.front()[1],floodfillQueue.front()[2]); //begin recursion
 
     //reset floodfillChecked status
@@ -125,16 +119,20 @@ void floodfillUpdate() {
         }
     }
 }
-
+void updateAdjacentWalls(mazeCell* cell, int wallBit, bool hasWall){
+    if(cell != nullptr){
+        cell->wallConfig |= (hasWall << wallBit);
+    }
+}
 //mouse will mark the current cell as explored, and determine it's wall configuration
 void surveyCell() {
 
     // store pointers to cells for readability
     mazeCell *curCell = &maze[xPos][yPos];
-    // mazeCell *westCell = &maze[xPos-1][yPos]; // OUT OF BOUNDS INDEXING ERROR
-    // mazeCell *northCell = &maze[xPos][yPos+1];
-    // mazeCell *eastCell = &maze[xPos+1][yPos];
-    // mazeCell *southCell = &maze[xPos][yPos-1];
+    mazeCell *westCell = (xPos > 0) ? &maze[xPos-1][yPos] : nullptr;
+    mazeCell *northCell = (yPos < 15) ? &maze[xPos][yPos+1] : nullptr;
+    mazeCell *eastCell = (xPos < 15) ? &maze[xPos+1][yPos] : nullptr;
+    mazeCell *southCell = (yPos > 0) ? &maze[xPos][yPos-1] : nullptr;
     curCell->isExplored = true;
 
     //check for walls in the current cell in front of and to the sides of the mouse, behind the mouse is irrelevant as we would only survey upon entering a new cell, in which we would know that the way we from which we came (behind the mouse) has no wall
@@ -146,37 +144,116 @@ void surveyCell() {
     switch (currDirect)
     {
     case WEST: //if facing west/left
-        curCell->wallConfig = (front << 3) + (left) + (right << 2);
-        if (xPos-1 >= 0) maze[xPos-1][yPos].wallConfig = curCell->wallConfig + (front << 1); //west cell
-        if (yPos+1 < 16) maze[xPos][yPos+1].wallConfig = curCell->wallConfig + (right); //north cell
-        if (yPos-1 >= 0) maze[xPos][yPos-1].wallConfig = curCell->wallConfig + (left << 2); //south cell
+        curCell->wallConfig |= (front << 3) + (left) + (right << 2);
+        updateAdjacentWalls(westCell,1,front);
+        updateAdjacentWalls(northCell, 0, right);
+        updateAdjacentWalls(southCell,2,left);
         break;
-    
     case NORTH: //if facing north/up
-        curCell->wallConfig = (front << 2) + (left << 3) + (right << 1);
-        if (yPos+1 < 16) maze[xPos][yPos+1].wallConfig = curCell->wallConfig + (front); //north cell
-        if (xPos-1 >= 0) maze[xPos-1][yPos].wallConfig = curCell->wallConfig + (left << 1); //west cell
-        if (xPos+1 < 16) maze[xPos+1][yPos].wallConfig = curCell->wallConfig + (right << 3); //east cell
+        curCell->wallConfig |= (front << 2) + (left << 3) + (right << 1);
+        updateAdjacentWalls(northCell,0,front);
+        updateAdjacentWalls(westCell,1,left);
+        updateAdjacentWalls(eastCell,3,right);
         break;
     
     case EAST: //if facing east/right
-        curCell->wallConfig = (front << 1) + (left << 2) + (right);
-        if (xPos+1 < 16) maze[xPos+1][yPos].wallConfig = curCell->wallConfig + (front << 3); //east cell
-        if (yPos+1 < 16) maze[xPos][yPos+1].wallConfig = curCell->wallConfig + (left); //north cell
-        if (yPos-1 >= 0) maze[xPos][yPos-1].wallConfig = curCell->wallConfig + (right << 2); //south cell
+        curCell->wallConfig |= (front << 1) + (left << 2) + (right);
+        updateAdjacentWalls(eastCell,3,front);
+        updateAdjacentWalls(northCell,0,left);
+        updateAdjacentWalls(southCell,2,right);
         break;
     
     case SOUTH: //if facing south/down
-        curCell->wallConfig = (front) + (left << 1) + (right << 3);
-        if (yPos-1 >= 0) maze[xPos][yPos-1].wallConfig = curCell->wallConfig + (front << 2); //south cell
-        if (xPos-1 >= 0) maze[xPos-1][yPos].wallConfig = curCell->wallConfig + (right << 1); //west cell
-        if (xPos+1 < 16) maze[xPos+1][yPos].wallConfig = curCell->wallConfig + (left << 3); //east cell
+        curCell->wallConfig |= (front) + (left << 1) + (right << 3);
+        updateAdjacentWalls(southCell,2,front);
+        updateAdjacentWalls(westCell,1,right);
+        updateAdjacentWalls(eastCell,3,left);
         break;
     
     default:
         break;
     }
 }
+void Move(char movement) {
+    switch(movement) {
+        case 'F':
+            API::moveForward();
+            break;
+        case 'B':
+            API::turnLeft();
+            API::turnLeft();
+            currDirect = static_cast<Direction>((currDirect + 2) % 4); // Update direction after 180° turn
+            API::moveForward();
+            break;
+        case 'L':
+            API::turnLeft();
+            changeDirect('L'); // Update direction
+            API::moveForward();
+            break;
+        case 'R':
+            API::turnRight();
+            API::moveForward();
+            changeDirect('R'); // Update direction
+            break;
+    }
+}
+char translateMove(char move) {
+    if(currDirect == NORTH){
+        return move; // No translation needed when facing North
+    }
+    else if(currDirect == SOUTH){
+        if(move == 'F'){
+            return 'B';
+        } else if (move == 'B'){
+            return 'F';
+        } else if (move == 'R'){
+            return 'L';
+        } else if(move == 'L'){
+            return 'R';
+        }
+    }
+    else if(currDirect == EAST){
+        if(move == 'F'){
+            return 'L';
+        } else if (move == 'B'){
+            return 'R';
+        } else if (move == 'R'){
+            return 'F';
+        } else if(move == 'L'){
+            return 'B';
+        }
+    }
+    else if(currDirect == WEST){
+        if(move == 'F'){
+            return 'R';
+        } else if (move == 'B'){
+            return 'L';
+        } else if (move == 'R'){
+            return 'B';
+        } else if(move == 'L'){
+            return 'F';
+        }
+    }
+    return move; // Default case
+}
+void getWalls(int wallConfig,string& walls) {
+    if(wallConfig < 15 && wallConfig >= 8){
+        walls +='L';
+        getWalls(wallConfig-8,walls);
+    } else if (wallConfig <= 7 && wallConfig >= 4){
+        API::setWall(xPos,yPos,'n');
+        walls +='U';
+        getWalls(wallConfig-4,walls);
+    }else if(wallConfig == 3 || wallConfig == 2){
+        walls += 'R';
+        getWalls(wallConfig-2,walls);
+    } else if(wallConfig == 1){
+        walls += 'D';
+        getWalls(wallConfig-1,walls);
+    }
+    return;
+    }
+
  void markCell(int wallConfig) {
     if(wallConfig < 15 && wallConfig >= 8){
         API::setWall(xPos,yPos,'w');
@@ -201,50 +278,55 @@ int main(int argc, char* argv[]) {
     surveyCell();
     floodfillUpdate();
     markCell(maze[xPos][yPos].wallConfig);
+<<<<<<< HEAD
+=======
+    surveyCell();
+    char bestMove = 'X';  // X means no move found
+    currDirect = NORTH;
+    int bestDistance = maze[xPos][yPos].toGoalDistance;
+>>>>>>> c322f0b97c91a177aad3d86b8a1766f9bbb82f10
     //the mouses run loop
-    while (true) {
-        if (!API::wallLeft()) {
-            changeDirect('L');
-            API::turnLeft();
-        }
-        while (API::wallFront()) {
-            changeDirect('R');
-            API::turnRight();
-        }
-        API::moveForward();
-        updatePos();
-        cout << "X: " << xPos << " Y: " << yPos << endl;
-        if (!maze[xPos][yPos].isExplored) {
-            cout<< currDirect << endl;
-            surveyCell();
-            markCell(maze[xPos][yPos].wallConfig);
-            floodfillUpdate();
-        }
-
+    while (!API::wasReset()) {
+    string Walls = "";
+    getWalls(maze[xPos][yPos].wallConfig,Walls);
+    if(yPos < 15 && Walls.find('U') == string::npos && maze[xPos][yPos+1].toGoalDistance < bestDistance ){
+        bestMove = 'F';
+        bestDistance = maze[xPos][yPos+1].toGoalDistance;
+    }
+    if(yPos > 0 &&  Walls.find('D') == string::npos && maze[xPos][yPos-1].toGoalDistance < bestDistance){
+        bestMove = 'B';
+        bestDistance = maze[xPos][yPos-1].toGoalDistance;
+    } 
+    if(xPos < 15 && Walls.find('R') == string::npos && maze[xPos+1][yPos].toGoalDistance < bestDistance){
+        bestMove = 'R';
+        bestDistance = maze[xPos+1][yPos].toGoalDistance;
+    }
+    if(xPos > 0 && Walls.find('L') == string::npos && maze[xPos-1][yPos].toGoalDistance < bestDistance){
+        bestMove = 'L';
+        bestDistance = maze[xPos-1][yPos].toGoalDistance;
+    }
+    if(xPos > 0 && Walls.find("LUR") != string::npos && maze[xPos][yPos-1].toGoalDistance > bestDistance){
+        bestMove = 'B';
+        bestDistance = maze[xPos][yPos-1].toGoalDistance;
     }
 
-    // const int LENGTH = 16;
-    // std::queue<short> floodFillAlg;
-    // int horiWalls[LENGTH][LENGTH] = {};
-    // int verWalls[LENGTH][LENGTH] = {};
-    // int distances[2 * (LENGTH - 2)][2 * (LENGTH - 2)] = {};
-    // typedef struct Node{
-    //     short floodval;
-    //     short row;
-    //     short column;
-    //     short visited;
-
-    //     /* pointers to neighbors */
-    //     struct Node *left;
-    //     struct Node *right;
-    //     struct Node *up;
-    //     struct Node *down;
-    // } Node;
-
-    // typedef struct Maze {
-    //     Node *map[LENGTH][LENGTH];
-    // } Maze;
-
+// Execute best move if one was found
+if(bestMove != 'X'){
+    cout << "Current Direction: " << currDirect << endl;
+    cout << "Curr: " << bestMove << " Translated: " << translateMove(bestMove)<<endl;
+    Move(translateMove(bestMove));
+    updatePos();
+    bestMove = 'X';
+    bestDistance = maze[xPos][yPos].toGoalDistance;
+    // Survey new cell if unexplored
+    if (!maze[xPos][yPos].isExplored) {
+        surveyCell();
+        markCell(maze[xPos][yPos].wallConfig);
+        floodfillUpdate();
+        bestDistance = maze[xPos][yPos].toGoalDistance;
+    }
+    // cout << "Best Distance: " <<bestDistance << endl;
+    // cout << "X: " << xPos << " Y: " << yPos << endl;
 }
-
-
+}
+}
