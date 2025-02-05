@@ -16,7 +16,9 @@ int xPos;
 int yPos;
 enum Direction {NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3};
 Direction currDirect;
+bool reachedCenter = false;
 //always call after moveForward, must be later implemented into firmware API
+//Own file
 void updatePos() {
  switch(currDirect) {
             case NORTH: yPos += 1; break;
@@ -26,7 +28,8 @@ void updatePos() {
         }
 }
 
-//update orientation of mouse, must be later implemented in firmware, 0:turn left, 1: turn right. Call after every turn 
+//update orientation of mouse, must be later implemented in firmware, 0:turn left, 1: turn right. Call after every turn
+//Own file 
 void changeDirect(char turn) {
     if(turn == 'R') {
         currDirect = Direction((currDirect + 1) % 4);
@@ -52,7 +55,7 @@ std::queue<std::array<int, 3>> floodfillQueue;
 bool isWall(int x, int y, int sideDirection) { //for sideDirection: 0: Left, 1: Top, 2: Right, 3: Bottom
     return (maze[x][y].wallConfig & (1 << (3 - sideDirection))) != 0;
 }
-
+//Own File
 //recursive function for floodfill
 void floodfillUtil(int x, int y, int curDistance) {
     floodfillQueue.pop(); //remove this element from the queue
@@ -90,41 +93,45 @@ void floodfillUtil(int x, int y, int curDistance) {
 
 
 }
-
+//Own File
 void floodfillUpdate() {
-
     //set center goal cells
-    for (int i: {7, 8}) { // TODO!! MOVE LOOP TO MAIN METHOD
-        for (int j: {7, 8}) {
-            maze[i][j].toGoalDistance = 0; 
-            maze[i][j].floodfillChecked = false;
-            maze[i][j].isGoal = true;
-            floodfillQueue.push({i,j,0});
+    if(!reachedCenter){
+        cout << reachedCenter << endl;
+        for (int i: {7, 8}) { // TODO!! MOVE LOOP TO MAIN METHOD
+            for (int j: {7, 8}) {
+                maze[i][j].toGoalDistance = 0; 
+                maze[i][j].floodfillChecked = false;
+                maze[i][j].isGoal = true;
+                floodfillQueue.push({i,j,0});
             }
-        
-    }  
+        }  
+    } else {
+    maze[0][0].toGoalDistance = 0;
+    maze[0][0].floodfillChecked = false;
+    maze[0][0].isGoal = true;
+    floodfillQueue.push({0,0,0});
+}
     floodfillUtil(floodfillQueue.front()[0],floodfillQueue.front()[1],floodfillQueue.front()[2]); //begin recursion
 
     //reset floodfillChecked status
     for (int i = 0; i < 16; ++i) { 
         for (int j = 0; j < 16; ++j) {
             maze[i][j].floodfillChecked = false;
+            API::setText(i,j,std::to_string(maze[i][j].toGoalDistance));
         }
     }
 
     //print maze cell distances for testing/debugging
-    for (int i = 0; i < 16; ++i) {
-        for (int j = 0; j < 16; ++j) {
-            API::setText(i,j,std::to_string(maze[i][j].toGoalDistance));
-        }
-    }
 }
+//Own File
 void updateAdjacentWalls(mazeCell* cell, int wallBit, bool hasWall){
     if(cell != nullptr){
         cell->wallConfig |= (hasWall << wallBit);
     }
 }
 //mouse will mark the current cell as explored, and determine it's wall configuration
+//Own File
 void surveyCell() {
 
     // store pointers to cells for readability
@@ -174,6 +181,7 @@ void surveyCell() {
         break;
     }
 }
+//Arduino 
 void Move(char movement) {
     switch(movement) {
         case 'F':
@@ -197,44 +205,17 @@ void Move(char movement) {
             break;
     }
 }
+//Own File
+// 0:F, 1:B, 2:L, 3:R
 char translateMove(char move) {
-    if(currDirect == NORTH){
-        return move; // No translation needed when facing North
-    }
-    else if(currDirect == SOUTH){
-        if(move == 'F'){
-            return 'B';
-        } else if (move == 'B'){
-            return 'F';
-        } else if (move == 'R'){
-            return 'L';
-        } else if(move == 'L'){
-            return 'R';
-        }
-    }
-    else if(currDirect == EAST){
-        if(move == 'F'){
-            return 'L';
-        } else if (move == 'B'){
-            return 'R';
-        } else if (move == 'R'){
-            return 'F';
-        } else if(move == 'L'){
-            return 'B';
-        }
-    }
-    else if(currDirect == WEST){
-        if(move == 'F'){
-            return 'R';
-        } else if (move == 'B'){
-            return 'L';
-        } else if (move == 'R'){
-            return 'B';
-        } else if(move == 'L'){
-            return 'F';
-        }
-    }
-    return move; // Default case
+    const char translatedMoves[4][4] = {
+        {'F','B','L','R'}, //N
+        {'L','R','B','F'}, //E
+        {'B','F','R','L'}, //S
+        {'R','L','F','B'}  //W
+    };
+    move = (move == 'F') ? 0 : (move == 'B') ? 1 : (move == 'L') ? 2 : 3;
+   return translatedMoves[currDirect][move];
 }
 void getWalls(int wallConfig,string& walls) {
     if(wallConfig < 15 && wallConfig >= 8){
@@ -253,7 +234,8 @@ void getWalls(int wallConfig,string& walls) {
     }
     return;
     }
-
+//Change code to have it use the sensors
+//isn't required for arduino code 
  void markCell(int wallConfig) {
     if(wallConfig < 15 && wallConfig >= 8){
         API::setWall(xPos,yPos,'w');
@@ -282,7 +264,8 @@ int main(int argc, char* argv[]) {
     currDirect = NORTH;
     int bestDistance = maze[xPos][yPos].toGoalDistance;
     //the mouses run loop
-    while (!API::wasReset()) {
+    while (1) {
+    //Own File
     string Walls = "";
     getWalls(maze[xPos][yPos].wallConfig,Walls);
     if(yPos < 15 && Walls.find('U') == string::npos && maze[xPos][yPos+1].toGoalDistance < bestDistance ){
@@ -307,13 +290,24 @@ int main(int argc, char* argv[]) {
     }
 
 // Execute best move if one was found
+//Own file 
 if(bestMove != 'X'){
-    cout << "Current Direction: " << currDirect << endl;
-    cout << "Curr: " << bestMove << " Translated: " << translateMove(bestMove)<<endl;
+    // cout << "Current Direction: " << currDirect << endl;
+    // cout << "Curr: " << bestMove << " Translated: " << translateMove(bestMove)<<endl;
     Move(translateMove(bestMove));
     updatePos();
     bestMove = 'X';
     bestDistance = maze[xPos][yPos].toGoalDistance;
+    if(bestDistance == 0 && !reachedCenter){
+        reachedCenter = true;
+        floodfillUpdate();
+        for (int i = 0; i < 16; ++i) { 
+            for (int j = 0; j < 16; ++j) {
+                maze[i][j].isGoal = false;
+        }
+    }
+
+    }
     // Survey new cell if unexplored
     if (!maze[xPos][yPos].isExplored) {
         surveyCell();
