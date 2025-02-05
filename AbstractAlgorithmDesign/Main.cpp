@@ -97,7 +97,6 @@ void floodfillUtil(int x, int y, int curDistance) {
 void floodfillUpdate() {
     //set center goal cells
     if(!reachedCenter){
-        cout << reachedCenter << endl;
         for (int i: {7, 8}) { // TODO!! MOVE LOOP TO MAIN METHOD
             for (int j: {7, 8}) {
                 maze[i][j].toGoalDistance = 0; 
@@ -105,12 +104,13 @@ void floodfillUpdate() {
                 maze[i][j].isGoal = true;
                 floodfillQueue.push({i,j,0});
             }
-        }  
+        }
+
     } else {
-    maze[0][0].toGoalDistance = 0;
-    maze[0][0].floodfillChecked = false;
-    maze[0][0].isGoal = true;
-    floodfillQueue.push({0,0,0});
+        maze[0][0].toGoalDistance = 0;
+        maze[0][0].floodfillChecked = false;
+        maze[0][0].isGoal = true;
+        floodfillQueue.push({0,0,0});
 }
     floodfillUtil(floodfillQueue.front()[0],floodfillQueue.front()[1],floodfillQueue.front()[2]); //begin recursion
 
@@ -202,6 +202,12 @@ void Move(char movement) {
             API::turnRight();
             API::moveForward();
             changeDirect('R'); // Update direction
+            break;
+        case 'T':
+            API::turnLeft();
+            API::turnLeft();
+            changeDirect('L'); // Update direction
+            changeDirect('L');
             break;
     }
 }
@@ -303,8 +309,13 @@ if(bestMove != 'X'){
     bestDistance = maze[xPos][yPos].toGoalDistance;
     //Once the mouse reaches the center, it goes back to the start to collect more wall data on the maze.
     //Basically a second run and stuff
-    if(bestDistance == 0 && !reachedCenter){
-        reachedCenter = true;
+    if(bestDistance == 0){
+        if(reachedCenter){
+            reachedCenter = false;
+            Move('T');
+        }else {
+            reachedCenter = true;
+        }
         floodfillUpdate();
         for (int i = 0; i < 16; ++i) { 
             for (int j = 0; j < 16; ++j) {
