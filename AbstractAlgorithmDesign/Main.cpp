@@ -265,8 +265,9 @@ int main(int argc, char* argv[]) {
     int bestDistance = maze[xPos][yPos].toGoalDistance;
     //the mouses run loop
     while (1) {
-    //Own File
     string Walls = "";
+    //Loads in the walls into the string to let the thing decided which path to go
+    //Checks the individual if statement to make sure that its infact the best move to do
     getWalls(maze[xPos][yPos].wallConfig,Walls);
     if(yPos < 15 && Walls.find('U') == string::npos && maze[xPos][yPos+1].toGoalDistance < bestDistance ){
         bestMove = 'F';
@@ -294,10 +295,14 @@ int main(int argc, char* argv[]) {
 if(bestMove != 'X'){
     // cout << "Current Direction: " << currDirect << endl;
     // cout << "Curr: " << bestMove << " Translated: " << translateMove(bestMove)<<endl;
+    //Translates the move with the mouses current direction and moves
     Move(translateMove(bestMove));
     updatePos();
+    //resets the best move
     bestMove = 'X';
     bestDistance = maze[xPos][yPos].toGoalDistance;
+    //Once the mouse reaches the center, it goes back to the start to collect more wall data on the maze.
+    //Basically a second run and stuff
     if(bestDistance == 0 && !reachedCenter){
         reachedCenter = true;
         floodfillUpdate();
