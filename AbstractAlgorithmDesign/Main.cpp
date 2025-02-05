@@ -263,12 +263,16 @@ int main(int argc, char* argv[]) {
     log("Running..."); //DO NOT TOUCH
     API::setColor(0, 0, 'G'); //DO NOT TOUCH
     API::setText(0, 0, "abc"); //DO NOT TOUCH
+    surveyCell();
     floodfillUpdate();
     markCell(maze[xPos][yPos].wallConfig);
+<<<<<<< HEAD
+=======
     surveyCell();
     char bestMove = 'X';  // X means no move found
     currDirect = NORTH;
     int bestDistance = maze[xPos][yPos].toGoalDistance;
+>>>>>>> c322f0b97c91a177aad3d86b8a1766f9bbb82f10
     //the mouses run loop
     while (1) {
     string Walls = "";
