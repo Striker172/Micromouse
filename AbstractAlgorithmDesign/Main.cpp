@@ -14,11 +14,18 @@ void log(const std::string& text) { //DO NOT TOUCH
 //position of mouse in the maze
 int xPos;
 int yPos;
+//Data type for the direction, basically acts like an array
 enum Direction {NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3};
 Direction currDirect;
+//Determines if it has reached the center for it to return to the beginning
 bool reachedCenter = false;
-//always call after moveForward, must be later implemented into firmware API
-//Own file
+//2-D array to represent the maze
+mazeCell maze[16][16];
+//Queue for the floodfill algorthim
+std::queue<std::array<int, 3>> floodfillQueue;
+/*
+ Updates the mouses direction when it moves
+*/
 void updatePos() {
  switch(currDirect) {
             case NORTH: yPos += 1; break;
@@ -28,16 +35,22 @@ void updatePos() {
         }
 }
 
-//update orientation of mouse, must be later implemented in firmware, 0:turn left, 1: turn right. Call after every turn
-//Own file 
+/*
+    Changes the direction of the mouse depending on what direction it turns
+    @param Turn(char): takes in a character either 'L' or 'R' to indicate if it has taken a left or right.  
+*/ 
 void changeDirect(char turn) {
     if(turn == 'R') {
         currDirect = Direction((currDirect + 1) % 4);
     } else if(turn == 'L') {
         currDirect = Direction((currDirect + 3) % 4);
+    } else{
+        cout << "Wrong Input " << endl;
     }
 }
-
+/*
+    Stores information about the cell in the current maze
+*/
 struct mazeCell
 {
     bool isExplored = false; //has the cell been explored yet
@@ -48,15 +61,24 @@ struct mazeCell
     bool floodfillChecked = false; //has the cell been checked by the floodfill aglorithm
 };
 
-mazeCell maze[16][16];
-std::queue<std::array<int, 3>> floodfillQueue;
-
-//does a wall exist/is known for a cell in a specific direction
-bool isWall(int x, int y, int sideDirection) { //for sideDirection: 0: Left, 1: Top, 2: Right, 3: Bottom
+/*
+    Determines if the cell has a wall or not in it
+    @param x(int) : The x coordinate for the cell 
+    @param y(int) : The y coordinate for the cell
+    @param sideDirection(int) : the direction you want to check. (0:L, 1:T, 2:R, 3:B)
+    @return bool : returns if the checked direction has a wall or not
+*/
+bool isWall(int x, int y, int sideDirection) {
+    //This basically uses a bit mask to determine the specific configuration of it and returns true if its a wall
     return (maze[x][y].wallConfig & (1 << (3 - sideDirection))) != 0;
 }
-//Own File
-//recursive function for floodfill
+/*
+    This performs the floodfill algorithm to check the wall configuration and get the distance from a specific spot
+    As long as the spot was marked as the goal previvously, recusively 
+    @param x(int) : The x coordinate for the cell to be checked
+    @param y(int) : The y coordinate for the cell to be checked
+    @param currDistance(int) : this sets the cell current distance from the goal
+*/
 void floodfillUtil(int x, int y, int curDistance) {
     floodfillQueue.pop(); //remove this element from the queue
 
@@ -93,11 +115,14 @@ void floodfillUtil(int x, int y, int curDistance) {
 
 
 }
-//Own File
+/*
+    This is used for the beginning steps of the maze that basically sets the center as the goal
+    Once the reached center flag has been to turn to true, the mouses goal is the beginning of the maze
+*/
 void floodfillUpdate() {
-    //set center goal cells
     if(!reachedCenter){
-        for (int i: {7, 8}) { // TODO!! MOVE LOOP TO MAIN METHOD
+        //set center goal cells
+        for (int i: {7, 8}) {
             for (int j: {7, 8}) {
                 maze[i][j].toGoalDistance = 0; 
                 maze[i][j].floodfillChecked = false;
@@ -107,6 +132,7 @@ void floodfillUpdate() {
         }
 
     } else {
+        //Sets the beginning as the goal when it has reached the center
         maze[0][0].toGoalDistance = 0;
         maze[0][0].floodfillChecked = false;
         maze[0][0].isGoal = true;
@@ -118,23 +144,30 @@ void floodfillUpdate() {
     for (int i = 0; i < 16; ++i) { 
         for (int j = 0; j < 16; ++j) {
             maze[i][j].floodfillChecked = false;
+            //This is only for the simulator, remove when porting
             API::setText(i,j,std::to_string(maze[i][j].toGoalDistance));
         }
     }
-
-    //print maze cell distances for testing/debugging
 }
-//Own File
+/*
+    Updates the other walls near one of the cells
+    @param cell(mazeCell) : the current cell that needs to be updated
+    @param wallBit(int) : The wall configuration of the current cell, this depends on the mouse's direction
+    @param hasWall(bool) : If it actually even has a wall
+*/
 void updateAdjacentWalls(mazeCell* cell, int wallBit, bool hasWall){
+    //Basically so it doesn't cause errors
     if(cell != nullptr){
         cell->wallConfig |= (hasWall << wallBit);
     }
 }
-//mouse will mark the current cell as explored, and determine it's wall configuration
-//Own File
+/*
+    Survey's the current cell and the adjecent cells
+*/
 void surveyCell() {
 
     // store pointers to cells for readability
+    //If the cell is somehow out of bounds the pointer will be set to null so it won't be considered 
     mazeCell *curCell = &maze[xPos][yPos];
     mazeCell *westCell = (xPos > 0) ? &maze[xPos-1][yPos] : nullptr;
     mazeCell *northCell = (yPos < 15) ? &maze[xPos][yPos+1] : nullptr;
@@ -181,7 +214,11 @@ void surveyCell() {
         break;
     }
 }
-//Arduino 
+/*
+    Function does the movement for the API, this only works for the API and thus shouldn't be ported
+    Needs to be modified if its going to be ported, untranslated
+    @param movement(char) : a char that handles the movement, (F:Forward, B:Backwards, L:Left, R:Right)
+*/
 void Move(char movement) {
     switch(movement) {
         case 'F':
@@ -211,9 +248,13 @@ void Move(char movement) {
             break;
     }
 }
-//Own File
-// 0:F, 1:B, 2:L, 3:R
+/*
+    Translates the movement when it a specific direction 
+    @param movement(char) : a char that handles the movement, (F:Forward, B:Backwards, L:Left, R:Right)
+    @returns char : returns the translated movement depending on what direction the mouse is facing
+*/
 char translateMove(char move) {
+    //Stores the translated moves into a 2d matrix where the direction controls the row and the move controls the column
     const char translatedMoves[4][4] = {
         {'F','B','L','R'}, //N
         {'L','R','B','F'}, //E
@@ -223,7 +264,13 @@ char translateMove(char move) {
     move = (move == 'F') ? 0 : (move == 'B') ? 1 : (move == 'L') ? 2 : 3;
    return translatedMoves[currDirect][move];
 }
+/*
+    Gets the current wall configuration and translates it into a string to be compared
+    @param wallConfig(int) : the cell's current wall configuration
+    @param walls(string) : what the cell's wall looks like passed by reference
+*/
 void getWalls(int wallConfig,string& walls) {
+    //This could honestly be removed or shorted with a bit mask or something like that. 
     if(wallConfig < 15 && wallConfig >= 8){
         walls +='L';
         getWalls(wallConfig-8,walls);
@@ -240,8 +287,10 @@ void getWalls(int wallConfig,string& walls) {
     }
     return;
     }
-//Change code to have it use the sensors
-//isn't required for arduino code 
+/*
+    Marks the walls of the current cell the mouse is in (API only)
+    @param wallConfig(int) : the cell's current wall configuration
+*/
  void markCell(int wallConfig) {
     if(wallConfig < 15 && wallConfig >= 8){
         API::setWall(xPos,yPos,'w');
@@ -266,21 +315,21 @@ int main(int argc, char* argv[]) {
     surveyCell();
     floodfillUpdate();
     markCell(maze[xPos][yPos].wallConfig);
-<<<<<<< HEAD
-=======
-    surveyCell();
     char bestMove = 'X';  // X means no move found
     currDirect = NORTH;
     int bestDistance = maze[xPos][yPos].toGoalDistance;
->>>>>>> c322f0b97c91a177aad3d86b8a1766f9bbb82f10
     //the mouses run loop
     while (1) {
     string Walls = "";
     //Loads in the walls into the string to let the thing decided which path to go
     //Checks the individual if statement to make sure that its infact the best move to do
     getWalls(maze[xPos][yPos].wallConfig,Walls);
+    //Checks certain situtions if its the best move for the mouse to make, pretty basic if i'm going to be honest
+    //Its pretty readable, as it finds the current wall to see if it could possible move forward and such
+    //I don't really need to comment much about it.
     if(yPos < 15 && Walls.find('U') == string::npos && maze[xPos][yPos+1].toGoalDistance < bestDistance ){
         bestMove = 'F';
+        //This needs to happen otherwise it can't judge the other moves it tries to make
         bestDistance = maze[xPos][yPos+1].toGoalDistance;
     }
     if(yPos > 0 &&  Walls.find('D') == string::npos && maze[xPos][yPos-1].toGoalDistance < bestDistance){
@@ -300,19 +349,21 @@ int main(int argc, char* argv[]) {
         bestDistance = maze[xPos][yPos-1].toGoalDistance;
     }
 
-// Execute best move if one was found
-//Own file 
+//Once the best move has been found it translates and makes the move 
 if(bestMove != 'X'){
+    //Debug stuff
     // cout << "Current Direction: " << currDirect << endl;
     // cout << "Curr: " << bestMove << " Translated: " << translateMove(bestMove)<<endl;
+
     //Translates the move with the mouses current direction and moves
     Move(translateMove(bestMove));
+    //Updates the position
     updatePos();
-    //resets the best move
+    //resets the best move to be made and the cells current distance from the goal
     bestMove = 'X';
     bestDistance = maze[xPos][yPos].toGoalDistance;
     //Once the mouse reaches the center, it goes back to the start to collect more wall data on the maze.
-    //Basically a second run and stuff
+    //To see if it made the best choices
     if(bestDistance == 0){
         if(reachedCenter){
             reachedCenter = false;
@@ -321,6 +372,7 @@ if(bestMove != 'X'){
             reachedCenter = true;
         }
         floodfillUpdate();
+        //Sets all the cells to false for whether its the goal or not
         for (int i = 0; i < 16; ++i) { 
             for (int j = 0; j < 16; ++j) {
                 maze[i][j].isGoal = false;
@@ -328,15 +380,13 @@ if(bestMove != 'X'){
     }
 
     }
-    // Survey new cell if unexplored
+    //If the mouse moves to an unexplored cell, then it will explore it and update the floodfill to account for it
     if (!maze[xPos][yPos].isExplored) {
         surveyCell();
         markCell(maze[xPos][yPos].wallConfig);
         floodfillUpdate();
         bestDistance = maze[xPos][yPos].toGoalDistance;
     }
-    // cout << "Best Distance: " <<bestDistance << endl;
-    // cout << "X: " << xPos << " Y: " << yPos << endl;
 }
 }
 }
