@@ -7,8 +7,10 @@
 
 using namespace std;
 
-//Data type for the direction, basically acts like an array
-enum Direction {NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3};
+#define intNORTH 0
+#define intEAST 1
+#define intSOUTH 2
+#define intWEST 3
 
 
 //Queue for the floodfill algorthim
@@ -30,6 +32,41 @@ struct mazeCell
 //2-D array to represent the maze
 mazeCell maze[16][16];
 
+
+
+/*
+    Determines whether a cell has been explored
+    @param x(int) : The x coordinate for the cell 
+    @param y(int) : The y coordinate for the cell
+    @return int : returns whether or not the cell has previously been explored, aka has been surveyed
+*/
+bool isCellExplored(int x, int y){
+    return maze[x][y].isExplored;
+}
+
+
+/*
+    Getter for a cells currently known wall configuration
+    @param x(int) : The x coordinate for the cell 
+    @param y(int) : The y coordinate for the cell
+    @return int : returns the bit representation of the cells wallConfig
+*/
+bool getWallConfig(int x, int y){
+    return maze[x][y].wallConfig;
+}
+
+
+/*
+    Gets a cells toGoalDistance
+    @param x(int) : The x coordinate for the cell 
+    @param y(int) : The y coordinate for the cell
+    @return int : returns the cells current estimated distance from the goal
+*/
+int getCellDistance(int x, int y){
+    return maze[x][y].toGoalDistance;
+}
+
+
 /*
     Determines if the cell has a wall or not in it
     @param x(int) : The x coordinate for the cell 
@@ -41,6 +78,9 @@ bool isWall(int x, int y, int sideDirection) {
     //This basically uses a bit mask to determine the specific configuration of it and returns true if its a wall
     return (maze[x][y].wallConfig & (1 << (3 - sideDirection))) != 0;
 }
+
+
+
 /*
     This performs the floodfill algorithm to check the wall configuration and get the distance from a specific spot
     As long as the spot was marked as the goal previvously, recusively 
@@ -122,7 +162,7 @@ void floodfillUpdate(bool reachedCenter) {
 /*
     Updates the other walls near one of the cells
     @param cell(mazeCell) : the current cell that needs to be updated
-    @param wallBit(int) : The wall configuration of the current cell, this depends on the mouse's direction
+    @param wallBit(int) : The bit position to update in the wall configuration of the cell at hand
     @param hasWall(bool) : If it actually even has a wall
 */
 void updateAdjacentWalls(mazeCell* cell, int wallBit, bool hasWall){
@@ -131,8 +171,10 @@ void updateAdjacentWalls(mazeCell* cell, int wallBit, bool hasWall){
         cell->wallConfig |= (hasWall << wallBit);
     }
 }
+
+
 /*
-    Survey's the current cell and the adjecent cells
+    Survey's the current cell, updating it and the adjecent cells
 */
 void surveyCell(int xPos, int yPos, int currDirect) {
 
@@ -153,27 +195,27 @@ void surveyCell(int xPos, int yPos, int currDirect) {
     // based on the direction of the mouse and its surveyings, update the walls of the current cell and the connected cells
     switch (currDirect)
     {
-    case WEST: //if facing west/left
+    case intWEST: //if facing west/left
         curCell->wallConfig |= (front << 3) + (left) + (right << 2);
         updateAdjacentWalls(westCell,1,front);
-        updateAdjacentWalls(northCell, 0, right);
+        updateAdjacentWalls(northCell,0,right);
         updateAdjacentWalls(southCell,2,left);
         break;
-    case NORTH: //if facing north/up
+    case intNORTH: //if facing north/up
         curCell->wallConfig |= (front << 2) + (left << 3) + (right << 1);
         updateAdjacentWalls(northCell,0,front);
         updateAdjacentWalls(westCell,1,left);
         updateAdjacentWalls(eastCell,3,right);
         break;
     
-    case EAST: //if facing east/right
+    case intEAST: //if facing east/right
         curCell->wallConfig |= (front << 1) + (left << 2) + (right);
         updateAdjacentWalls(eastCell,3,front);
         updateAdjacentWalls(northCell,0,left);
         updateAdjacentWalls(southCell,2,right);
         break;
     
-    case SOUTH: //if facing south/down
+    case intSOUTH: //if facing south/down
         curCell->wallConfig |= (front) + (left << 1) + (right << 3);
         updateAdjacentWalls(southCell,2,front);
         updateAdjacentWalls(westCell,1,right);
@@ -182,5 +224,45 @@ void surveyCell(int xPos, int yPos, int currDirect) {
     
     default:
         break;
+    }
+}
+
+
+
+
+/*
+    Marks the walls of the current cell the mouse is in (API only, no Port)
+    @param xPos(int) : the cell's x coordinate
+    @param yPos(int) : the cell's y coordinate
+    @param thisWallConfig(int) : the cell's current wall configuration value if given recursively (optional parameter)
+    @param firstCall(bool) : determines whether this function is being called for the first time or else recursively (optional parameter)
+*/
+void markCell(int xPos, int yPos, int thisWallConfig = 0, bool firstCall = true) {
+    //recursive function, will grab wall config of current cell only upon first call/iteration
+    int currWallConfig = (firstCall) ? maze[xPos][yPos].wallConfig : thisWallConfig;
+    
+    if(currWallConfig < 15 && currWallConfig >= 8){
+        API::setWall(xPos,yPos,'w');
+        markCell(xPos, yPos, currWallConfig-8, false);
+    } else if (currWallConfig <= 7 && currWallConfig >= 4){
+        API::setWall(xPos,yPos,'n');
+        markCell(xPos, yPos, currWallConfig-4, false);
+    }else if(currWallConfig == 3 || currWallConfig == 2){
+        API::setWall(xPos,yPos,'e');
+        markCell(xPos, yPos, currWallConfig-2, false);
+    } else if(currWallConfig == 1){
+        API::setWall(xPos,yPos,'s');
+        markCell(xPos, yPos, currWallConfig-1, false);
+    }
+    return;
+}
+
+
+void floodfillReset(){
+    //Sets all the cells to false for whether its the goal or not
+    for (int i = 0; i < 16; ++i) { 
+        for (int j = 0; j < 16; ++j) {
+            maze[i][j].isGoal = false;
+        }
     }
 }
