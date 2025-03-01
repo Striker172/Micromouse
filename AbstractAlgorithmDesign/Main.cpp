@@ -4,7 +4,7 @@
 #include <array>
 
 #include "API.h"
-#include "FloodfillLibrary.h"
+#include "FloodfillLibrary.cpp" // using header file not working?? must include cpp source file directly
 
 using namespace std;
 
@@ -15,9 +15,10 @@ void log(const std::string& text) { //DO NOT TOUCH
 //position of mouse in the maze
 int xPos;
 int yPos;
-//Data type for the direction, basically acts like an array
-enum Direction {NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3};
+
+//current direction the mouse is facing (north, east, west, south)
 Direction currDirect;
+
 //Determines if it has reached the center for it to return to the beginning
 bool reachedCenter = false;
 

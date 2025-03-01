@@ -4,17 +4,13 @@
 #include <array>
 
 #include "API.h"
-#include "FloodfillLibrary.h"
 
 using namespace std;
 
-#define NORTH 0
-#define EAST 1
-#define SOUTH 2
-#define WEST 3
+//Data type for the direction, basically acts like an array
+enum Direction {NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3};
 
-//2-D array to represent the maze
-mazeCell maze[16][16];
+
 //Queue for the floodfill algorthim
 std::queue<std::array<int, 3>> floodfillQueue;
 
@@ -30,6 +26,9 @@ struct mazeCell
 
     bool floodfillChecked = false; //has the cell been checked by the floodfill aglorithm
 };
+
+//2-D array to represent the maze
+mazeCell maze[16][16];
 
 /*
     Determines if the cell has a wall or not in it
