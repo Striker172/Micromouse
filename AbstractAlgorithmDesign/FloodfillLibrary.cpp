@@ -51,7 +51,7 @@ bool isCellExplored(int x, int y){
     @param y(int) : The y coordinate for the cell
     @return int : returns the bit representation of the cells wallConfig
 */
-bool getWallConfig(int x, int y){
+int getWallConfig(int x, int y){
     return maze[x][y].wallConfig;
 }
 
