@@ -96,6 +96,7 @@ void mouseMove(char movement) {
             break;
     }
 }
+
 /*
     Translates the movement when it a specific direction 
     @param movement(char) : a char that handles the movement, (F:Forward, B:Backwards, L:Left, R:Right)
@@ -111,4 +112,32 @@ char translateMove(char move) {
     };
     move = (move == 'F') ? 0 : (move == 'B') ? 1 : (move == 'L') ? 2 : 3;
     return translatedMoves[currDirect][move];
+}
+
+/*
+    For speed mode preparation phase, mouse will not make API calls to actually move
+    @param movement(char) : a char that handles the movement, (F:Forward, B:Backwards, L:Left, R:Right)
+*/
+void feignMove(char movement) {
+    switch(movement) {
+        case 'F':
+            updatePos(); // Update mouse position
+            break;
+        case 'B':
+            currDirect = static_cast<Direction>((currDirect + 2) % 4); // Update direction after 180° turn
+            updatePos(); // Update mouse position
+            break;
+        case 'L':
+            changeDirect('L'); // Update direction
+            updatePos(); // Update mouse position
+            break;
+        case 'R':
+            changeDirect('R'); // Update direction
+            updatePos(); // Update mouse position
+            break;
+        case 'T':
+            changeDirect('L'); // Update direction
+            changeDirect('L');
+            break;
+    }
 }
