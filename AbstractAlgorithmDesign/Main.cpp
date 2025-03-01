@@ -18,7 +18,9 @@ void log(const std::string& text) { //DO NOT TOUCH
 bool reachedCenter = false;
 
 //Determines if the mouse is currently in exploration mode, or else speed mode
-bool explorationMode = true;
+bool isInexplorationMode = true;
+//The number of times(to center and back) the mouse should explore the maze before switching modes
+int numExplorationInterations = 2;
 
 /*
     Gets the current wall configuration and translates it into a string to be compared
@@ -44,21 +46,25 @@ void getWalls(int wallConfig,string& walls) {
     return;
 }
 
+/*
+    Runs the exploration mode algorithm. Current cell will be surveyed, followed by a floodfill update, and the best imaginable move being made by the mouse. This will repeat until the mouse reaches the center, at which point the mouse will repeat the algorithm on it's return to the start.
+*/
+void beginExplorationMode(){
+    int justReset = 0;
 
-
-// mouse running function
-int main(int argc, char* argv[]) {
-    log("Running..."); //DO NOT TOUCH
-    API::setColor(0, 0, 'G'); //DO NOT TOUCH
-    API::setText(0, 0, "abc"); //DO NOT TOUCH
+    floodfillReset();
     surveyCell(getXPos(), getYPos(), getDirection());
     floodfillUpdate(reachedCenter);
     markCell(getXPos(), getYPos());
     char bestMove = 'X';  // X means no move found
     int bestDistance = getCellDistance(getXPos(), getYPos());
-    //the mouses run loop
-    while (1) {
-        string Walls = "";
+    string Walls = "";
+    while (isInexplorationMode) {
+        if (justReset){
+            cout << "just reset" << endl; //why does this not print after reaching start???
+            justReset = false;
+        }
+        Walls = "";
         //Loads in the walls into the string to let the thing decided which path to go
         //Checks the individual if statement to make sure that its infact the best move to do
         getWalls(maze[getXPos()][getYPos()].wallConfig,Walls); //should use getter instead, but causes crashing for unknown reason
@@ -104,11 +110,20 @@ int main(int argc, char* argv[]) {
                 if(reachedCenter){
                     reachedCenter = false;
                     mouseMove('T');
+                    isInexplorationMode = false;
+                    --numExplorationInterations;
+                    cout << "reached start" << endl;
                 } else {
+                    cout << "reached center" << endl;
                     reachedCenter = true;
                 }
                 floodfillReset();
                 floodfillUpdate(reachedCenter);
+                cout << "reached endpoint 1" << endl;
+                cout << "reached endpoint 2" << endl;
+                cout << "reached endpoint 3" << endl;
+                justReset = true;
+
             }
             //If the mouse moves to an unexplored cell, then it will explore it and update the floodfill to account for it
             if (!isCellExplored(getXPos(), getYPos())) {
@@ -119,4 +134,30 @@ int main(int argc, char* argv[]) {
             }
         }
     }
+}
+
+
+/*
+    Runs the speed mode algorithm. Floodfill is called once, the best route determined, and the moves of such route prepackaged in sequence for swift execution. Cells are not actively surveyed and the known maze layout is not updated as it is assumed to be sufficiently known.
+*/
+void beginSpeedMode(){
+    cout << "end test" << endl;
+}
+
+// mouse running function
+int main(int argc, char* argv[]) {
+    log("Running..."); //DO NOT TOUCH
+    API::setColor(0, 0, 'G'); //DO NOT TOUCH
+    API::setText(0, 0, "abc"); //DO NOT TOUCH
+    //the mouses run loop
+    // while(numExplorationInterations){
+    //         isInexplorationMode = true;
+    //         cout << "iteration: #" << numExplorationInterations << endl;
+    //         beginExplorationMode();
+    // }
+    isInexplorationMode = true;
+    beginExplorationMode();
+    isInexplorationMode = true;
+    beginExplorationMode();
+    beginSpeedMode();
 }
