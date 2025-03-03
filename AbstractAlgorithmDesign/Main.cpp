@@ -14,27 +14,15 @@ void log(const std::string& text) { //DO NOT TOUCH
 }
 
 
-//Determines if the mouse has reached the center for it to return to the beginning
-bool reachedCenter = false;
-
-//Determines if the mouse is currently in exploration mode, or else speed mode
-bool isInexplorationMode = true;
-//The number of times(to center and back) the mouse should explore the maze before switching modes
-int numExplorationInterations = 3;
-
-//For speed mode, has mouse finished preparing route
-bool isPrepared = false;
-
 //Queue for the speed mode algorthim
 std::queue<char> speedModeQueue;
 
 
 
-
 /*
-    Gets the current wall configuration and translates it into a string to be compared
-    @param wallConfig(int) : the cell's current wall configuration
-    @param walls(string) : what the cell's wall looks like passed by reference
+Gets the current wall configuration and translates it into a string to be compared
+@param wallConfig(int) : the cell's current wall configuration
+@param walls(string) : what the cell's wall looks like passed by reference
 */
 void getWalls(int wallConfig,string& walls) {
     //This could honestly be removed or shorted with a bit mask or something like that. 
@@ -56,13 +44,14 @@ void getWalls(int wallConfig,string& walls) {
 }
 
 /*
-    Runs the exploration mode algorithm. Current cell will be surveyed, followed by a floodfill update, and the best imaginable move being made by the mouse. This will repeat until the mouse reaches the center, at which point the mouse will repeat the algorithm on it's return to the start.
+Runs the exploration mode algorithm. Current cell will be surveyed, followed by a floodfill update, and the best imaginable move being made by the mouse. This will repeat until the mouse reaches the center, at which point the mouse will repeat the algorithm on it's return to the start.
 */
 void beginExplorationMode(){
-
+    bool isInexplorationMode = true;
+    bool reachedCenter = false; // determines if the mouse has reached the center for it to return to the beginning
     floodfillReset();
-    surveyCell(getXPos(), getYPos(), getDirection());
     floodfillUpdate(reachedCenter);
+    surveyCell(getXPos(), getYPos(), getDirection());
     markCell(getXPos(), getYPos());
     char bestMove = 'X';  // X means no move found
     int bestDistance = getCellDistance(getXPos(), getYPos());
@@ -100,7 +89,7 @@ void beginExplorationMode(){
         
         //Once the best move has been found it translates and makes the move 
         if(bestMove != 'X'){
-
+            
             //Translates the move with the mouses current direction and moves
             mouseMove(translateMove(bestMove));
             //resets the best move to be made and the cells current distance from the goal
@@ -113,7 +102,6 @@ void beginExplorationMode(){
                     reachedCenter = false;
                     mouseMove('T');
                     isInexplorationMode = false;
-                    --numExplorationInterations;
                 } else {
                     reachedCenter = true;
                 }
@@ -133,17 +121,22 @@ void beginExplorationMode(){
 
 
 /*
-    Runs the speed mode algorithm. Floodfill is called once, the best route determined, and the moves of such route prepackaged in sequence for swift execution. Cells are not actively surveyed and the known maze layout is not updated as it is assumed to be sufficiently known.
+Queues the best imaginable path for speed mode, and checks if it has been entirely explored
+@returns bool : true if every single cell which is a part of the queued path has been surveyed/explored, else false
 */
-void beginSpeedMode(){
+bool QueueBestPath(){
+    int mouseInitialDirection = getDirection(); //save mouses initial direction for reset at end
     floodfillReset();
-    floodfillUpdate(0); //update with argument of center not reached
-
+    floodfillUpdate(false); //update with argument of center not reached as mouse begins speed run from start
+    
     //firstly the mouse preps the movements of its best determined route into a queue
+    bool isPrepared = false; // has mouse finished preparing route
+    bool isPathExplored = true; // has the entire path been explored
     char bestMove = 'X';  // X means no move found
-    int bestDistance = getCellDistance(getXPos(), getYPos());
+    int bestDistance = getCellDistance(getXPos(), getYPos()); //get current distance to compare with neighboring cells
     string Walls = "";
     while (!isPrepared) {
+        bestDistance = getCellDistance(getXPos(), getYPos());
         Walls = "";
         //Loads in the walls into the string to let the thing decided which path to go
         //Checks the individual if statement to make sure that its infact the best move to do
@@ -177,7 +170,8 @@ void beginSpeedMode(){
         if(bestMove != 'X'){
             //Translates the move with the mouses current direction and adds move to queue
             speedModeQueue.push(translateMove(bestMove));
-            feignMove(translateMove(bestMove));
+            feignMove(translateMove(bestMove)); //do not move mouse, but begin addressing next cell
+            isPathExplored &= isCellExplored(getXPos(), getYPos()); //check if cell is unexplored, if not, then path is not entirely explored
             //resets the best move to be made and the cells current distance from the goal
             bestMove = 'X';
             bestDistance = getCellDistance(getXPos(), getYPos());
@@ -188,7 +182,25 @@ void beginSpeedMode(){
         }
     }
 
-    // mouse is now prepared and will execute queued movements
+    resetMouse(mouseInitialDirection);
+    return isPathExplored;
+}
+
+
+/*
+Clears the movement queue for speedmode
+*/
+void clearSpeedQueue(){
+    while (!speedModeQueue.empty()){
+        speedModeQueue.pop();
+    }
+}
+
+
+/*
+Executes the queued moves for the speed mode algorithm. Cells are not actively surveyed and the known maze layout is not updated as it is assumed to be sufficiently known.
+*/
+void beginSpeedMode(){
     while (!speedModeQueue.empty()) {
         mouseMove(speedModeQueue.front());
         speedModeQueue.pop();
@@ -201,12 +213,16 @@ int main(int argc, char* argv[]) {
     API::setColor(0, 0, 'G'); //DO NOT TOUCH
     API::setText(0, 0, "abc"); //DO NOT TOUCH
 
+    int iterationCount = 0;
+    bool speedModeReady = false;
+
     //the mouses run loop
-    while(numExplorationInterations){
-            isInexplorationMode = true;
-            cout << "iteration: #" << numExplorationInterations << endl;
-            beginExplorationMode();
+    while(!speedModeReady){ // loop exploration mode runs until best path imaginable is entirely explored
+        clearSpeedQueue();
+        ++iterationCount;
+        cout << "iteration: #" << iterationCount << endl;
+        beginExplorationMode();
+        speedModeReady = QueueBestPath();
     }
-    
     beginSpeedMode();
 }

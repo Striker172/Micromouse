@@ -141,3 +141,14 @@ void feignMove(char movement) {
             break;
     }
 }
+
+
+/*
+Resets the mouses position in the maze to (0,0) and direction to the mouses real direction. For use after queueing a speed mode path.
+@param trueDirection(int) : the true facing direction of the mouse (0: North, 1: East, 2: South, 3: West)
+*/
+void resetMouse(int trueDirection){
+    xPos = 0;
+    yPos = 0;
+    currDirect = (Direction)trueDirection;
+}
