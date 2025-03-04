@@ -20,7 +20,7 @@
 #include "main.h"
 #include "tim.h"
 #include "gpio.h"
-
+#include <stdbool.h>
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -44,7 +44,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-#define SPEED 255
+#define SPEED 75
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -159,6 +159,27 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void moveForward(){
 	//Check the hall effect sensor on the actual motors to see how far you have moved
+}
+bool wallFront(){
+	return HAL_GPIO_ReadPin(SensorF_GPIO_Port, SensorF_Pin);
+}
+bool wallLeft(){
+	return HAL_GPIO_ReadPin(SensorL_GPIO_Port, SensorL_Pin);
+}
+bool wallRight(){
+	return HAL_GPIO_ReadPin(SensorR_GPIO_Port, SensorR_Pin);
+}
+void turnLeft(){
+	driveValues[2] = SPEED/2;
+	driveValues[0] = SPEED;
+	driveValues[1] = 0;
+	driveValues[3] = 0;
+}
+void turnRight(){
+	driveValues[1] = SPEED/2;
+	driveValues[3] = SPEED;
+	driveValues[2] = 0;
+	driveValues[0] = 0;
 }
 /* USER CODE END 4 */
 
