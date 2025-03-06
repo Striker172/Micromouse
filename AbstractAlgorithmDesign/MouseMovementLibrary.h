@@ -1,14 +1,24 @@
-#pragma once
+#include <iostream>
+#include <string>
+#include <queue>
+#include <array>
 
+#include "API.h"
+#ifndef MouseMovementLibrary_H_
+#define MouseMovementLibrary_H_
 
-int getXPos();
-int getYPos();
-int getDirection();
+namespace movement{
+    enum Direction {NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3};
+    int getXPos();
+    int getYPos();
+    Direction getDirection();
 
-void mouseMove(char movement);
+    void mouseMove(char movement);
 
-char translateMove(char move);
+    char translateMove(char move);
 
-void feignMove(char movement);
+    void feignMove(char movement);
 
-void resetMouse(int trueDirection);
+    void resetMouse(int trueDirection);
+}
+#endif

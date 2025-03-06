@@ -4,12 +4,12 @@
 #include <array>
 
 #include "API.h"
-#include "MouseMovementLibrary.cpp"
-#include "FloodfillLibrary.cpp" // using header file not working?? must include cpp source files directly
+#include "MouseMovementLibrary.h"
+#include "FloodfillLibrary.h" // using header file not working?? must include cpp source files directly
 
 using namespace std;
-
-
+using namespace movement;
+using namespace Floodfill;
 //Queue for the speed mode algorthim
 std::queue<char> speedModeQueue;
 

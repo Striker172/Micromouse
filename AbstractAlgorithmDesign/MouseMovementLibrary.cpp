@@ -1,26 +1,19 @@
-#include <iostream>
-#include <string>
-#include <queue>
-#include <array>
 
-#include "API.h"
-
+#include "MouseMovementLibrary.h"
 using namespace std;
 
 //position of mouse in the maze
-int xPos;
-int yPos;
 
 //Data type for the direction, basically acts like an array
-enum Direction {NORTH = 0, EAST = 1, SOUTH = 2, WEST = 3};
 //current direction the mouse is facing (north, east, west, south)
-Direction currDirect = NORTH;
 
-
+namespace movement{
 // Simple getter functions
 /*
  Gets the mouses x coordinate
 */
+ int xPos,yPos;
+Direction currDirect = NORTH;
 int getXPos(){return xPos;}
 /*
  Gets the mouses y coordinate
@@ -151,4 +144,5 @@ void resetMouse(int trueDirection){
     xPos = 0;
     yPos = 0;
     currDirect = (Direction)trueDirection;
+}
 }

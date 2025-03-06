@@ -157,7 +157,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void moveForward(){
+void moveForward(int distance){
 	//Check the hall effect sensor on the actual motors to see how far you have moved
 }
 bool wallFront(){
@@ -174,12 +174,14 @@ void turnLeft(){
 	driveValues[0] = SPEED;
 	driveValues[1] = 0;
 	driveValues[3] = 0;
+	writePWM();
 }
 void turnRight(){
 	driveValues[1] = SPEED/2;
 	driveValues[3] = SPEED;
 	driveValues[2] = 0;
 	driveValues[0] = 0;
+	writePWM();
 }
 /* USER CODE END 4 */
 

@@ -1,12 +1,7 @@
-#include <iostream>
-#include <string>
-#include <queue>
-#include <array>
-
-#include "API.h"
 
 using namespace std;
-
+#include "FloodfillLibrary.h"
+namespace Floodfill{
 #define intNORTH 0
 #define intEAST 1
 #define intSOUTH 2
@@ -237,7 +232,7 @@ void surveyCell(int xPos, int yPos, int currDirect) {
     @param thisWallConfig(int) : the cell's current wall configuration value if given recursively (optional parameter)
     @param firstCall(bool) : determines whether this function is being called for the first time or else recursively (optional parameter)
 */
-void markCell(int xPos, int yPos, int thisWallConfig = 0, bool firstCall = true) {
+void markCell(int xPos, int yPos, int thisWallConfig, bool firstCall) {
     //recursive function, will grab wall config of current cell only upon first call/iteration
     int currWallConfig = (firstCall) ? maze[xPos][yPos].wallConfig : thisWallConfig;
     
@@ -265,4 +260,5 @@ void floodfillReset(){
             maze[i][j].isGoal = false;
         }
     }
+}
 }

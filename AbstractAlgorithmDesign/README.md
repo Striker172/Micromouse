@@ -2,6 +2,7 @@
 ## Do *NOT* edit the API.cpp or API.h files
 ### Main.cpp will be the run file for the algorithm for use solely with the simulator. It will later be implemented using the hardware API for use on the actual mouse.
 ### Do *not* push your a.exe to remote.
+### Changed the build config on the simulator to (g++ Main.cpp API.cpp MouseMovementLibrary.cpp FloodfillLibrary.cpp) to have the libraries actually work.
 
 *Exploration Mode:*
 The mouse will not know the layout of the walls ahead of time. It will begin in exploration mode, updating it's own knowledge of the maze with every new cell it explores.
