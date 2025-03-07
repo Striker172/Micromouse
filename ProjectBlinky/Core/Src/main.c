@@ -21,6 +21,10 @@
 #include "tim.h"
 #include "gpio.h"
 #include <stdbool.h>
+
+#include "API.h"
+#include "floodfill_library.h"
+#include "mouse_movement_library.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -44,24 +48,19 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-#define SPEED 75
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-	volatile int driveValues[4] = {0,0,0,0};
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-	void writePWM(){
-		htim1.Instance-> CCR1 = ((driveValues[0])*65535)/100;//Forward Left
-		htim1.Instance-> CCR2 = ((driveValues[1])*65535)/100;//Backward Left
-		htim1.Instance-> CCR3 = ((driveValues[2])*65535)/100;//Forward Right
-		htim1.Instance-> CCR4 = ((driveValues[3])*65535)/100;//Backward Right
-	}
+
 
 /* USER CODE END 0 */
 
@@ -157,32 +156,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void moveForward(int distance){
-	//Check the hall effect sensor on the actual motors to see how far you have moved
-}
-bool wallFront(){
-	return HAL_GPIO_ReadPin(SensorF_GPIO_Port, SensorF_Pin);
-}
-bool wallLeft(){
-	return HAL_GPIO_ReadPin(SensorL_GPIO_Port, SensorL_Pin);
-}
-bool wallRight(){
-	return HAL_GPIO_ReadPin(SensorR_GPIO_Port, SensorR_Pin);
-}
-void turnLeft(){
-	driveValues[2] = SPEED/2;
-	driveValues[0] = SPEED;
-	driveValues[1] = 0;
-	driveValues[3] = 0;
-	writePWM();
-}
-void turnRight(){
-	driveValues[1] = SPEED/2;
-	driveValues[3] = SPEED;
-	driveValues[2] = 0;
-	driveValues[0] = 0;
-	writePWM();
-}
+
 /* USER CODE END 4 */
 
 /**

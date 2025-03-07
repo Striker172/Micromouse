@@ -9,9 +9,6 @@
 #define INC_FLOODFILL_LIBRARY_H_
 
 
-#pragma once
-
-
 bool isCellExplored(int x, int y);
 int getCellDistance(int x, int y);
 int getWallConfig(int x, int y);

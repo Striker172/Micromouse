@@ -54,7 +54,7 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-#define SPEED 175
+
 /* USER CODE END 0 */
 
 /**
@@ -97,7 +97,7 @@ int main(void)
 	  //PORT(LED_Green), PIN(
 //	  drive('F');
 //	  HAL_Delay(100);
-	  HAL_GPIO_WritePin(LeftsideF, LeftsideF, HIGH);
+//	  HAL_GPIO_WritePin(LeftsideF, LeftsideF, HIGH);
 
     /* USER CODE END WHILE */
 
@@ -146,32 +146,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-void drive(char D){
-	switch(D){
-	case 'F':
-		HAL_GPIO_WritePin(LeftsideF, LeftsideF, SPEED);
-		HAL_GPIO_WritePin(RightsideF, RightsideF, SPEED);
-		break;
-	case 'B':
-		HAL_GPIO_WritePin(RightsideB, RightsideB, SPEED);
-		HAL_GPIO_WritePin(LeftsideB, LeftsideB, SPEED);
-		break;
-	case 'L':
-		HAL_GPIO_WritePin(LeftsideF, LeftsideF, SPEED);
-		HAL_GPIO_WritePin(RightsideF, RightsideF, SPEED/2);
-		break;
-	case 'R':
-		HAL_GPIO_WritePin(LeftsideF, LeftsideF, SPEED/2);
-		HAL_GPIO_WritePin(RightsideF, RightsideF, SPEED);
-		break;
-	default:
-		HAL_GPIO_WritePin(RightsideF, RightsideF, 0);
-		HAL_GPIO_WritePin(RightsideB, RightsideB, 0);
-		HAL_GPIO_WritePin(LeftsideB, LeftsideB, 0);
-		HAL_GPIO_WritePin(LeftsideF, LeftsideF, 0);
-		break;
-	}
-}
+
 /* USER CODE END 4 */
 
 /**

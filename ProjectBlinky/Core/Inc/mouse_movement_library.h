@@ -9,9 +9,6 @@
 #define INC_MOUSE_MOVEMENT_LIBRARY_H_
 
 
-#pragma once
-
-
 int getXPos();
 int getYPos();
 int getDirection();
