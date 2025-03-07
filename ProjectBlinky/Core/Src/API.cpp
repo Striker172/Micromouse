@@ -5,6 +5,7 @@
  *      Author: tysen
  */
 
+#include "API.h"
 #include "main.h"
 #include "tim.h"
 #include "gpio.h"
@@ -51,7 +52,7 @@ void drive(char D){
 }
 
 
-void moveForward(int distance){
+void moveForward(int numCells){
 	//Check the hall effect sensor on the actual motors to see how far you have moved
 }
 

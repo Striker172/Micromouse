@@ -103,8 +103,8 @@ char translateMove(char move) {
         {'B','F','R','L'}, //S
         {'R','L','F','B'}  //W
     };
-    move = (move == 'F') ? 0 : (move == 'B') ? 1 : (move == 'L') ? 2 : 3;
-    return translatedMoves[currDirect][move];
+    int moveInt = (move == 'N') ? 0 : (move == 'S') ? 1 : (move == 'W') ? 2 : 3;
+    return translatedMoves[currDirect][moveInt];
 }
 
 /*

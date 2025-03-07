@@ -7,7 +7,8 @@
 CPP_SRCS += \
 ../Core/Src/API.cpp \
 ../Core/Src/floodfill_library.cpp \
-../Core/Src/mouse_movement_library.cpp 
+../Core/Src/mouse_movement_library.cpp \
+../Core/Src/navigation_algorithm.cpp 
 
 C_SRCS += \
 ../Core/Src/gpio.c \
@@ -35,6 +36,7 @@ OBJS += \
 ./Core/Src/gpio.o \
 ./Core/Src/main.o \
 ./Core/Src/mouse_movement_library.o \
+./Core/Src/navigation_algorithm.o \
 ./Core/Src/stm32f1xx_hal_msp.o \
 ./Core/Src/stm32f1xx_it.o \
 ./Core/Src/syscalls.o \
@@ -45,7 +47,8 @@ OBJS += \
 CPP_DEPS += \
 ./Core/Src/API.d \
 ./Core/Src/floodfill_library.d \
-./Core/Src/mouse_movement_library.d 
+./Core/Src/mouse_movement_library.d \
+./Core/Src/navigation_algorithm.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -57,7 +60,7 @@ Core/Src/%.o Core/Src/%.su Core/Src/%.cyclo: ../Core/Src/%.c Core/Src/subdir.mk
 clean: clean-Core-2f-Src
 
 clean-Core-2f-Src:
-	-$(RM) ./Core/Src/API.cyclo ./Core/Src/API.d ./Core/Src/API.o ./Core/Src/API.su ./Core/Src/floodfill_library.cyclo ./Core/Src/floodfill_library.d ./Core/Src/floodfill_library.o ./Core/Src/floodfill_library.su ./Core/Src/gpio.cyclo ./Core/Src/gpio.d ./Core/Src/gpio.o ./Core/Src/gpio.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/mouse_movement_library.cyclo ./Core/Src/mouse_movement_library.d ./Core/Src/mouse_movement_library.o ./Core/Src/mouse_movement_library.su ./Core/Src/stm32f1xx_hal_msp.cyclo ./Core/Src/stm32f1xx_hal_msp.d ./Core/Src/stm32f1xx_hal_msp.o ./Core/Src/stm32f1xx_hal_msp.su ./Core/Src/stm32f1xx_it.cyclo ./Core/Src/stm32f1xx_it.d ./Core/Src/stm32f1xx_it.o ./Core/Src/stm32f1xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f1xx.cyclo ./Core/Src/system_stm32f1xx.d ./Core/Src/system_stm32f1xx.o ./Core/Src/system_stm32f1xx.su ./Core/Src/tim.cyclo ./Core/Src/tim.d ./Core/Src/tim.o ./Core/Src/tim.su
+	-$(RM) ./Core/Src/API.cyclo ./Core/Src/API.d ./Core/Src/API.o ./Core/Src/API.su ./Core/Src/floodfill_library.cyclo ./Core/Src/floodfill_library.d ./Core/Src/floodfill_library.o ./Core/Src/floodfill_library.su ./Core/Src/gpio.cyclo ./Core/Src/gpio.d ./Core/Src/gpio.o ./Core/Src/gpio.su ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/mouse_movement_library.cyclo ./Core/Src/mouse_movement_library.d ./Core/Src/mouse_movement_library.o ./Core/Src/mouse_movement_library.su ./Core/Src/navigation_algorithm.cyclo ./Core/Src/navigation_algorithm.d ./Core/Src/navigation_algorithm.o ./Core/Src/navigation_algorithm.su ./Core/Src/stm32f1xx_hal_msp.cyclo ./Core/Src/stm32f1xx_hal_msp.d ./Core/Src/stm32f1xx_hal_msp.o ./Core/Src/stm32f1xx_hal_msp.su ./Core/Src/stm32f1xx_it.cyclo ./Core/Src/stm32f1xx_it.d ./Core/Src/stm32f1xx_it.o ./Core/Src/stm32f1xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32f1xx.cyclo ./Core/Src/system_stm32f1xx.d ./Core/Src/system_stm32f1xx.o ./Core/Src/system_stm32f1xx.su ./Core/Src/tim.cyclo ./Core/Src/tim.d ./Core/Src/tim.o ./Core/Src/tim.su
 
 .PHONY: clean-Core-2f-Src
 

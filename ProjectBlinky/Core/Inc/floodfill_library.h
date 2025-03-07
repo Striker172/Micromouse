@@ -19,8 +19,6 @@ void floodfillUpdate(bool reachedCenter);
 
 void surveyCell(int xPos, int yPos, int currDirect);
 
-void markCell(int xPos, int yPos, int thisWallConfig = 0, bool firstCall = true);
-
 void floodfillReset();
 
 

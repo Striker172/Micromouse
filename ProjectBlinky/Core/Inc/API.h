@@ -12,7 +12,7 @@ bool wallFront();
 bool wallLeft();
 bool wallRight();
 
-void moveForward(int distance = 1);
+void moveForward(int numCells);
 void turnLeft();
 void turnRight();
 

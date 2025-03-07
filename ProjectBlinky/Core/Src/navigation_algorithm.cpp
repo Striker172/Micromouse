@@ -1,16 +1,22 @@
-#include <iostream>
-#include <string>
+/*
+ * navigation_algorithm.cpp
+ *
+ *  Created on: Mar 6, 2025
+ *      Author: tysen
+ */
+
+#include "navigation_algorithm.h"
+
 #include <queue>
 #include <array>
 
 #include "API.h"
-#include "MouseMovementLibrary.h"
-#include "FloodfillLibrary.h" // using header file not working?? must include cpp source files directly
+#include "mouse_movement_library.h"
+#include "floodfill_library.h"
 
-using namespace std;
-using namespace movement;
-using namespace Floodfill;
-//Queue for the speed mode algorthim
+
+
+//Queue for the speed mode algorithm
 std::queue<char> speedModeQueue;
 
 
@@ -32,7 +38,7 @@ char getBestMove() {
     if(getYPos() > 0 &&  !(curWallConfig & 0b0001) && getCellDistance(getXPos(), getYPos()-1) < bestDistance){
         bestMove = 'S';
         bestDistance = getCellDistance(getXPos(), getYPos()-1);
-    } 
+    }
     if(getXPos() < 15 && !(curWallConfig & 0b0010) && getCellDistance(getXPos()+1, getYPos()) < bestDistance){
         bestMove = 'E';
         bestDistance = getCellDistance(getXPos()+1, getYPos());
@@ -59,18 +65,17 @@ void beginExplorationMode(){
         //If the mouse moves to an unexplored cell, then it will explore it and update the floodfill to account for it
         if (!isCellExplored(getXPos(), getYPos())) {
             surveyCell(getXPos(), getYPos(), getDirection());
-            markCell(getXPos(), getYPos());
             floodfillUpdate(reachedCenter);
         }
 
         bestMove = getBestMove();
 
-        //Once the best move has been found it translates and makes the move 
+        //Once the best move has been found it translates and makes the move
         if(bestMove != 'X'){
-            
+
             //Translates the move with the mouses current direction and moves
             mouseMove(translateMove(bestMove));
-           
+
             //Once the mouse reaches the center, it goes back to the start to collect more wall data on the maze.
             //To see if it made the best choices
             if(getCellDistance(getXPos(), getYPos()) == 0){
@@ -84,8 +89,8 @@ void beginExplorationMode(){
                 floodfillReset();
                 floodfillUpdate(reachedCenter);
             }
-            
-        } else cerr << "Error: No Next Move Found" << endl;
+
+        }
     }
 }
 
@@ -94,31 +99,31 @@ void beginExplorationMode(){
 Queues the best imaginable path for speed mode, and checks if it has been entirely explored
 @returns bool : true if every single cell which is a part of the queued path has been surveyed/explored, else false
 */
-bool QueueBestPath(){
+bool queueBestPath(){
     int mouseInitialDirection = getDirection(); //save mouses initial direction for reset at end
     floodfillReset();
     floodfillUpdate(false); //update with argument of center not reached as mouse begins speed run from start
-    
+
     //firstly the mouse preps the movements of its best determined route into a queue
     bool isPrepared = false; // has mouse finished preparing route
     bool isPathExplored = true; // has the entire path been explored
     char bestMove;  // X means no move found
     while (!isPrepared) {
-        
+
         bestMove = getBestMove();
 
-        //Once the best move has been found it translates and adds the move 
+        //Once the best move has been found it translates and adds the move
         if(bestMove != 'X'){
             //Translates the move with the mouses current direction and adds move to queue
             speedModeQueue.push(translateMove(bestMove));
             feignMove(translateMove(bestMove)); //do not move mouse, but begin addressing next cell
             isPathExplored &= isCellExplored(getXPos(), getYPos()); //check if cell is unexplored, if not, then path is not entirely explored
-            
+
             //Once the algorithm reaches the center, the mouse has queued all necessary movements
             if(getCellDistance(getXPos(), getYPos()) == 0){
                 isPrepared = true;
             }
-        } else cerr << "Error: No Next Move Found" << endl;
+        }
     }
 
     resetMouse(mouseInitialDirection);
@@ -147,20 +152,3 @@ void beginSpeedMode(){
 }
 
 
-
-// mouse running function
-int main(int argc, char* argv[]) {
-    int iterationCount = 0;
-    bool speedModeReady = false;
-
-    //the mouses run loop
-    while(!speedModeReady){ // loop exploration mode runs until best path imaginable is entirely explored
-        clearSpeedQueue();
-        ++iterationCount;
-        cerr << "Exploration iteration: #" << iterationCount << endl;
-        beginExplorationMode();
-        speedModeReady = QueueBestPath();
-    }
-    cerr << "*Beginning speed mode*" << endl;
-    beginSpeedMode();
-}

@@ -25,6 +25,7 @@
 #include "API.h"
 #include "floodfill_library.h"
 #include "mouse_movement_library.h"
+#include "navigation_algorithm.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -99,6 +100,16 @@ int main(void)
   HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_4);
+
+//  bool speedModeReady = false;
+//
+//  //the mouses run loop
+//  while(!speedModeReady){ // loop exploration mode runs until best path imaginable is entirely explored
+//	  clearSpeedQueue();
+//	  beginExplorationMode();
+//	  speedModeReady = queueBestPath();
+//  } beginSpeedMode();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */

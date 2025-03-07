@@ -5,17 +5,13 @@
  *      Author: tysen
  */
 
+#include "mouse_movement_library.h"
 
-
-
-#include <iostream>
-#include <string>
 #include <queue>
 #include <array>
 
 #include "API.h"
 
-using namespace std;
 
 //position of mouse in the maze
 int xPos;
@@ -39,7 +35,7 @@ int getYPos(){return yPos;}
 /*
  Gets the mouses current facing direction
 */
-Direction getDirection(){return currDirect;}
+int getDirection(){return currDirect;}
 
 
 /*
@@ -64,7 +60,7 @@ void changeDirect(char turn) {
     } else if(turn == 'L') {
         currDirect = Direction((currDirect + 3) % 4);
     } else{
-        cout << "Wrong Input " << endl;
+//        cout << "Wrong Input " << endl;
     }
 }
 
@@ -76,25 +72,25 @@ void changeDirect(char turn) {
 void mouseMove(char movement) {
     switch(movement) {
         case 'F':
-            moveForward();
+            moveForward(1);
             updatePos(); // Update mouse position
             break;
         case 'B':
             turnLeft();
             turnLeft();
             currDirect = static_cast<Direction>((currDirect + 2) % 4); // Update direction after 180° turn
-            moveForward();
+            moveForward(1);
             updatePos(); // Update mouse position
             break;
         case 'L':
             turnLeft();
             changeDirect('L'); // Update direction
-            moveForward();
+            moveForward(1);
             updatePos(); // Update mouse position
             break;
         case 'R':
             turnRight();
-            moveForward();
+            moveForward(1);
             changeDirect('R'); // Update direction
             updatePos(); // Update mouse position
             break;
@@ -120,7 +116,7 @@ char translateMove(char move) {
         {'B','F','R','L'}, //S
         {'R','L','F','B'}  //W
     };
-    int moveInt = (move == 'F') ? 0 : (move == 'B') ? 1 : (move == 'L') ? 2 : 3;
+    int moveInt = (move == 'N') ? 0 : (move == 'S') ? 1 : (move == 'W') ? 2 : 3;
     return translatedMoves[currDirect][moveInt];
 }
 

@@ -5,17 +5,13 @@
  *      Author: tysen
  */
 
+#include "floodfill_library.h"
 
-
-
-#include <iostream>
-#include <string>
 #include <queue>
 #include <array>
 
 #include "API.h"
 
-using namespace std;
 
 #define intNORTH 0
 #define intEAST 1
@@ -93,7 +89,7 @@ bool isWall(int x, int y, int sideDirection) {
 
 /*
     This performs the floodfill algorithm to check the wall configuration and get the distance from a specific spot
-    As long as the spot was marked as the goal previvously, recusively
+    As long as the spot was marked as the goal previously, recursively
     @param x(int) : The x coordinate for the cell to be checked
     @param y(int) : The y coordinate for the cell to be checked
     @param currDistance(int) : this sets the cell current distance from the goal
@@ -113,7 +109,7 @@ void floodfillUtil(int x, int y, int curDistance) {
     maze[x][y].floodfillChecked = true; //this cell has now been checked
     maze[x][y].toGoalDistance = curDistance; //set this cells distance
 
-    //add adjacent cells without a wall inbetween to the queue for processing
+    //add adjacent cells without a wall in between to the queue for processing
     if (!isWall(x, y, 0)) {
         floodfillQueue.push({x-1, y, curDistance+1});
     }
