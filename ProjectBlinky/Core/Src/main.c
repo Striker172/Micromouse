@@ -101,14 +101,14 @@ int main(void)
   HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_4);
 
-//  bool speedModeReady = false;
-//
-//  //the mouses run loop
-//  while(!speedModeReady){ // loop exploration mode runs until best path imaginable is entirely explored
-//	  clearSpeedQueue();
-//	  beginExplorationMode();
-//	  speedModeReady = queueBestPath();
-//  } beginSpeedMode();
+  bool speedModeReady = false;
+
+  //the mouses run loop #TODO
+  while(!speedModeReady){ // loop exploration mode runs until best path imaginable is entirely explored
+	  clearSpeedQueue();
+	  beginExplorationMode();
+	  speedModeReady = queueBestPath();
+  } beginSpeedMode();
 
   /* USER CODE END 2 */
 
