@@ -20,12 +20,7 @@
 #include "main.h"
 #include "tim.h"
 #include "gpio.h"
-#include <stdbool.h>
-
 #include "API.h"
-#include "floodfill_library.h"
-#include "mouse_movement_library.h"
-#include "navigation_algorithm.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -60,9 +55,6 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
-
-
 /* USER CODE END 0 */
 
 /**
@@ -104,26 +96,23 @@ int main(void)
   bool speedModeReady = false;
 
   //the mouses run loop #TODO
-  while(!speedModeReady){ // loop exploration mode runs until best path imaginable is entirely explored
-	  clearSpeedQueue();
-	  beginExplorationMode();
-	  speedModeReady = queueBestPath();
-  } beginSpeedMode();
+//  while(!speedModeReady){ // loop exploration mode runs until best path imaginable is entirely explored
+//	  clearSpeedQueue();
+//	  beginExplorationMode();
+//	  speedModeReady = queueBestPath();
+//  } beginSpeedMode();
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
+
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//	  HAL_GPIO_TogglePin(RightsideF_GPIO_Port, RightsideF_Pin);
-//	  HAL_GPIO_TogglePin(LeftsideF_GPIO_Port, LeftsideF_Pin);
-//	  HAL_Delay(1000);
-//	  HAL_GPIO_WritePin(RightsideF_GPIO_Port, RightsideF_Pin,GPIO_PIN_RESET);
-//	  HAL_GPIO_WritePin(LeftsideF_GPIO_Port, LeftsideF_Pin,GPIO_PIN_RESET);
+	  turnRight();
   }
   /* USER CODE END 3 */
 }

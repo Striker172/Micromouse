@@ -69,8 +69,6 @@ void Error_Handler(void);
 #define LBack_GPIO_Port GPIOA
 #define RForward_Pin GPIO_PIN_10
 #define RForward_GPIO_Port GPIOA
-#define RBack_Pin GPIO_PIN_11
-#define RBack_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 
