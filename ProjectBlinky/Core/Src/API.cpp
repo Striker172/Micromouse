@@ -9,7 +9,7 @@
 #include "tim.h"
 #include "gpio.h"
 
-#define SPEED 75
+#define SPEED 50
 
 
 
@@ -25,7 +25,7 @@ void writePWM(int forLef,int bacLef,int forRig,int bacRig){
 
 
 void moveForward(int numCells){
-	//Check the hall effect sensor on the actual motors to see how far you have moved
+	writePWM(SPEED,0,SPEED,0);
 }
 
 
@@ -41,9 +41,9 @@ bool wallRight(){
 
 
 void turnLeft(){
-	writePWM(SPEED,0,SPEED/2,0);
+	writePWM(SPEED,0,0,SPEED);
 }
 
 void turnRight(){
-	writePWM(0,SPEED/2,0,SPEED);
+	writePWM(0,SPEED,SPEED,0);
 }

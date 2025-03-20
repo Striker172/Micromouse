@@ -115,16 +115,12 @@ Discarded input sections
  .text          0x00000000        0x0 ./Core/Src/API.o
  .data          0x00000000        0x0 ./Core/Src/API.o
  .bss           0x00000000        0x0 ./Core/Src/API.o
- .text._Z11moveForwardi
-                0x00000000       0x12 ./Core/Src/API.o
  .text._Z9wallFrontv
                 0x00000000       0x20 ./Core/Src/API.o
  .text._Z8wallLeftv
                 0x00000000       0x20 ./Core/Src/API.o
  .text._Z9wallRightv
                 0x00000000       0x20 ./Core/Src/API.o
- .text._Z8turnLeftv
-                0x00000000       0x14 ./Core/Src/API.o
  .group         0x00000000        0x8 ./Core/Src/floodfill_library.o
  .group         0x00000000        0x8 ./Core/Src/floodfill_library.o
  .group         0x00000000        0x8 ./Core/Src/floodfill_library.o
@@ -1329,8 +1325,6 @@ Discarded input sections
                 0x00000000       0x50 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
  .text.HAL_GetTickFreq
                 0x00000000       0x14 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
- .text.HAL_Delay
-                0x00000000       0x48 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
  .text.HAL_SuspendTick
                 0x00000000       0x1c ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
  .text.HAL_ResumeTick
@@ -3231,7 +3225,7 @@ LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
                 0x08000000                g_pfnVectors
                 0x0800010c                        . = ALIGN (0x4)
 
-.text           0x0800010c     0x2e80
+.text           0x0800010c     0x2f1c
                 0x0800010c                        . = ALIGN (0x4)
  *(.text)
  .text          0x0800010c       0x40 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
@@ -3239,660 +3233,669 @@ LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .text._Z8writePWMiiii
                 0x0800014c       0x88 ./Core/Src/API.o
                 0x0800014c                writePWM(int, int, int, int)
+ .text._Z11moveForwardi
+                0x080001d4       0x1c ./Core/Src/API.o
+                0x080001d4                moveForward(int)
+ .text._Z8turnLeftv
+                0x080001f0       0x14 ./Core/Src/API.o
+                0x080001f0                turnLeft()
  .text._Z9turnRightv
-                0x080001d4       0x14 ./Core/Src/API.o
-                0x080001d4                turnRight()
+                0x08000204       0x14 ./Core/Src/API.o
+                0x08000204                turnRight()
  .text._ZSt16__deque_buf_sizej
-                0x080001e8       0x28 ./Core/Src/floodfill_library.o
-                0x080001e8                std::__deque_buf_size(unsigned int)
+                0x08000218       0x28 ./Core/Src/floodfill_library.o
+                0x08000218                std::__deque_buf_size(unsigned int)
  .text._ZN8mazeCellC2Ev
-                0x08000210       0x2c ./Core/Src/floodfill_library.o
-                0x08000210                mazeCell::mazeCell()
-                0x08000210                mazeCell::mazeCell()
+                0x08000240       0x2c ./Core/Src/floodfill_library.o
+                0x08000240                mazeCell::mazeCell()
+                0x08000240                mazeCell::mazeCell()
  .text._ZNSt5dequeISt5arrayIiLj3EESaIS1_EEC2Ev
-                0x0800023c       0x1a ./Core/Src/floodfill_library.o
-                0x0800023c                std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::deque()
-                0x0800023c                std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::deque()
+                0x0800026c       0x1a ./Core/Src/floodfill_library.o
+                0x0800026c                std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::deque()
+                0x0800026c                std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::deque()
  .text._ZNSt5queueISt5arrayIiLj3EESt5dequeIS1_SaIS1_EEEC2IS4_vEEv
-                0x08000256       0x28 ./Core/Src/floodfill_library.o
-                0x08000256                std::queue<std::array<int, 3u>, std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > > >::queue<std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >, void>()
-                0x08000256                std::queue<std::array<int, 3u>, std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > > >::queue<std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >, void>()
+                0x08000286       0x28 ./Core/Src/floodfill_library.o
+                0x08000286                std::queue<std::array<int, 3u>, std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > > >::queue<std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >, void>()
+                0x08000286                std::queue<std::array<int, 3u>, std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > > >::queue<std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >, void>()
  .text._ZNSt11_Deque_baseISt5arrayIiLj3EESaIS1_EE11_Deque_implD2Ev
-                0x0800027e       0x18 ./Core/Src/floodfill_library.o
-                0x0800027e                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_Deque_impl::~_Deque_impl()
-                0x0800027e                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_Deque_impl::~_Deque_impl()
+                0x080002ae       0x18 ./Core/Src/floodfill_library.o
+                0x080002ae                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_Deque_impl::~_Deque_impl()
+                0x080002ae                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_Deque_impl::~_Deque_impl()
  .text._ZNSt11_Deque_baseISt5arrayIiLj3EESaIS1_EEC2Ev
-                0x08000296       0x22 ./Core/Src/floodfill_library.o
-                0x08000296                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_Deque_base()
-                0x08000296                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_Deque_base()
+                0x080002c6       0x22 ./Core/Src/floodfill_library.o
+                0x080002c6                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_Deque_base()
+                0x080002c6                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_Deque_base()
  .text._ZNSt11_Deque_baseISt5arrayIiLj3EESaIS1_EED2Ev
-                0x080002b8       0x44 ./Core/Src/floodfill_library.o
-                0x080002b8                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::~_Deque_base()
-                0x080002b8                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::~_Deque_base()
+                0x080002e8       0x44 ./Core/Src/floodfill_library.o
+                0x080002e8                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::~_Deque_base()
+                0x080002e8                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::~_Deque_base()
  .text._ZNSt5dequeISt5arrayIiLj3EESaIS1_EED2Ev
-                0x080002fc       0x4a ./Core/Src/floodfill_library.o
-                0x080002fc                std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::~deque()
-                0x080002fc                std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::~deque()
+                0x0800032c       0x4a ./Core/Src/floodfill_library.o
+                0x0800032c                std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::~deque()
+                0x0800032c                std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::~deque()
  .text._ZNSt11_Deque_baseISt5arrayIiLj3EESaIS1_EE11_Deque_implC2Ev
-                0x08000346       0x20 ./Core/Src/floodfill_library.o
-                0x08000346                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_Deque_impl::_Deque_impl()
-                0x08000346                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_Deque_impl::_Deque_impl()
+                0x08000376       0x20 ./Core/Src/floodfill_library.o
+                0x08000376                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_Deque_impl::_Deque_impl()
+                0x08000376                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_Deque_impl::_Deque_impl()
  .text._ZNSaISt5arrayIiLj3EEED2Ev
-                0x08000366       0x18 ./Core/Src/floodfill_library.o
-                0x08000366                std::allocator<std::array<int, 3u> >::~allocator()
-                0x08000366                std::allocator<std::array<int, 3u> >::~allocator()
+                0x08000396       0x18 ./Core/Src/floodfill_library.o
+                0x08000396                std::allocator<std::array<int, 3u> >::~allocator()
+                0x08000396                std::allocator<std::array<int, 3u> >::~allocator()
  .text._ZNSt11_Deque_baseISt5arrayIiLj3EESaIS1_EE17_M_initialize_mapEj
-                0x0800037e       0xcc ./Core/Src/floodfill_library.o
-                0x0800037e                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_initialize_map(unsigned int)
+                0x080003ae       0xcc ./Core/Src/floodfill_library.o
+                0x080003ae                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_initialize_map(unsigned int)
  .text._ZNSt11_Deque_baseISt5arrayIiLj3EESaIS1_EE16_M_destroy_nodesEPPS1_S5_
-                0x0800044a       0x36 ./Core/Src/floodfill_library.o
-                0x0800044a                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_destroy_nodes(std::array<int, 3u>**, std::array<int, 3u>**)
+                0x0800047a       0x36 ./Core/Src/floodfill_library.o
+                0x0800047a                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_destroy_nodes(std::array<int, 3u>**, std::array<int, 3u>**)
  .text._ZNSt11_Deque_baseISt5arrayIiLj3EESaIS1_EE17_M_deallocate_mapEPPS1_j
-                0x08000480       0x36 ./Core/Src/floodfill_library.o
-                0x08000480                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_deallocate_map(std::array<int, 3u>**, unsigned int)
+                0x080004b0       0x36 ./Core/Src/floodfill_library.o
+                0x080004b0                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_deallocate_map(std::array<int, 3u>**, unsigned int)
  .text._ZNSt5dequeISt5arrayIiLj3EESaIS1_EE5beginEv
-                0x080004b6       0x1e ./Core/Src/floodfill_library.o
-                0x080004b6                std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::begin()
+                0x080004e6       0x1e ./Core/Src/floodfill_library.o
+                0x080004e6                std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::begin()
  .text._ZNSt5dequeISt5arrayIiLj3EESaIS1_EE3endEv
-                0x080004d4       0x1e ./Core/Src/floodfill_library.o
-                0x080004d4                std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::end()
+                0x08000504       0x1e ./Core/Src/floodfill_library.o
+                0x08000504                std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::end()
  .text._ZNSt11_Deque_baseISt5arrayIiLj3EESaIS1_EE19_M_get_Tp_allocatorEv
-                0x080004f2       0x14 ./Core/Src/floodfill_library.o
-                0x080004f2                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_get_Tp_allocator()
+                0x08000522       0x14 ./Core/Src/floodfill_library.o
+                0x08000522                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_get_Tp_allocator()
  .text._ZNSt15_Deque_iteratorISt5arrayIiLj3EERS1_PS1_EC2ERKS4_
-                0x08000506       0x36 ./Core/Src/floodfill_library.o
-                0x08000506                std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*>::_Deque_iterator(std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*> const&)
-                0x08000506                std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*>::_Deque_iterator(std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*> const&)
+                0x08000536       0x36 ./Core/Src/floodfill_library.o
+                0x08000536                std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*>::_Deque_iterator(std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*> const&)
+                0x08000536                std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*>::_Deque_iterator(std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*> const&)
  .text._ZNSt5dequeISt5arrayIiLj3EESaIS1_EE15_M_destroy_dataESt15_Deque_iteratorIS1_RS1_PS1_ES7_RKS2_
-                0x0800053c       0x18 ./Core/Src/floodfill_library.o
-                0x0800053c                std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_destroy_data(std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*>, std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*>, std::allocator<std::array<int, 3u> > const&)
+                0x0800056c       0x18 ./Core/Src/floodfill_library.o
+                0x0800056c                std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_destroy_data(std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*>, std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*>, std::allocator<std::array<int, 3u> > const&)
  .text._ZNSaISt5arrayIiLj3EEEC2Ev
-                0x08000554       0x18 ./Core/Src/floodfill_library.o
-                0x08000554                std::allocator<std::array<int, 3u> >::allocator()
-                0x08000554                std::allocator<std::array<int, 3u> >::allocator()
+                0x08000584       0x18 ./Core/Src/floodfill_library.o
+                0x08000584                std::allocator<std::array<int, 3u> >::allocator()
+                0x08000584                std::allocator<std::array<int, 3u> >::allocator()
  .text._ZNSt11_Deque_baseISt5arrayIiLj3EESaIS1_EE16_Deque_impl_dataC2Ev
-                0x0800056c       0x32 ./Core/Src/floodfill_library.o
-                0x0800056c                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_Deque_impl_data::_Deque_impl_data()
-                0x0800056c                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_Deque_impl_data::_Deque_impl_data()
+                0x0800059c       0x32 ./Core/Src/floodfill_library.o
+                0x0800059c                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_Deque_impl_data::_Deque_impl_data()
+                0x0800059c                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_Deque_impl_data::_Deque_impl_data()
  .text._ZNSt15__new_allocatorISt5arrayIiLj3EEED2Ev
-                0x0800059e       0x14 ./Core/Src/floodfill_library.o
-                0x0800059e                std::__new_allocator<std::array<int, 3u> >::~__new_allocator()
-                0x0800059e                std::__new_allocator<std::array<int, 3u> >::~__new_allocator()
+                0x080005ce       0x14 ./Core/Src/floodfill_library.o
+                0x080005ce                std::__new_allocator<std::array<int, 3u> >::~__new_allocator()
+                0x080005ce                std::__new_allocator<std::array<int, 3u> >::~__new_allocator()
  .text._ZSt3maxIjERKT_S2_S2_
-                0x080005b2       0x26 ./Core/Src/floodfill_library.o
-                0x080005b2                unsigned int const& std::max<unsigned int>(unsigned int const&, unsigned int const&)
+                0x080005e2       0x26 ./Core/Src/floodfill_library.o
+                0x080005e2                unsigned int const& std::max<unsigned int>(unsigned int const&, unsigned int const&)
  .text._ZNSt11_Deque_baseISt5arrayIiLj3EESaIS1_EE15_M_allocate_mapEj
-                0x080005d8       0x3a ./Core/Src/floodfill_library.o
-                0x080005d8                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_allocate_map(unsigned int)
+                0x08000608       0x3a ./Core/Src/floodfill_library.o
+                0x08000608                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_allocate_map(unsigned int)
  .text._ZNSt11_Deque_baseISt5arrayIiLj3EESaIS1_EE15_M_create_nodesEPPS1_S5_
-                0x08000612       0x36 ./Core/Src/floodfill_library.o
-                0x08000612                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_create_nodes(std::array<int, 3u>**, std::array<int, 3u>**)
+                0x08000642       0x36 ./Core/Src/floodfill_library.o
+                0x08000642                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_create_nodes(std::array<int, 3u>**, std::array<int, 3u>**)
  .text._ZNSt15_Deque_iteratorISt5arrayIiLj3EERS1_PS1_E11_M_set_nodeEPS3_
-                0x08000648       0x38 ./Core/Src/floodfill_library.o
-                0x08000648                std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*>::_M_set_node(std::array<int, 3u>**)
+                0x08000678       0x38 ./Core/Src/floodfill_library.o
+                0x08000678                std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*>::_M_set_node(std::array<int, 3u>**)
  .text._ZNSt11_Deque_baseISt5arrayIiLj3EESaIS1_EE18_M_deallocate_nodeEPS1_
-                0x08000680       0x26 ./Core/Src/floodfill_library.o
-                0x08000680                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_deallocate_node(std::array<int, 3u>*)
+                0x080006b0       0x26 ./Core/Src/floodfill_library.o
+                0x080006b0                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_deallocate_node(std::array<int, 3u>*)
  .text._ZNKSt11_Deque_baseISt5arrayIiLj3EESaIS1_EE20_M_get_map_allocatorEv
-                0x080006a6       0x22 ./Core/Src/floodfill_library.o
-                0x080006a6                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_get_map_allocator() const
+                0x080006d6       0x22 ./Core/Src/floodfill_library.o
+                0x080006d6                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_get_map_allocator() const
  .text._ZNSaIPSt5arrayIiLj3EEED2Ev
-                0x080006c8       0x18 ./Core/Src/floodfill_library.o
-                0x080006c8                std::allocator<std::array<int, 3u>*>::~allocator()
-                0x080006c8                std::allocator<std::array<int, 3u>*>::~allocator()
+                0x080006f8       0x18 ./Core/Src/floodfill_library.o
+                0x080006f8                std::allocator<std::array<int, 3u>*>::~allocator()
+                0x080006f8                std::allocator<std::array<int, 3u>*>::~allocator()
  .text._ZNSt16allocator_traitsISaIPSt5arrayIiLj3EEEE10deallocateERS3_PS2_j
-                0x080006e0       0x1e ./Core/Src/floodfill_library.o
-                0x080006e0                std::allocator_traits<std::allocator<std::array<int, 3u>*> >::deallocate(std::allocator<std::array<int, 3u>*>&, std::array<int, 3u>**, unsigned int)
+                0x08000710       0x1e ./Core/Src/floodfill_library.o
+                0x08000710                std::allocator_traits<std::allocator<std::array<int, 3u>*> >::deallocate(std::allocator<std::array<int, 3u>*>&, std::array<int, 3u>**, unsigned int)
  .text._ZNSt15__new_allocatorISt5arrayIiLj3EEEC2Ev
-                0x080006fe       0x14 ./Core/Src/floodfill_library.o
-                0x080006fe                std::__new_allocator<std::array<int, 3u> >::__new_allocator()
-                0x080006fe                std::__new_allocator<std::array<int, 3u> >::__new_allocator()
+                0x0800072e       0x14 ./Core/Src/floodfill_library.o
+                0x0800072e                std::__new_allocator<std::array<int, 3u> >::__new_allocator()
+                0x0800072e                std::__new_allocator<std::array<int, 3u> >::__new_allocator()
  .text._ZNSt15_Deque_iteratorISt5arrayIiLj3EERS1_PS1_EC2Ev
-                0x08000712       0x2c ./Core/Src/floodfill_library.o
-                0x08000712                std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*>::_Deque_iterator()
-                0x08000712                std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*>::_Deque_iterator()
+                0x08000742       0x2c ./Core/Src/floodfill_library.o
+                0x08000742                std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*>::_Deque_iterator()
+                0x08000742                std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*>::_Deque_iterator()
  .text._ZNSt16allocator_traitsISaIPSt5arrayIiLj3EEEE8allocateERS3_j
-                0x0800073e       0x1e ./Core/Src/floodfill_library.o
-                0x0800073e                std::allocator_traits<std::allocator<std::array<int, 3u>*> >::allocate(std::allocator<std::array<int, 3u>*>&, unsigned int)
+                0x0800076e       0x1e ./Core/Src/floodfill_library.o
+                0x0800076e                std::allocator_traits<std::allocator<std::array<int, 3u>*> >::allocate(std::allocator<std::array<int, 3u>*>&, unsigned int)
  .text._ZNSt11_Deque_baseISt5arrayIiLj3EESaIS1_EE16_M_allocate_nodeEv
-                0x0800075c       0x24 ./Core/Src/floodfill_library.o
-                0x0800075c                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_allocate_node()
+                0x0800078c       0x24 ./Core/Src/floodfill_library.o
+                0x0800078c                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_allocate_node()
  .text._ZNSt15_Deque_iteratorISt5arrayIiLj3EERS1_PS1_E14_S_buffer_sizeEv
-                0x08000780       0x10 ./Core/Src/floodfill_library.o
-                0x08000780                std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*>::_S_buffer_size()
+                0x080007b0       0x10 ./Core/Src/floodfill_library.o
+                0x080007b0                std::_Deque_iterator<std::array<int, 3u>, std::array<int, 3u>&, std::array<int, 3u>*>::_S_buffer_size()
  .text._ZNSt16allocator_traitsISaISt5arrayIiLj3EEEE10deallocateERS2_PS1_j
-                0x08000790       0x1e ./Core/Src/floodfill_library.o
-                0x08000790                std::allocator_traits<std::allocator<std::array<int, 3u> > >::deallocate(std::allocator<std::array<int, 3u> >&, std::array<int, 3u>*, unsigned int)
+                0x080007c0       0x1e ./Core/Src/floodfill_library.o
+                0x080007c0                std::allocator_traits<std::allocator<std::array<int, 3u> > >::deallocate(std::allocator<std::array<int, 3u> >&, std::array<int, 3u>*, unsigned int)
  .text._ZNKSt11_Deque_baseISt5arrayIiLj3EESaIS1_EE19_M_get_Tp_allocatorEv
-                0x080007ae       0x14 ./Core/Src/floodfill_library.o
-                0x080007ae                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_get_Tp_allocator() const
+                0x080007de       0x14 ./Core/Src/floodfill_library.o
+                0x080007de                std::_Deque_base<std::array<int, 3u>, std::allocator<std::array<int, 3u> > >::_M_get_Tp_allocator() const
  .text._ZNSaIPSt5arrayIiLj3EEEC2IS0_EERKSaIT_E
-                0x080007c2       0x1a ./Core/Src/floodfill_library.o
-                0x080007c2                std::allocator<std::array<int, 3u>*>::allocator<std::array<int, 3u> >(std::allocator<std::array<int, 3u> > const&)
-                0x080007c2                std::allocator<std::array<int, 3u>*>::allocator<std::array<int, 3u> >(std::allocator<std::array<int, 3u> > const&)
+                0x080007f2       0x1a ./Core/Src/floodfill_library.o
+                0x080007f2                std::allocator<std::array<int, 3u>*>::allocator<std::array<int, 3u> >(std::allocator<std::array<int, 3u> > const&)
+                0x080007f2                std::allocator<std::array<int, 3u>*>::allocator<std::array<int, 3u> >(std::allocator<std::array<int, 3u> > const&)
  .text._ZNSt15__new_allocatorIPSt5arrayIiLj3EEED2Ev
-                0x080007dc       0x14 ./Core/Src/floodfill_library.o
-                0x080007dc                std::__new_allocator<std::array<int, 3u>*>::~__new_allocator()
-                0x080007dc                std::__new_allocator<std::array<int, 3u>*>::~__new_allocator()
+                0x0800080c       0x14 ./Core/Src/floodfill_library.o
+                0x0800080c                std::__new_allocator<std::array<int, 3u>*>::~__new_allocator()
+                0x0800080c                std::__new_allocator<std::array<int, 3u>*>::~__new_allocator()
  .text._ZNSt15__new_allocatorIPSt5arrayIiLj3EEE10deallocateEPS2_j
-                0x080007f0       0x20 ./Core/Src/floodfill_library.o
-                0x080007f0                std::__new_allocator<std::array<int, 3u>*>::deallocate(std::array<int, 3u>**, unsigned int)
+                0x08000820       0x20 ./Core/Src/floodfill_library.o
+                0x08000820                std::__new_allocator<std::array<int, 3u>*>::deallocate(std::array<int, 3u>**, unsigned int)
  .text._ZNSt15__new_allocatorIPSt5arrayIiLj3EEE8allocateEjPKv
-                0x08000810       0x52 ./Core/Src/floodfill_library.o
-                0x08000810                std::__new_allocator<std::array<int, 3u>*>::allocate(unsigned int, void const*)
+                0x08000840       0x52 ./Core/Src/floodfill_library.o
+                0x08000840                std::__new_allocator<std::array<int, 3u>*>::allocate(unsigned int, void const*)
  .text._ZNSt16allocator_traitsISaISt5arrayIiLj3EEEE8allocateERS2_j
-                0x08000862       0x1e ./Core/Src/floodfill_library.o
-                0x08000862                std::allocator_traits<std::allocator<std::array<int, 3u> > >::allocate(std::allocator<std::array<int, 3u> >&, unsigned int)
+                0x08000892       0x1e ./Core/Src/floodfill_library.o
+                0x08000892                std::allocator_traits<std::allocator<std::array<int, 3u> > >::allocate(std::allocator<std::array<int, 3u> >&, unsigned int)
  .text._ZNSt15__new_allocatorISt5arrayIiLj3EEE10deallocateEPS1_j
-                0x08000880       0x26 ./Core/Src/floodfill_library.o
-                0x08000880                std::__new_allocator<std::array<int, 3u> >::deallocate(std::array<int, 3u>*, unsigned int)
+                0x080008b0       0x26 ./Core/Src/floodfill_library.o
+                0x080008b0                std::__new_allocator<std::array<int, 3u> >::deallocate(std::array<int, 3u>*, unsigned int)
  .text._ZNSt15__new_allocatorIPSt5arrayIiLj3EEEC2Ev
-                0x080008a6       0x14 ./Core/Src/floodfill_library.o
-                0x080008a6                std::__new_allocator<std::array<int, 3u>*>::__new_allocator()
-                0x080008a6                std::__new_allocator<std::array<int, 3u>*>::__new_allocator()
+                0x080008d6       0x14 ./Core/Src/floodfill_library.o
+                0x080008d6                std::__new_allocator<std::array<int, 3u>*>::__new_allocator()
+                0x080008d6                std::__new_allocator<std::array<int, 3u>*>::__new_allocator()
  .text._ZNKSt15__new_allocatorIPSt5arrayIiLj3EEE11_M_max_sizeEv
-                0x080008ba       0x16 ./Core/Src/floodfill_library.o
-                0x080008ba                std::__new_allocator<std::array<int, 3u>*>::_M_max_size() const
+                0x080008ea       0x16 ./Core/Src/floodfill_library.o
+                0x080008ea                std::__new_allocator<std::array<int, 3u>*>::_M_max_size() const
  .text._ZNSt15__new_allocatorISt5arrayIiLj3EEE8allocateEjPKv
-                0x080008d0       0x5c ./Core/Src/floodfill_library.o
-                0x080008d0                std::__new_allocator<std::array<int, 3u> >::allocate(unsigned int, void const*)
+                0x08000900       0x5c ./Core/Src/floodfill_library.o
+                0x08000900                std::__new_allocator<std::array<int, 3u> >::allocate(unsigned int, void const*)
  .text._ZNKSt15__new_allocatorISt5arrayIiLj3EEE11_M_max_sizeEv
-                0x0800092c       0x18 ./Core/Src/floodfill_library.o
-                0x0800092c                std::__new_allocator<std::array<int, 3u> >::_M_max_size() const
+                0x0800095c       0x18 ./Core/Src/floodfill_library.o
+                0x0800095c                std::__new_allocator<std::array<int, 3u> >::_M_max_size() const
  .text._ZNSt5queueISt5arrayIiLj3EESt5dequeIS1_SaIS1_EEED2Ev
-                0x08000944       0x1a ./Core/Src/floodfill_library.o
-                0x08000944                std::queue<std::array<int, 3u>, std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > > >::~queue()
-                0x08000944                std::queue<std::array<int, 3u>, std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > > >::~queue()
- *fill*         0x0800095e        0x2 
+                0x08000974       0x1a ./Core/Src/floodfill_library.o
+                0x08000974                std::queue<std::array<int, 3u>, std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > > >::~queue()
+                0x08000974                std::queue<std::array<int, 3u>, std::deque<std::array<int, 3u>, std::allocator<std::array<int, 3u> > > >::~queue()
+ *fill*         0x0800098e        0x2 
  .text._Z41__static_initialization_and_destruction_0ii
-                0x08000960       0x70 ./Core/Src/floodfill_library.o
+                0x08000990       0x70 ./Core/Src/floodfill_library.o
  .text._GLOBAL__sub_I_floodfillQueue
-                0x080009d0       0x10 ./Core/Src/floodfill_library.o
+                0x08000a00       0x10 ./Core/Src/floodfill_library.o
  .text._GLOBAL__sub_D_floodfillQueue
-                0x080009e0       0x10 ./Core/Src/floodfill_library.o
+                0x08000a10       0x10 ./Core/Src/floodfill_library.o
  .text.MX_GPIO_Init
-                0x080009f0       0x54 ./Core/Src/gpio.o
-                0x080009f0                MX_GPIO_Init
- .text.main     0x08000a44       0x44 ./Core/Src/main.o
-                0x08000a44                main
+                0x08000a20       0x54 ./Core/Src/gpio.o
+                0x08000a20                MX_GPIO_Init
+ .text.main     0x08000a74       0x68 ./Core/Src/main.o
+                0x08000a74                main
  .text._Z18SystemClock_Configv
-                0x08000a88       0x96 ./Core/Src/main.o
-                0x08000a88                SystemClock_Config()
+                0x08000adc       0x96 ./Core/Src/main.o
+                0x08000adc                SystemClock_Config()
  .text.Error_Handler
-                0x08000b1e        0xc ./Core/Src/main.o
-                0x08000b1e                Error_Handler
+                0x08000b72        0xc ./Core/Src/main.o
+                0x08000b72                Error_Handler
  .text._ZNSt5dequeIcSaIcEEC2Ev
-                0x08000b2a       0x1a ./Core/Src/navigation_algorithm.o
-                0x08000b2a                std::deque<char, std::allocator<char> >::deque()
-                0x08000b2a                std::deque<char, std::allocator<char> >::deque()
+                0x08000b7e       0x1a ./Core/Src/navigation_algorithm.o
+                0x08000b7e                std::deque<char, std::allocator<char> >::deque()
+                0x08000b7e                std::deque<char, std::allocator<char> >::deque()
  .text._ZNSt5queueIcSt5dequeIcSaIcEEEC2IS2_vEEv
-                0x08000b44       0x28 ./Core/Src/navigation_algorithm.o
-                0x08000b44                std::queue<char, std::deque<char, std::allocator<char> > >::queue<std::deque<char, std::allocator<char> >, void>()
-                0x08000b44                std::queue<char, std::deque<char, std::allocator<char> > >::queue<std::deque<char, std::allocator<char> >, void>()
+                0x08000b98       0x28 ./Core/Src/navigation_algorithm.o
+                0x08000b98                std::queue<char, std::deque<char, std::allocator<char> > >::queue<std::deque<char, std::allocator<char> >, void>()
+                0x08000b98                std::queue<char, std::deque<char, std::allocator<char> > >::queue<std::deque<char, std::allocator<char> >, void>()
  .text._ZNSt11_Deque_baseIcSaIcEE11_Deque_implD2Ev
-                0x08000b6c       0x18 ./Core/Src/navigation_algorithm.o
-                0x08000b6c                std::_Deque_base<char, std::allocator<char> >::_Deque_impl::~_Deque_impl()
-                0x08000b6c                std::_Deque_base<char, std::allocator<char> >::_Deque_impl::~_Deque_impl()
+                0x08000bc0       0x18 ./Core/Src/navigation_algorithm.o
+                0x08000bc0                std::_Deque_base<char, std::allocator<char> >::_Deque_impl::~_Deque_impl()
+                0x08000bc0                std::_Deque_base<char, std::allocator<char> >::_Deque_impl::~_Deque_impl()
  .text._ZNSt11_Deque_baseIcSaIcEEC2Ev
-                0x08000b84       0x22 ./Core/Src/navigation_algorithm.o
-                0x08000b84                std::_Deque_base<char, std::allocator<char> >::_Deque_base()
-                0x08000b84                std::_Deque_base<char, std::allocator<char> >::_Deque_base()
+                0x08000bd8       0x22 ./Core/Src/navigation_algorithm.o
+                0x08000bd8                std::_Deque_base<char, std::allocator<char> >::_Deque_base()
+                0x08000bd8                std::_Deque_base<char, std::allocator<char> >::_Deque_base()
  .text._ZNSt11_Deque_baseIcSaIcEED2Ev
-                0x08000ba6       0x44 ./Core/Src/navigation_algorithm.o
-                0x08000ba6                std::_Deque_base<char, std::allocator<char> >::~_Deque_base()
-                0x08000ba6                std::_Deque_base<char, std::allocator<char> >::~_Deque_base()
+                0x08000bfa       0x44 ./Core/Src/navigation_algorithm.o
+                0x08000bfa                std::_Deque_base<char, std::allocator<char> >::~_Deque_base()
+                0x08000bfa                std::_Deque_base<char, std::allocator<char> >::~_Deque_base()
  .text._ZNSt5dequeIcSaIcEED2Ev
-                0x08000bea       0x4a ./Core/Src/navigation_algorithm.o
-                0x08000bea                std::deque<char, std::allocator<char> >::~deque()
-                0x08000bea                std::deque<char, std::allocator<char> >::~deque()
+                0x08000c3e       0x4a ./Core/Src/navigation_algorithm.o
+                0x08000c3e                std::deque<char, std::allocator<char> >::~deque()
+                0x08000c3e                std::deque<char, std::allocator<char> >::~deque()
  .text._ZNSt11_Deque_baseIcSaIcEE11_Deque_implC2Ev
-                0x08000c34       0x20 ./Core/Src/navigation_algorithm.o
-                0x08000c34                std::_Deque_base<char, std::allocator<char> >::_Deque_impl::_Deque_impl()
-                0x08000c34                std::_Deque_base<char, std::allocator<char> >::_Deque_impl::_Deque_impl()
+                0x08000c88       0x20 ./Core/Src/navigation_algorithm.o
+                0x08000c88                std::_Deque_base<char, std::allocator<char> >::_Deque_impl::_Deque_impl()
+                0x08000c88                std::_Deque_base<char, std::allocator<char> >::_Deque_impl::_Deque_impl()
  .text._ZNSt11_Deque_baseIcSaIcEE17_M_initialize_mapEj
-                0x08000c54       0xc4 ./Core/Src/navigation_algorithm.o
-                0x08000c54                std::_Deque_base<char, std::allocator<char> >::_M_initialize_map(unsigned int)
+                0x08000ca8       0xc4 ./Core/Src/navigation_algorithm.o
+                0x08000ca8                std::_Deque_base<char, std::allocator<char> >::_M_initialize_map(unsigned int)
  .text._ZNSt11_Deque_baseIcSaIcEE16_M_destroy_nodesEPPcS3_
-                0x08000d18       0x36 ./Core/Src/navigation_algorithm.o
-                0x08000d18                std::_Deque_base<char, std::allocator<char> >::_M_destroy_nodes(char**, char**)
+                0x08000d6c       0x36 ./Core/Src/navigation_algorithm.o
+                0x08000d6c                std::_Deque_base<char, std::allocator<char> >::_M_destroy_nodes(char**, char**)
  .text._ZNSt11_Deque_baseIcSaIcEE17_M_deallocate_mapEPPcj
-                0x08000d4e       0x36 ./Core/Src/navigation_algorithm.o
-                0x08000d4e                std::_Deque_base<char, std::allocator<char> >::_M_deallocate_map(char**, unsigned int)
+                0x08000da2       0x36 ./Core/Src/navigation_algorithm.o
+                0x08000da2                std::_Deque_base<char, std::allocator<char> >::_M_deallocate_map(char**, unsigned int)
  .text._ZNSt5dequeIcSaIcEE5beginEv
-                0x08000d84       0x1e ./Core/Src/navigation_algorithm.o
-                0x08000d84                std::deque<char, std::allocator<char> >::begin()
+                0x08000dd8       0x1e ./Core/Src/navigation_algorithm.o
+                0x08000dd8                std::deque<char, std::allocator<char> >::begin()
  .text._ZNSt5dequeIcSaIcEE3endEv
-                0x08000da2       0x1e ./Core/Src/navigation_algorithm.o
-                0x08000da2                std::deque<char, std::allocator<char> >::end()
+                0x08000df6       0x1e ./Core/Src/navigation_algorithm.o
+                0x08000df6                std::deque<char, std::allocator<char> >::end()
  .text._ZNSt11_Deque_baseIcSaIcEE19_M_get_Tp_allocatorEv
-                0x08000dc0       0x14 ./Core/Src/navigation_algorithm.o
-                0x08000dc0                std::_Deque_base<char, std::allocator<char> >::_M_get_Tp_allocator()
+                0x08000e14       0x14 ./Core/Src/navigation_algorithm.o
+                0x08000e14                std::_Deque_base<char, std::allocator<char> >::_M_get_Tp_allocator()
  .text._ZNSt15_Deque_iteratorIcRcPcEC2ERKS2_
-                0x08000dd4       0x36 ./Core/Src/navigation_algorithm.o
-                0x08000dd4                std::_Deque_iterator<char, char&, char*>::_Deque_iterator(std::_Deque_iterator<char, char&, char*> const&)
-                0x08000dd4                std::_Deque_iterator<char, char&, char*>::_Deque_iterator(std::_Deque_iterator<char, char&, char*> const&)
+                0x08000e28       0x36 ./Core/Src/navigation_algorithm.o
+                0x08000e28                std::_Deque_iterator<char, char&, char*>::_Deque_iterator(std::_Deque_iterator<char, char&, char*> const&)
+                0x08000e28                std::_Deque_iterator<char, char&, char*>::_Deque_iterator(std::_Deque_iterator<char, char&, char*> const&)
  .text._ZNSt5dequeIcSaIcEE15_M_destroy_dataESt15_Deque_iteratorIcRcPcES5_RKS0_
-                0x08000e0a       0x18 ./Core/Src/navigation_algorithm.o
-                0x08000e0a                std::deque<char, std::allocator<char> >::_M_destroy_data(std::_Deque_iterator<char, char&, char*>, std::_Deque_iterator<char, char&, char*>, std::allocator<char> const&)
+                0x08000e5e       0x18 ./Core/Src/navigation_algorithm.o
+                0x08000e5e                std::deque<char, std::allocator<char> >::_M_destroy_data(std::_Deque_iterator<char, char&, char*>, std::_Deque_iterator<char, char&, char*>, std::allocator<char> const&)
  .text._ZNSt11_Deque_baseIcSaIcEE16_Deque_impl_dataC2Ev
-                0x08000e22       0x32 ./Core/Src/navigation_algorithm.o
-                0x08000e22                std::_Deque_base<char, std::allocator<char> >::_Deque_impl_data::_Deque_impl_data()
-                0x08000e22                std::_Deque_base<char, std::allocator<char> >::_Deque_impl_data::_Deque_impl_data()
+                0x08000e76       0x32 ./Core/Src/navigation_algorithm.o
+                0x08000e76                std::_Deque_base<char, std::allocator<char> >::_Deque_impl_data::_Deque_impl_data()
+                0x08000e76                std::_Deque_base<char, std::allocator<char> >::_Deque_impl_data::_Deque_impl_data()
  .text._ZNSt11_Deque_baseIcSaIcEE15_M_allocate_mapEj
-                0x08000e54       0x3a ./Core/Src/navigation_algorithm.o
-                0x08000e54                std::_Deque_base<char, std::allocator<char> >::_M_allocate_map(unsigned int)
+                0x08000ea8       0x3a ./Core/Src/navigation_algorithm.o
+                0x08000ea8                std::_Deque_base<char, std::allocator<char> >::_M_allocate_map(unsigned int)
  .text._ZNSt11_Deque_baseIcSaIcEE15_M_create_nodesEPPcS3_
-                0x08000e8e       0x36 ./Core/Src/navigation_algorithm.o
-                0x08000e8e                std::_Deque_base<char, std::allocator<char> >::_M_create_nodes(char**, char**)
+                0x08000ee2       0x36 ./Core/Src/navigation_algorithm.o
+                0x08000ee2                std::_Deque_base<char, std::allocator<char> >::_M_create_nodes(char**, char**)
  .text._ZNSt15_Deque_iteratorIcRcPcE11_M_set_nodeEPS1_
-                0x08000ec4       0x30 ./Core/Src/navigation_algorithm.o
-                0x08000ec4                std::_Deque_iterator<char, char&, char*>::_M_set_node(char**)
+                0x08000f18       0x30 ./Core/Src/navigation_algorithm.o
+                0x08000f18                std::_Deque_iterator<char, char&, char*>::_M_set_node(char**)
  .text._ZNSt11_Deque_baseIcSaIcEE18_M_deallocate_nodeEPc
-                0x08000ef4       0x26 ./Core/Src/navigation_algorithm.o
-                0x08000ef4                std::_Deque_base<char, std::allocator<char> >::_M_deallocate_node(char*)
+                0x08000f48       0x26 ./Core/Src/navigation_algorithm.o
+                0x08000f48                std::_Deque_base<char, std::allocator<char> >::_M_deallocate_node(char*)
  .text._ZNKSt11_Deque_baseIcSaIcEE20_M_get_map_allocatorEv
-                0x08000f1a       0x22 ./Core/Src/navigation_algorithm.o
-                0x08000f1a                std::_Deque_base<char, std::allocator<char> >::_M_get_map_allocator() const
+                0x08000f6e       0x22 ./Core/Src/navigation_algorithm.o
+                0x08000f6e                std::_Deque_base<char, std::allocator<char> >::_M_get_map_allocator() const
  .text._ZNSaIPcED2Ev
-                0x08000f3c       0x18 ./Core/Src/navigation_algorithm.o
-                0x08000f3c                std::allocator<char*>::~allocator()
-                0x08000f3c                std::allocator<char*>::~allocator()
+                0x08000f90       0x18 ./Core/Src/navigation_algorithm.o
+                0x08000f90                std::allocator<char*>::~allocator()
+                0x08000f90                std::allocator<char*>::~allocator()
  .text._ZNSt16allocator_traitsISaIPcEE10deallocateERS1_PS0_j
-                0x08000f54       0x1e ./Core/Src/navigation_algorithm.o
-                0x08000f54                std::allocator_traits<std::allocator<char*> >::deallocate(std::allocator<char*>&, char**, unsigned int)
+                0x08000fa8       0x1e ./Core/Src/navigation_algorithm.o
+                0x08000fa8                std::allocator_traits<std::allocator<char*> >::deallocate(std::allocator<char*>&, char**, unsigned int)
  .text._ZNSt15_Deque_iteratorIcRcPcEC2Ev
-                0x08000f72       0x2c ./Core/Src/navigation_algorithm.o
-                0x08000f72                std::_Deque_iterator<char, char&, char*>::_Deque_iterator()
-                0x08000f72                std::_Deque_iterator<char, char&, char*>::_Deque_iterator()
+                0x08000fc6       0x2c ./Core/Src/navigation_algorithm.o
+                0x08000fc6                std::_Deque_iterator<char, char&, char*>::_Deque_iterator()
+                0x08000fc6                std::_Deque_iterator<char, char&, char*>::_Deque_iterator()
  .text._ZNSt16allocator_traitsISaIPcEE8allocateERS1_j
-                0x08000f9e       0x1e ./Core/Src/navigation_algorithm.o
-                0x08000f9e                std::allocator_traits<std::allocator<char*> >::allocate(std::allocator<char*>&, unsigned int)
+                0x08000ff2       0x1e ./Core/Src/navigation_algorithm.o
+                0x08000ff2                std::allocator_traits<std::allocator<char*> >::allocate(std::allocator<char*>&, unsigned int)
  .text._ZNSt11_Deque_baseIcSaIcEE16_M_allocate_nodeEv
-                0x08000fbc       0x24 ./Core/Src/navigation_algorithm.o
-                0x08000fbc                std::_Deque_base<char, std::allocator<char> >::_M_allocate_node()
+                0x08001010       0x24 ./Core/Src/navigation_algorithm.o
+                0x08001010                std::_Deque_base<char, std::allocator<char> >::_M_allocate_node()
  .text._ZNSt15_Deque_iteratorIcRcPcE14_S_buffer_sizeEv
-                0x08000fe0       0x10 ./Core/Src/navigation_algorithm.o
-                0x08000fe0                std::_Deque_iterator<char, char&, char*>::_S_buffer_size()
+                0x08001034       0x10 ./Core/Src/navigation_algorithm.o
+                0x08001034                std::_Deque_iterator<char, char&, char*>::_S_buffer_size()
  .text._ZNSt16allocator_traitsISaIcEE10deallocateERS0_Pcj
-                0x08000ff0       0x1e ./Core/Src/navigation_algorithm.o
-                0x08000ff0                std::allocator_traits<std::allocator<char> >::deallocate(std::allocator<char>&, char*, unsigned int)
+                0x08001044       0x1e ./Core/Src/navigation_algorithm.o
+                0x08001044                std::allocator_traits<std::allocator<char> >::deallocate(std::allocator<char>&, char*, unsigned int)
  .text._ZNKSt11_Deque_baseIcSaIcEE19_M_get_Tp_allocatorEv
-                0x0800100e       0x14 ./Core/Src/navigation_algorithm.o
-                0x0800100e                std::_Deque_base<char, std::allocator<char> >::_M_get_Tp_allocator() const
+                0x08001062       0x14 ./Core/Src/navigation_algorithm.o
+                0x08001062                std::_Deque_base<char, std::allocator<char> >::_M_get_Tp_allocator() const
  .text._ZNSaIPcEC2IcEERKSaIT_E
-                0x08001022       0x1a ./Core/Src/navigation_algorithm.o
-                0x08001022                std::allocator<char*>::allocator<char>(std::allocator<char> const&)
-                0x08001022                std::allocator<char*>::allocator<char>(std::allocator<char> const&)
+                0x08001076       0x1a ./Core/Src/navigation_algorithm.o
+                0x08001076                std::allocator<char*>::allocator<char>(std::allocator<char> const&)
+                0x08001076                std::allocator<char*>::allocator<char>(std::allocator<char> const&)
  .text._ZNSt15__new_allocatorIPcED2Ev
-                0x0800103c       0x14 ./Core/Src/navigation_algorithm.o
-                0x0800103c                std::__new_allocator<char*>::~__new_allocator()
-                0x0800103c                std::__new_allocator<char*>::~__new_allocator()
+                0x08001090       0x14 ./Core/Src/navigation_algorithm.o
+                0x08001090                std::__new_allocator<char*>::~__new_allocator()
+                0x08001090                std::__new_allocator<char*>::~__new_allocator()
  .text._ZNSt15__new_allocatorIPcE10deallocateEPS0_j
-                0x08001050       0x20 ./Core/Src/navigation_algorithm.o
-                0x08001050                std::__new_allocator<char*>::deallocate(char**, unsigned int)
+                0x080010a4       0x20 ./Core/Src/navigation_algorithm.o
+                0x080010a4                std::__new_allocator<char*>::deallocate(char**, unsigned int)
  .text._ZNSt15__new_allocatorIPcE8allocateEjPKv
-                0x08001070       0x52 ./Core/Src/navigation_algorithm.o
-                0x08001070                std::__new_allocator<char*>::allocate(unsigned int, void const*)
+                0x080010c4       0x52 ./Core/Src/navigation_algorithm.o
+                0x080010c4                std::__new_allocator<char*>::allocate(unsigned int, void const*)
  .text._ZNSt16allocator_traitsISaIcEE8allocateERS0_j
-                0x080010c2       0x1e ./Core/Src/navigation_algorithm.o
-                0x080010c2                std::allocator_traits<std::allocator<char> >::allocate(std::allocator<char>&, unsigned int)
+                0x08001116       0x1e ./Core/Src/navigation_algorithm.o
+                0x08001116                std::allocator_traits<std::allocator<char> >::allocate(std::allocator<char>&, unsigned int)
  .text._ZNSt15__new_allocatorIcE10deallocateEPcj
-                0x080010e0       0x1c ./Core/Src/navigation_algorithm.o
-                0x080010e0                std::__new_allocator<char>::deallocate(char*, unsigned int)
+                0x08001134       0x1c ./Core/Src/navigation_algorithm.o
+                0x08001134                std::__new_allocator<char>::deallocate(char*, unsigned int)
  .text._ZNSt15__new_allocatorIPcEC2Ev
-                0x080010fc       0x14 ./Core/Src/navigation_algorithm.o
-                0x080010fc                std::__new_allocator<char*>::__new_allocator()
-                0x080010fc                std::__new_allocator<char*>::__new_allocator()
+                0x08001150       0x14 ./Core/Src/navigation_algorithm.o
+                0x08001150                std::__new_allocator<char*>::__new_allocator()
+                0x08001150                std::__new_allocator<char*>::__new_allocator()
  .text._ZNKSt15__new_allocatorIPcE11_M_max_sizeEv
-                0x08001110       0x16 ./Core/Src/navigation_algorithm.o
-                0x08001110                std::__new_allocator<char*>::_M_max_size() const
+                0x08001164       0x16 ./Core/Src/navigation_algorithm.o
+                0x08001164                std::__new_allocator<char*>::_M_max_size() const
  .text._ZNSt15__new_allocatorIcE8allocateEjPKv
-                0x08001126       0x42 ./Core/Src/navigation_algorithm.o
-                0x08001126                std::__new_allocator<char>::allocate(unsigned int, void const*)
+                0x0800117a       0x42 ./Core/Src/navigation_algorithm.o
+                0x0800117a                std::__new_allocator<char>::allocate(unsigned int, void const*)
  .text._ZNKSt15__new_allocatorIcE11_M_max_sizeEv
-                0x08001168       0x16 ./Core/Src/navigation_algorithm.o
-                0x08001168                std::__new_allocator<char>::_M_max_size() const
+                0x080011bc       0x16 ./Core/Src/navigation_algorithm.o
+                0x080011bc                std::__new_allocator<char>::_M_max_size() const
  .text._ZNSt5queueIcSt5dequeIcSaIcEEED2Ev
-                0x0800117e       0x1a ./Core/Src/navigation_algorithm.o
-                0x0800117e                std::queue<char, std::deque<char, std::allocator<char> > >::~queue()
-                0x0800117e                std::queue<char, std::deque<char, std::allocator<char> > >::~queue()
+                0x080011d2       0x1a ./Core/Src/navigation_algorithm.o
+                0x080011d2                std::queue<char, std::deque<char, std::allocator<char> > >::~queue()
+                0x080011d2                std::queue<char, std::deque<char, std::allocator<char> > >::~queue()
  .text._Z41__static_initialization_and_destruction_0ii
-                0x08001198       0x44 ./Core/Src/navigation_algorithm.o
+                0x080011ec       0x44 ./Core/Src/navigation_algorithm.o
  .text._GLOBAL__sub_I_speedModeQueue
-                0x080011dc       0x10 ./Core/Src/navigation_algorithm.o
+                0x08001230       0x10 ./Core/Src/navigation_algorithm.o
  .text._GLOBAL__sub_D_speedModeQueue
-                0x080011ec       0x10 ./Core/Src/navigation_algorithm.o
+                0x08001240       0x10 ./Core/Src/navigation_algorithm.o
  .text.HAL_MspInit
-                0x080011fc       0x64 ./Core/Src/stm32f1xx_hal_msp.o
-                0x080011fc                HAL_MspInit
+                0x08001250       0x64 ./Core/Src/stm32f1xx_hal_msp.o
+                0x08001250                HAL_MspInit
  .text.NMI_Handler
-                0x08001260        0x8 ./Core/Src/stm32f1xx_it.o
-                0x08001260                NMI_Handler
+                0x080012b4        0x8 ./Core/Src/stm32f1xx_it.o
+                0x080012b4                NMI_Handler
  .text.HardFault_Handler
-                0x08001268        0x8 ./Core/Src/stm32f1xx_it.o
-                0x08001268                HardFault_Handler
+                0x080012bc        0x8 ./Core/Src/stm32f1xx_it.o
+                0x080012bc                HardFault_Handler
  .text.MemManage_Handler
-                0x08001270        0x8 ./Core/Src/stm32f1xx_it.o
-                0x08001270                MemManage_Handler
+                0x080012c4        0x8 ./Core/Src/stm32f1xx_it.o
+                0x080012c4                MemManage_Handler
  .text.BusFault_Handler
-                0x08001278        0x8 ./Core/Src/stm32f1xx_it.o
-                0x08001278                BusFault_Handler
+                0x080012cc        0x8 ./Core/Src/stm32f1xx_it.o
+                0x080012cc                BusFault_Handler
  .text.UsageFault_Handler
-                0x08001280        0x8 ./Core/Src/stm32f1xx_it.o
-                0x08001280                UsageFault_Handler
+                0x080012d4        0x8 ./Core/Src/stm32f1xx_it.o
+                0x080012d4                UsageFault_Handler
  .text.SVC_Handler
-                0x08001288        0xc ./Core/Src/stm32f1xx_it.o
-                0x08001288                SVC_Handler
+                0x080012dc        0xc ./Core/Src/stm32f1xx_it.o
+                0x080012dc                SVC_Handler
  .text.DebugMon_Handler
-                0x08001294        0xc ./Core/Src/stm32f1xx_it.o
-                0x08001294                DebugMon_Handler
+                0x080012e8        0xc ./Core/Src/stm32f1xx_it.o
+                0x080012e8                DebugMon_Handler
  .text.PendSV_Handler
-                0x080012a0        0xc ./Core/Src/stm32f1xx_it.o
-                0x080012a0                PendSV_Handler
+                0x080012f4        0xc ./Core/Src/stm32f1xx_it.o
+                0x080012f4                PendSV_Handler
  .text.SysTick_Handler
-                0x080012ac        0xc ./Core/Src/stm32f1xx_it.o
-                0x080012ac                SysTick_Handler
- .text._getpid  0x080012b8        0xe ./Core/Src/syscalls.o
-                0x080012b8                _getpid
- .text._kill    0x080012c6       0x20 ./Core/Src/syscalls.o
-                0x080012c6                _kill
- .text._exit    0x080012e6       0x16 ./Core/Src/syscalls.o
-                0x080012e6                _exit
- .text._sbrk    0x080012fc       0x6c ./Core/Src/sysmem.o
-                0x080012fc                _sbrk
+                0x08001300        0xc ./Core/Src/stm32f1xx_it.o
+                0x08001300                SysTick_Handler
+ .text._getpid  0x0800130c        0xe ./Core/Src/syscalls.o
+                0x0800130c                _getpid
+ .text._kill    0x0800131a       0x20 ./Core/Src/syscalls.o
+                0x0800131a                _kill
+ .text._exit    0x0800133a       0x16 ./Core/Src/syscalls.o
+                0x0800133a                _exit
+ .text._sbrk    0x08001350       0x6c ./Core/Src/sysmem.o
+                0x08001350                _sbrk
  .text.SystemInit
-                0x08001368        0xc ./Core/Src/system_stm32f1xx.o
-                0x08001368                SystemInit
+                0x080013bc        0xc ./Core/Src/system_stm32f1xx.o
+                0x080013bc                SystemInit
  .text.MX_TIM1_Init
-                0x08001374      0x150 ./Core/Src/tim.o
-                0x08001374                MX_TIM1_Init
+                0x080013c8      0x150 ./Core/Src/tim.o
+                0x080013c8                MX_TIM1_Init
  .text.HAL_TIM_PWM_MspInit
-                0x080014c4       0x3c ./Core/Src/tim.o
-                0x080014c4                HAL_TIM_PWM_MspInit
+                0x08001518       0x3c ./Core/Src/tim.o
+                0x08001518                HAL_TIM_PWM_MspInit
  .text.HAL_TIM_MspPostInit
-                0x08001500       0x68 ./Core/Src/tim.o
-                0x08001500                HAL_TIM_MspPostInit
+                0x08001554       0x68 ./Core/Src/tim.o
+                0x08001554                HAL_TIM_MspPostInit
  .text.Reset_Handler
-                0x08001568       0x48 ./Core/Startup/startup_stm32f103c8tx.o
-                0x08001568                Reset_Handler
+                0x080015bc       0x48 ./Core/Startup/startup_stm32f103c8tx.o
+                0x080015bc                Reset_Handler
  .text.Default_Handler
-                0x080015b0        0x2 ./Core/Startup/startup_stm32f103c8tx.o
-                0x080015b0                RTC_Alarm_IRQHandler
-                0x080015b0                EXTI2_IRQHandler
-                0x080015b0                TIM1_CC_IRQHandler
-                0x080015b0                PVD_IRQHandler
-                0x080015b0                EXTI3_IRQHandler
-                0x080015b0                EXTI0_IRQHandler
-                0x080015b0                I2C2_EV_IRQHandler
-                0x080015b0                ADC1_2_IRQHandler
-                0x080015b0                SPI1_IRQHandler
-                0x080015b0                TAMPER_IRQHandler
-                0x080015b0                DMA1_Channel4_IRQHandler
-                0x080015b0                USART3_IRQHandler
-                0x080015b0                RTC_IRQHandler
-                0x080015b0                DMA1_Channel7_IRQHandler
-                0x080015b0                CAN1_RX1_IRQHandler
-                0x080015b0                TIM4_IRQHandler
-                0x080015b0                I2C1_EV_IRQHandler
-                0x080015b0                DMA1_Channel6_IRQHandler
-                0x080015b0                TIM3_IRQHandler
-                0x080015b0                RCC_IRQHandler
-                0x080015b0                TIM1_TRG_COM_IRQHandler
-                0x080015b0                DMA1_Channel1_IRQHandler
-                0x080015b0                Default_Handler
-                0x080015b0                EXTI15_10_IRQHandler
-                0x080015b0                EXTI9_5_IRQHandler
-                0x080015b0                SPI2_IRQHandler
-                0x080015b0                DMA1_Channel5_IRQHandler
-                0x080015b0                EXTI4_IRQHandler
-                0x080015b0                USB_LP_CAN1_RX0_IRQHandler
-                0x080015b0                USB_HP_CAN1_TX_IRQHandler
-                0x080015b0                DMA1_Channel3_IRQHandler
-                0x080015b0                TIM1_UP_IRQHandler
-                0x080015b0                WWDG_IRQHandler
-                0x080015b0                TIM2_IRQHandler
-                0x080015b0                TIM1_BRK_IRQHandler
-                0x080015b0                EXTI1_IRQHandler
-                0x080015b0                USART2_IRQHandler
-                0x080015b0                I2C2_ER_IRQHandler
-                0x080015b0                DMA1_Channel2_IRQHandler
-                0x080015b0                CAN1_SCE_IRQHandler
-                0x080015b0                FLASH_IRQHandler
-                0x080015b0                USART1_IRQHandler
-                0x080015b0                I2C1_ER_IRQHandler
-                0x080015b0                USBWakeUp_IRQHandler
- *fill*         0x080015b2        0x2 
+                0x08001604        0x2 ./Core/Startup/startup_stm32f103c8tx.o
+                0x08001604                RTC_Alarm_IRQHandler
+                0x08001604                EXTI2_IRQHandler
+                0x08001604                TIM1_CC_IRQHandler
+                0x08001604                PVD_IRQHandler
+                0x08001604                EXTI3_IRQHandler
+                0x08001604                EXTI0_IRQHandler
+                0x08001604                I2C2_EV_IRQHandler
+                0x08001604                ADC1_2_IRQHandler
+                0x08001604                SPI1_IRQHandler
+                0x08001604                TAMPER_IRQHandler
+                0x08001604                DMA1_Channel4_IRQHandler
+                0x08001604                USART3_IRQHandler
+                0x08001604                RTC_IRQHandler
+                0x08001604                DMA1_Channel7_IRQHandler
+                0x08001604                CAN1_RX1_IRQHandler
+                0x08001604                TIM4_IRQHandler
+                0x08001604                I2C1_EV_IRQHandler
+                0x08001604                DMA1_Channel6_IRQHandler
+                0x08001604                TIM3_IRQHandler
+                0x08001604                RCC_IRQHandler
+                0x08001604                TIM1_TRG_COM_IRQHandler
+                0x08001604                DMA1_Channel1_IRQHandler
+                0x08001604                Default_Handler
+                0x08001604                EXTI15_10_IRQHandler
+                0x08001604                EXTI9_5_IRQHandler
+                0x08001604                SPI2_IRQHandler
+                0x08001604                DMA1_Channel5_IRQHandler
+                0x08001604                EXTI4_IRQHandler
+                0x08001604                USB_LP_CAN1_RX0_IRQHandler
+                0x08001604                USB_HP_CAN1_TX_IRQHandler
+                0x08001604                DMA1_Channel3_IRQHandler
+                0x08001604                TIM1_UP_IRQHandler
+                0x08001604                WWDG_IRQHandler
+                0x08001604                TIM2_IRQHandler
+                0x08001604                TIM1_BRK_IRQHandler
+                0x08001604                EXTI1_IRQHandler
+                0x08001604                USART2_IRQHandler
+                0x08001604                I2C2_ER_IRQHandler
+                0x08001604                DMA1_Channel2_IRQHandler
+                0x08001604                CAN1_SCE_IRQHandler
+                0x08001604                FLASH_IRQHandler
+                0x08001604                USART1_IRQHandler
+                0x08001604                I2C1_ER_IRQHandler
+                0x08001604                USBWakeUp_IRQHandler
+ *fill*         0x08001606        0x2 
  .text.HAL_Init
-                0x080015b4       0x2c ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
-                0x080015b4                HAL_Init
+                0x08001608       0x2c ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
+                0x08001608                HAL_Init
  .text.HAL_InitTick
-                0x080015e0       0x60 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
-                0x080015e0                HAL_InitTick
+                0x08001634       0x60 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
+                0x08001634                HAL_InitTick
  .text.HAL_IncTick
-                0x08001640       0x24 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
-                0x08001640                HAL_IncTick
+                0x08001694       0x24 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
+                0x08001694                HAL_IncTick
  .text.HAL_GetTick
-                0x08001664       0x14 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
-                0x08001664                HAL_GetTick
+                0x080016b8       0x14 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
+                0x080016b8                HAL_GetTick
+ .text.HAL_Delay
+                0x080016cc       0x48 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
+                0x080016cc                HAL_Delay
  .text.__NVIC_SetPriorityGrouping
-                0x08001678       0x48 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
+                0x08001714       0x48 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
  .text.__NVIC_GetPriorityGrouping
-                0x080016c0       0x1c ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
+                0x0800175c       0x1c ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
  .text.__NVIC_SetPriority
-                0x080016dc       0x54 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
+                0x08001778       0x54 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
  .text.NVIC_EncodePriority
-                0x08001730       0x64 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
+                0x080017cc       0x64 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
  .text.SysTick_Config
-                0x08001794       0x44 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
+                0x08001830       0x44 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
  .text.HAL_NVIC_SetPriorityGrouping
-                0x080017d8       0x16 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
-                0x080017d8                HAL_NVIC_SetPriorityGrouping
+                0x08001874       0x16 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
+                0x08001874                HAL_NVIC_SetPriorityGrouping
  .text.HAL_NVIC_SetPriority
-                0x080017ee       0x38 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
-                0x080017ee                HAL_NVIC_SetPriority
+                0x0800188a       0x38 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
+                0x0800188a                HAL_NVIC_SetPriority
  .text.HAL_SYSTICK_Config
-                0x08001826       0x18 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
-                0x08001826                HAL_SYSTICK_Config
- *fill*         0x0800183e        0x2 
+                0x080018c2       0x18 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
+                0x080018c2                HAL_SYSTICK_Config
+ *fill*         0x080018da        0x2 
  .text.HAL_GPIO_Init
-                0x08001840      0x308 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
-                0x08001840                HAL_GPIO_Init
+                0x080018dc      0x308 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
+                0x080018dc                HAL_GPIO_Init
  .text.HAL_RCC_OscConfig
-                0x08001b48      0x504 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
-                0x08001b48                HAL_RCC_OscConfig
+                0x08001be4      0x504 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
+                0x08001be4                HAL_RCC_OscConfig
  .text.HAL_RCC_ClockConfig
-                0x0800204c      0x1d4 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
-                0x0800204c                HAL_RCC_ClockConfig
+                0x080020e8      0x1d4 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
+                0x080020e8                HAL_RCC_ClockConfig
  .text.HAL_RCC_GetSysClockFreq
-                0x08002220       0xa8 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
-                0x08002220                HAL_RCC_GetSysClockFreq
+                0x080022bc       0xa8 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
+                0x080022bc                HAL_RCC_GetSysClockFreq
  .text.RCC_Delay
-                0x080022c8       0x3c ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
+                0x08002364       0x3c ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
  .text.HAL_TIM_PWM_Init
-                0x08002304       0x9e ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
-                0x08002304                HAL_TIM_PWM_Init
- *fill*         0x080023a2        0x2 
+                0x080023a0       0x9e ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
+                0x080023a0                HAL_TIM_PWM_Init
+ *fill*         0x0800243e        0x2 
  .text.HAL_TIM_PWM_Start
-                0x080023a4      0x144 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
-                0x080023a4                HAL_TIM_PWM_Start
+                0x08002440      0x144 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
+                0x08002440                HAL_TIM_PWM_Start
  .text.HAL_TIM_PWM_ConfigChannel
-                0x080024e8      0x184 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
-                0x080024e8                HAL_TIM_PWM_ConfigChannel
+                0x08002584      0x184 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
+                0x08002584                HAL_TIM_PWM_ConfigChannel
  .text.TIM_Base_SetConfig
-                0x0800266c       0xdc ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
-                0x0800266c                TIM_Base_SetConfig
+                0x08002708       0xdc ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
+                0x08002708                TIM_Base_SetConfig
  .text.TIM_OC1_SetConfig
-                0x08002748       0xcc ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
+                0x080027e4       0xcc ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
  .text.TIM_OC2_SetConfig
-                0x08002814       0xd4 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
-                0x08002814                TIM_OC2_SetConfig
+                0x080028b0       0xd4 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
+                0x080028b0                TIM_OC2_SetConfig
  .text.TIM_OC3_SetConfig
-                0x080028e8       0xd4 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
+                0x08002984       0xd4 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
  .text.TIM_OC4_SetConfig
-                0x080029bc       0x9c ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
+                0x08002a58       0x9c ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
  .text.TIM_CCxChannelCmd
-                0x08002a58       0x48 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
-                0x08002a58                TIM_CCxChannelCmd
+                0x08002af4       0x48 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
+                0x08002af4                TIM_CCxChannelCmd
  .text.HAL_TIMEx_MasterConfigSynchronization
-                0x08002aa0       0xbc ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
-                0x08002aa0                HAL_TIMEx_MasterConfigSynchronization
+                0x08002b3c       0xbc ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
+                0x08002b3c                HAL_TIMEx_MasterConfigSynchronization
  .text.HAL_TIMEx_ConfigBreakDeadTime
-                0x08002b5c       0xa2 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
-                0x08002b5c                HAL_TIMEx_ConfigBreakDeadTime
- .text._ZdlPvj  0x08002bfe        0x4 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(del_ops.o)
-                0x08002bfe                operator delete(void*, unsigned int)
- .text._Znwj    0x08002c02       0x22 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(new_op.o)
-                0x08002c02                operator new(unsigned int)
+                0x08002bf8       0xa2 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
+                0x08002bf8                HAL_TIMEx_ConfigBreakDeadTime
+ .text._ZdlPvj  0x08002c9a        0x4 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(del_ops.o)
+                0x08002c9a                operator delete(void*, unsigned int)
+ .text._Znwj    0x08002c9e       0x22 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(new_op.o)
+                0x08002c9e                operator new(unsigned int)
  .text._ZNSaIcEC2Ev
-                0x08002c24        0x2 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(allocator-inst.o)
-                0x08002c24                std::allocator<char>::allocator()
-                0x08002c24                std::allocator<char>::allocator()
+                0x08002cc0        0x2 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(allocator-inst.o)
+                0x08002cc0                std::allocator<char>::allocator()
+                0x08002cc0                std::allocator<char>::allocator()
  .text._ZNSaIcED2Ev
-                0x08002c26        0x2 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(allocator-inst.o)
-                0x08002c26                std::allocator<char>::~allocator()
-                0x08002c26                std::allocator<char>::~allocator()
+                0x08002cc2        0x2 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(allocator-inst.o)
+                0x08002cc2                std::allocator<char>::~allocator()
+                0x08002cc2                std::allocator<char>::~allocator()
  .text.unlikely._ZSt17__throw_bad_allocv
-                0x08002c28        0x6 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(functexcept.o)
-                0x08002c28                std::__throw_bad_alloc()
+                0x08002cc4        0x6 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(functexcept.o)
+                0x08002cc4                std::__throw_bad_alloc()
  .text.unlikely._ZSt28__throw_bad_array_new_lengthv
-                0x08002c2e        0x6 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(functexcept.o)
-                0x08002c2e                std::__throw_bad_array_new_length()
- .text._ZdlPv   0x08002c34        0x4 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(del_op.o)
-                0x08002c34                operator delete(void*)
+                0x08002cca        0x6 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(functexcept.o)
+                0x08002cca                std::__throw_bad_array_new_length()
+ .text._ZdlPv   0x08002cd0        0x4 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(del_op.o)
+                0x08002cd0                operator delete(void*)
  .text._ZSt15get_new_handlerv
-                0x08002c38       0x10 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(new_handler.o)
-                0x08002c38                std::get_new_handler()
- .text.abort    0x08002c48        0xe C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-abort.o)
-                0x08002c48                abort
- *fill*         0x08002c56        0x2 
- .text.malloc   0x08002c58       0x10 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-malloc.o)
-                0x08002c58                malloc
- .text.free     0x08002c68       0x10 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-malloc.o)
-                0x08002c68                free
+                0x08002cd4       0x10 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(new_handler.o)
+                0x08002cd4                std::get_new_handler()
+ .text.abort    0x08002ce4        0xe C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-abort.o)
+                0x08002ce4                abort
+ *fill*         0x08002cf2        0x2 
+ .text.malloc   0x08002cf4       0x10 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-malloc.o)
+                0x08002cf4                malloc
+ .text.free     0x08002d04       0x10 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-malloc.o)
+                0x08002d04                free
  .text.sbrk_aligned
-                0x08002c78       0x44 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
+                0x08002d14       0x44 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
  .text._malloc_r
-                0x08002cbc      0x100 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
-                0x08002cbc                _malloc_r
+                0x08002d58      0x100 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
+                0x08002d58                _malloc_r
  .text.__malloc_lock
-                0x08002dbc        0xc C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-mlock.o)
-                0x08002dbc                __malloc_lock
+                0x08002e58        0xc C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-mlock.o)
+                0x08002e58                __malloc_lock
  .text.__malloc_unlock
-                0x08002dc8        0xc C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-mlock.o)
-                0x08002dc8                __malloc_unlock
- .text.memset   0x08002dd4       0x10 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
-                0x08002dd4                memset
+                0x08002e64        0xc C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-mlock.o)
+                0x08002e64                __malloc_unlock
+ .text.memset   0x08002e70       0x10 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
+                0x08002e70                memset
  .text._raise_r
-                0x08002de4       0x50 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-signal.o)
-                0x08002de4                _raise_r
- .text.raise    0x08002e34       0x10 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-signal.o)
-                0x08002e34                raise
- .text._kill_r  0x08002e44       0x24 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-signalr.o)
-                0x08002e44                _kill_r
+                0x08002e80       0x50 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-signal.o)
+                0x08002e80                _raise_r
+ .text.raise    0x08002ed0       0x10 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-signal.o)
+                0x08002ed0                raise
+ .text._kill_r  0x08002ee0       0x24 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-signalr.o)
+                0x08002ee0                _kill_r
  .text._getpid_r
-                0x08002e68        0x4 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-signalr.o)
-                0x08002e68                _getpid_r
- .text._sbrk_r  0x08002e6c       0x20 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-sbrkr.o)
-                0x08002e6c                _sbrk_r
- .text.__errno  0x08002e8c        0xc C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-errno.o)
-                0x08002e8c                __errno
+                0x08002f04        0x4 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-signalr.o)
+                0x08002f04                _getpid_r
+ .text._sbrk_r  0x08002f08       0x20 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-sbrkr.o)
+                0x08002f08                _sbrk_r
+ .text.__errno  0x08002f28        0xc C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-errno.o)
+                0x08002f28                __errno
  .text.__libc_init_array
-                0x08002e98       0x48 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
-                0x08002e98                __libc_init_array
+                0x08002f34       0x48 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
+                0x08002f34                __libc_init_array
  .text.__retarget_lock_acquire_recursive
-                0x08002ee0        0x2 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
-                0x08002ee0                __retarget_lock_acquire_recursive
+                0x08002f7c        0x2 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x08002f7c                __retarget_lock_acquire_recursive
  .text.__retarget_lock_release_recursive
-                0x08002ee2        0x2 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
-                0x08002ee2                __retarget_lock_release_recursive
- .text._free_r  0x08002ee4       0x90 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-freer.o)
-                0x08002ee4                _free_r
+                0x08002f7e        0x2 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+                0x08002f7e                __retarget_lock_release_recursive
+ .text._free_r  0x08002f80       0x90 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-freer.o)
+                0x08002f80                _free_r
  *(.glue_7)
- .glue_7        0x08002f74        0x0 linker stubs
+ .glue_7        0x08003010        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x08002f74        0x0 linker stubs
+ .glue_7t       0x08003010        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x08002f74        0x0 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
+ .eh_frame      0x08003010        0x0 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
  *(.init)
- .init          0x08002f74        0x4 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crti.o
-                0x08002f74                _init
- .init          0x08002f78        0x8 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtn.o
+ .init          0x08003010        0x4 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crti.o
+                0x08003010                _init
+ .init          0x08003014        0x8 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtn.o
  *(.fini)
- .fini          0x08002f80        0x4 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crti.o
-                0x08002f80                _fini
- .fini          0x08002f84        0x8 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtn.o
-                0x08002f8c                        . = ALIGN (0x4)
-                0x08002f8c                        _etext = .
+ .fini          0x0800301c        0x4 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crti.o
+                0x0800301c                _fini
+ .fini          0x08003020        0x8 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtn.o
+                0x08003028                        . = ALIGN (0x4)
+                0x08003028                        _etext = .
 
-.vfp11_veneer   0x08002f8c        0x0
- .vfp11_veneer  0x08002f8c        0x0 linker stubs
+.vfp11_veneer   0x08003028        0x0
+ .vfp11_veneer  0x08003028        0x0 linker stubs
 
-.v4_bx          0x08002f8c        0x0
- .v4_bx         0x08002f8c        0x0 linker stubs
+.v4_bx          0x08003028        0x0
+ .v4_bx         0x08003028        0x0 linker stubs
 
-.iplt           0x08002f8c        0x0
- .iplt          0x08002f8c        0x0 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
+.iplt           0x08003028        0x0
+ .iplt          0x08003028        0x0 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
 
-.rodata         0x08002f8c       0x24
-                0x08002f8c                        . = ALIGN (0x4)
+.rodata         0x08003028       0x24
+                0x08003028                        . = ALIGN (0x4)
  *(.rodata)
  *(.rodata*)
  .rodata.AHBPrescTable
-                0x08002f8c       0x10 ./Core/Src/system_stm32f1xx.o
-                0x08002f8c                AHBPrescTable
+                0x08003028       0x10 ./Core/Src/system_stm32f1xx.o
+                0x08003028                AHBPrescTable
  .rodata.aPLLMULFactorTable.1
-                0x08002f9c       0x10 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
+                0x08003038       0x10 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
  .rodata.aPredivFactorTable.0
-                0x08002fac        0x2 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
-                0x08002fb0                        . = ALIGN (0x4)
- *fill*         0x08002fae        0x2 
+                0x08003048        0x2 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
+                0x0800304c                        . = ALIGN (0x4)
+ *fill*         0x0800304a        0x2 
 
-.ARM.extab      0x08002fb0        0x0
-                0x08002fb0                        . = ALIGN (0x4)
+.ARM.extab      0x0800304c        0x0
+                0x0800304c                        . = ALIGN (0x4)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x08002fb0                        . = ALIGN (0x4)
+                0x0800304c                        . = ALIGN (0x4)
 
-.ARM            0x08002fb0        0x0
-                0x08002fb0                        . = ALIGN (0x4)
-                0x08002fb0                        __exidx_start = .
+.ARM            0x0800304c        0x0
+                0x0800304c                        . = ALIGN (0x4)
+                0x0800304c                        __exidx_start = .
  *(.ARM.exidx*)
-                0x08002fb0                        __exidx_end = .
-                0x08002fb0                        . = ALIGN (0x4)
+                0x0800304c                        __exidx_end = .
+                0x0800304c                        . = ALIGN (0x4)
 
-.preinit_array  0x08002fb0        0x0
-                0x08002fb0                        . = ALIGN (0x4)
-                0x08002fb0                        PROVIDE (__preinit_array_start = .)
+.preinit_array  0x0800304c        0x0
+                0x0800304c                        . = ALIGN (0x4)
+                0x0800304c                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x08002fb0                        PROVIDE (__preinit_array_end = .)
-                0x08002fb0                        . = ALIGN (0x4)
+                0x0800304c                        PROVIDE (__preinit_array_end = .)
+                0x0800304c                        . = ALIGN (0x4)
 
-.init_array     0x08002fb0        0xc
-                0x08002fb0                        . = ALIGN (0x4)
-                0x08002fb0                        PROVIDE (__init_array_start = .)
+.init_array     0x0800304c        0xc
+                0x0800304c                        . = ALIGN (0x4)
+                0x0800304c                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array*)
- .init_array    0x08002fb0        0x4 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
- .init_array    0x08002fb4        0x4 ./Core/Src/floodfill_library.o
- .init_array    0x08002fb8        0x4 ./Core/Src/navigation_algorithm.o
-                0x08002fbc                        PROVIDE (__init_array_end = .)
-                0x08002fbc                        . = ALIGN (0x4)
+ .init_array    0x0800304c        0x4 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
+ .init_array    0x08003050        0x4 ./Core/Src/floodfill_library.o
+ .init_array    0x08003054        0x4 ./Core/Src/navigation_algorithm.o
+                0x08003058                        PROVIDE (__init_array_end = .)
+                0x08003058                        . = ALIGN (0x4)
 
-.fini_array     0x08002fbc        0xc
-                0x08002fbc                        . = ALIGN (0x4)
+.fini_array     0x08003058        0xc
+                0x08003058                        . = ALIGN (0x4)
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x08002fbc        0x4 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
- .fini_array    0x08002fc0        0x4 ./Core/Src/floodfill_library.o
- .fini_array    0x08002fc4        0x4 ./Core/Src/navigation_algorithm.o
+ .fini_array    0x08003058        0x4 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
+ .fini_array    0x0800305c        0x4 ./Core/Src/floodfill_library.o
+ .fini_array    0x08003060        0x4 ./Core/Src/navigation_algorithm.o
                 [!provide]                        PROVIDE (__fini_array_end = .)
-                0x08002fc8                        . = ALIGN (0x4)
-                0x08002fc8                        _sidata = LOADADDR (.data)
+                0x08003064                        . = ALIGN (0x4)
+                0x08003064                        _sidata = LOADADDR (.data)
 
-.rel.dyn        0x08002fc8        0x0
- .rel.iplt      0x08002fc8        0x0 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
+.rel.dyn        0x08003064        0x0
+ .rel.iplt      0x08003064        0x0 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
 
-.data           0x20000000       0x5c load address 0x08002fc8
+.data           0x20000000       0x5c load address 0x08003064
                 0x20000000                        . = ALIGN (0x4)
                 0x20000000                        _sdata = .
  *(.data)
@@ -3918,11 +3921,11 @@ LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
                 0x2000005c                        . = ALIGN (0x4)
                 0x2000005c                        _edata = .
 
-.igot.plt       0x2000005c        0x0 load address 0x08003024
+.igot.plt       0x2000005c        0x0 load address 0x080030c0
  .igot.plt      0x2000005c        0x0 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp/crtbegin.o
                 0x2000005c                        . = ALIGN (0x4)
 
-.bss            0x2000005c     0x1208 load address 0x08003024
+.bss            0x2000005c     0x1208 load address 0x080030c0
                 0x2000005c                        _sbss = .
                 0x2000005c                        __bss_start__ = _sbss
  *(.bss)
@@ -3964,7 +3967,7 @@ LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
                 0x20001264                        __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x20001264      0x604 load address 0x08003024
+                0x20001264      0x604 load address 0x080030c0
                 0x20001268                        . = ALIGN (0x8)
  *fill*         0x20001264        0x4 
                 [!provide]                        PROVIDE (end = .)
@@ -4073,45 +4076,45 @@ LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
 LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libm.a
 LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7-m/nofp\libgcc.a
 
-.debug_info     0x00000000    0x11282
+.debug_info     0x00000000    0x112b3
  .debug_info    0x00000000      0x7d7 ./Core/Src/API.o
  .debug_info    0x000007d7     0x4a61 ./Core/Src/floodfill_library.o
  .debug_info    0x00005238      0x23e ./Core/Src/gpio.o
- .debug_info    0x00005476      0x87f ./Core/Src/main.o
- .debug_info    0x00005cf5     0x40e4 ./Core/Src/navigation_algorithm.o
- .debug_info    0x00009dd9      0x1f1 ./Core/Src/stm32f1xx_hal_msp.o
- .debug_info    0x00009fca      0x113 ./Core/Src/stm32f1xx_it.o
- .debug_info    0x0000a0dd      0x6a3 ./Core/Src/syscalls.o
- .debug_info    0x0000a780      0x168 ./Core/Src/sysmem.o
- .debug_info    0x0000a8e8      0x222 ./Core/Src/system_stm32f1xx.o
- .debug_info    0x0000ab0a      0xa49 ./Core/Src/tim.o
- .debug_info    0x0000b553       0x30 ./Core/Startup/startup_stm32f103c8tx.o
- .debug_info    0x0000b583      0x704 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
- .debug_info    0x0000bc87      0xa87 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
- .debug_info    0x0000c70e      0x5ab ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
- .debug_info    0x0000ccb9      0x7d5 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
- .debug_info    0x0000d48e     0x2959 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
- .debug_info    0x0000fde7     0x149b ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
+ .debug_info    0x00005476      0x8b0 ./Core/Src/main.o
+ .debug_info    0x00005d26     0x40e4 ./Core/Src/navigation_algorithm.o
+ .debug_info    0x00009e0a      0x1f1 ./Core/Src/stm32f1xx_hal_msp.o
+ .debug_info    0x00009ffb      0x113 ./Core/Src/stm32f1xx_it.o
+ .debug_info    0x0000a10e      0x6a3 ./Core/Src/syscalls.o
+ .debug_info    0x0000a7b1      0x168 ./Core/Src/sysmem.o
+ .debug_info    0x0000a919      0x222 ./Core/Src/system_stm32f1xx.o
+ .debug_info    0x0000ab3b      0xa49 ./Core/Src/tim.o
+ .debug_info    0x0000b584       0x30 ./Core/Startup/startup_stm32f103c8tx.o
+ .debug_info    0x0000b5b4      0x704 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
+ .debug_info    0x0000bcb8      0xa87 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
+ .debug_info    0x0000c73f      0x5ab ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
+ .debug_info    0x0000ccea      0x7d5 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
+ .debug_info    0x0000d4bf     0x2959 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
+ .debug_info    0x0000fe18     0x149b ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
 
-.debug_abbrev   0x00000000     0x2bd5
+.debug_abbrev   0x00000000     0x2bff
  .debug_abbrev  0x00000000      0x1d3 ./Core/Src/API.o
  .debug_abbrev  0x000001d3      0x8ac ./Core/Src/floodfill_library.o
  .debug_abbrev  0x00000a7f      0x117 ./Core/Src/gpio.o
- .debug_abbrev  0x00000b96      0x220 ./Core/Src/main.o
- .debug_abbrev  0x00000db6      0x85b ./Core/Src/navigation_algorithm.o
- .debug_abbrev  0x00001611       0xdb ./Core/Src/stm32f1xx_hal_msp.o
- .debug_abbrev  0x000016ec       0x73 ./Core/Src/stm32f1xx_it.o
- .debug_abbrev  0x0000175f      0x1b6 ./Core/Src/syscalls.o
- .debug_abbrev  0x00001915       0xbc ./Core/Src/sysmem.o
- .debug_abbrev  0x000019d1      0x13f ./Core/Src/system_stm32f1xx.o
- .debug_abbrev  0x00001b10      0x232 ./Core/Src/tim.o
- .debug_abbrev  0x00001d42       0x24 ./Core/Startup/startup_stm32f103c8tx.o
- .debug_abbrev  0x00001d66      0x201 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
- .debug_abbrev  0x00001f67      0x2f8 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
- .debug_abbrev  0x0000225f      0x1ca ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
- .debug_abbrev  0x00002429      0x2b3 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
- .debug_abbrev  0x000026dc      0x277 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
- .debug_abbrev  0x00002953      0x282 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
+ .debug_abbrev  0x00000b96      0x24a ./Core/Src/main.o
+ .debug_abbrev  0x00000de0      0x85b ./Core/Src/navigation_algorithm.o
+ .debug_abbrev  0x0000163b       0xdb ./Core/Src/stm32f1xx_hal_msp.o
+ .debug_abbrev  0x00001716       0x73 ./Core/Src/stm32f1xx_it.o
+ .debug_abbrev  0x00001789      0x1b6 ./Core/Src/syscalls.o
+ .debug_abbrev  0x0000193f       0xbc ./Core/Src/sysmem.o
+ .debug_abbrev  0x000019fb      0x13f ./Core/Src/system_stm32f1xx.o
+ .debug_abbrev  0x00001b3a      0x232 ./Core/Src/tim.o
+ .debug_abbrev  0x00001d6c       0x24 ./Core/Startup/startup_stm32f103c8tx.o
+ .debug_abbrev  0x00001d90      0x201 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
+ .debug_abbrev  0x00001f91      0x2f8 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
+ .debug_abbrev  0x00002289      0x1ca ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
+ .debug_abbrev  0x00002453      0x2b3 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
+ .debug_abbrev  0x00002706      0x277 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
+ .debug_abbrev  0x0000297d      0x282 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
 
 .debug_aranges  0x00000000     0x10d0
  .debug_aranges
@@ -4190,7 +4193,7 @@ LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_rnglists
                 0x00000b93      0x125 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
 
-.debug_macro    0x00000000    0x1aca0
+.debug_macro    0x00000000    0x1acaa
  .debug_macro   0x00000000      0x1d1 ./Core/Src/API.o
  .debug_macro   0x000001d1      0xb80 ./Core/Src/API.o
  .debug_macro   0x00000d51      0x215 ./Core/Src/API.o
@@ -4259,84 +4262,84 @@ LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .debug_macro   0x0001658d      0xaa8 ./Core/Src/gpio.o
  .debug_macro   0x00017035      0xd23 ./Core/Src/gpio.o
  .debug_macro   0x00017d58      0x189 ./Core/Src/gpio.o
- .debug_macro   0x00017ee1      0x1cf ./Core/Src/main.o
- .debug_macro   0x000180b0      0x267 ./Core/Src/navigation_algorithm.o
- .debug_macro   0x00018317      0x1a8 ./Core/Src/stm32f1xx_hal_msp.o
- .debug_macro   0x000184bf      0x1b2 ./Core/Src/stm32f1xx_it.o
- .debug_macro   0x00018671      0x274 ./Core/Src/syscalls.o
- .debug_macro   0x000188e5       0x5b ./Core/Src/syscalls.o
- .debug_macro   0x00018940       0x24 ./Core/Src/syscalls.o
- .debug_macro   0x00018964       0x94 ./Core/Src/syscalls.o
- .debug_macro   0x000189f8       0x43 ./Core/Src/syscalls.o
- .debug_macro   0x00018a3b       0x34 ./Core/Src/syscalls.o
- .debug_macro   0x00018a6f       0x57 ./Core/Src/syscalls.o
- .debug_macro   0x00018ac6      0x369 ./Core/Src/syscalls.o
- .debug_macro   0x00018e2f       0x16 ./Core/Src/syscalls.o
- .debug_macro   0x00018e45       0x43 ./Core/Src/syscalls.o
- .debug_macro   0x00018e88       0x34 ./Core/Src/syscalls.o
- .debug_macro   0x00018ebc       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x00018ecc       0x58 ./Core/Src/syscalls.o
- .debug_macro   0x00018f24       0x8e ./Core/Src/syscalls.o
- .debug_macro   0x00018fb2       0x1c ./Core/Src/syscalls.o
- .debug_macro   0x00018fce      0x177 ./Core/Src/syscalls.o
- .debug_macro   0x00019145       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x00019155       0x35 ./Core/Src/syscalls.o
- .debug_macro   0x0001918a       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x0001919a       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x000191aa       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x000191ba       0x1c ./Core/Src/syscalls.o
- .debug_macro   0x000191d6       0x52 ./Core/Src/syscalls.o
- .debug_macro   0x00019228       0x22 ./Core/Src/syscalls.o
- .debug_macro   0x0001924a       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x0001925a       0x52 ./Core/Src/syscalls.o
- .debug_macro   0x000192ac       0xcf ./Core/Src/syscalls.o
- .debug_macro   0x0001937b       0x1c ./Core/Src/syscalls.o
- .debug_macro   0x00019397       0x3d ./Core/Src/syscalls.o
- .debug_macro   0x000193d4       0x35 ./Core/Src/syscalls.o
- .debug_macro   0x00019409      0x12c ./Core/Src/syscalls.o
- .debug_macro   0x00019535       0x16 ./Core/Src/syscalls.o
- .debug_macro   0x0001954b       0x16 ./Core/Src/syscalls.o
- .debug_macro   0x00019561       0x29 ./Core/Src/syscalls.o
- .debug_macro   0x0001958a       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x0001959a      0x242 ./Core/Src/syscalls.o
- .debug_macro   0x000197dc       0x1c ./Core/Src/syscalls.o
- .debug_macro   0x000197f8       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x00019808       0x10 ./Core/Src/syscalls.o
- .debug_macro   0x00019818       0x16 ./Core/Src/syscalls.o
- .debug_macro   0x0001982e      0x146 ./Core/Src/syscalls.o
- .debug_macro   0x00019974      0x18a ./Core/Src/syscalls.o
- .debug_macro   0x00019afe       0x16 ./Core/Src/syscalls.o
- .debug_macro   0x00019b14       0xce ./Core/Src/syscalls.o
- .debug_macro   0x00019be2       0xff ./Core/Src/sysmem.o
- .debug_macro   0x00019ce1      0x23c ./Core/Src/sysmem.o
- .debug_macro   0x00019f1d      0x199 ./Core/Src/system_stm32f1xx.o
- .debug_macro   0x0001a0b6      0x1b2 ./Core/Src/tim.o
- .debug_macro   0x0001a268      0x1bd ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
- .debug_macro   0x0001a425      0x199 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
- .debug_macro   0x0001a5be      0x204 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
- .debug_macro   0x0001a7c2      0x1ab ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
- .debug_macro   0x0001a96d      0x19a ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
- .debug_macro   0x0001ab07      0x199 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
+ .debug_macro   0x00017ee1      0x1d9 ./Core/Src/main.o
+ .debug_macro   0x000180ba      0x267 ./Core/Src/navigation_algorithm.o
+ .debug_macro   0x00018321      0x1a8 ./Core/Src/stm32f1xx_hal_msp.o
+ .debug_macro   0x000184c9      0x1b2 ./Core/Src/stm32f1xx_it.o
+ .debug_macro   0x0001867b      0x274 ./Core/Src/syscalls.o
+ .debug_macro   0x000188ef       0x5b ./Core/Src/syscalls.o
+ .debug_macro   0x0001894a       0x24 ./Core/Src/syscalls.o
+ .debug_macro   0x0001896e       0x94 ./Core/Src/syscalls.o
+ .debug_macro   0x00018a02       0x43 ./Core/Src/syscalls.o
+ .debug_macro   0x00018a45       0x34 ./Core/Src/syscalls.o
+ .debug_macro   0x00018a79       0x57 ./Core/Src/syscalls.o
+ .debug_macro   0x00018ad0      0x369 ./Core/Src/syscalls.o
+ .debug_macro   0x00018e39       0x16 ./Core/Src/syscalls.o
+ .debug_macro   0x00018e4f       0x43 ./Core/Src/syscalls.o
+ .debug_macro   0x00018e92       0x34 ./Core/Src/syscalls.o
+ .debug_macro   0x00018ec6       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x00018ed6       0x58 ./Core/Src/syscalls.o
+ .debug_macro   0x00018f2e       0x8e ./Core/Src/syscalls.o
+ .debug_macro   0x00018fbc       0x1c ./Core/Src/syscalls.o
+ .debug_macro   0x00018fd8      0x177 ./Core/Src/syscalls.o
+ .debug_macro   0x0001914f       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x0001915f       0x35 ./Core/Src/syscalls.o
+ .debug_macro   0x00019194       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x000191a4       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x000191b4       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x000191c4       0x1c ./Core/Src/syscalls.o
+ .debug_macro   0x000191e0       0x52 ./Core/Src/syscalls.o
+ .debug_macro   0x00019232       0x22 ./Core/Src/syscalls.o
+ .debug_macro   0x00019254       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x00019264       0x52 ./Core/Src/syscalls.o
+ .debug_macro   0x000192b6       0xcf ./Core/Src/syscalls.o
+ .debug_macro   0x00019385       0x1c ./Core/Src/syscalls.o
+ .debug_macro   0x000193a1       0x3d ./Core/Src/syscalls.o
+ .debug_macro   0x000193de       0x35 ./Core/Src/syscalls.o
+ .debug_macro   0x00019413      0x12c ./Core/Src/syscalls.o
+ .debug_macro   0x0001953f       0x16 ./Core/Src/syscalls.o
+ .debug_macro   0x00019555       0x16 ./Core/Src/syscalls.o
+ .debug_macro   0x0001956b       0x29 ./Core/Src/syscalls.o
+ .debug_macro   0x00019594       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x000195a4      0x242 ./Core/Src/syscalls.o
+ .debug_macro   0x000197e6       0x1c ./Core/Src/syscalls.o
+ .debug_macro   0x00019802       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x00019812       0x10 ./Core/Src/syscalls.o
+ .debug_macro   0x00019822       0x16 ./Core/Src/syscalls.o
+ .debug_macro   0x00019838      0x146 ./Core/Src/syscalls.o
+ .debug_macro   0x0001997e      0x18a ./Core/Src/syscalls.o
+ .debug_macro   0x00019b08       0x16 ./Core/Src/syscalls.o
+ .debug_macro   0x00019b1e       0xce ./Core/Src/syscalls.o
+ .debug_macro   0x00019bec       0xff ./Core/Src/sysmem.o
+ .debug_macro   0x00019ceb      0x23c ./Core/Src/sysmem.o
+ .debug_macro   0x00019f27      0x199 ./Core/Src/system_stm32f1xx.o
+ .debug_macro   0x0001a0c0      0x1b2 ./Core/Src/tim.o
+ .debug_macro   0x0001a272      0x1bd ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
+ .debug_macro   0x0001a42f      0x199 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
+ .debug_macro   0x0001a5c8      0x204 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
+ .debug_macro   0x0001a7cc      0x1ab ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
+ .debug_macro   0x0001a977      0x19a ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
+ .debug_macro   0x0001ab11      0x199 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
 
-.debug_line     0x00000000     0xf2fc
- .debug_line    0x00000000      0x7b8 ./Core/Src/API.o
- .debug_line    0x000007b8     0x1c00 ./Core/Src/floodfill_library.o
- .debug_line    0x000023b8      0x6f5 ./Core/Src/gpio.o
- .debug_line    0x00002aad      0x78c ./Core/Src/main.o
- .debug_line    0x00003239     0x19a8 ./Core/Src/navigation_algorithm.o
- .debug_line    0x00004be1      0x6ee ./Core/Src/stm32f1xx_hal_msp.o
- .debug_line    0x000052cf      0x7af ./Core/Src/stm32f1xx_it.o
- .debug_line    0x00005a7e      0x8b2 ./Core/Src/syscalls.o
- .debug_line    0x00006330      0x583 ./Core/Src/sysmem.o
- .debug_line    0x000068b3      0x76b ./Core/Src/system_stm32f1xx.o
- .debug_line    0x0000701e      0x7d4 ./Core/Src/tim.o
- .debug_line    0x000077f2       0x78 ./Core/Startup/startup_stm32f103c8tx.o
- .debug_line    0x0000786a      0x998 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
- .debug_line    0x00008202      0xb84 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
- .debug_line    0x00008d86      0xa31 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
- .debug_line    0x000097b7      0xda1 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
- .debug_line    0x0000a558     0x34bd ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
- .debug_line    0x0000da15     0x18e7 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
+.debug_line     0x00000000     0xf33c
+ .debug_line    0x00000000      0x7bb ./Core/Src/API.o
+ .debug_line    0x000007bb     0x1c00 ./Core/Src/floodfill_library.o
+ .debug_line    0x000023bb      0x6f5 ./Core/Src/gpio.o
+ .debug_line    0x00002ab0      0x7c9 ./Core/Src/main.o
+ .debug_line    0x00003279     0x19a8 ./Core/Src/navigation_algorithm.o
+ .debug_line    0x00004c21      0x6ee ./Core/Src/stm32f1xx_hal_msp.o
+ .debug_line    0x0000530f      0x7af ./Core/Src/stm32f1xx_it.o
+ .debug_line    0x00005abe      0x8b2 ./Core/Src/syscalls.o
+ .debug_line    0x00006370      0x583 ./Core/Src/sysmem.o
+ .debug_line    0x000068f3      0x76b ./Core/Src/system_stm32f1xx.o
+ .debug_line    0x0000705e      0x7d4 ./Core/Src/tim.o
+ .debug_line    0x00007832       0x78 ./Core/Startup/startup_stm32f103c8tx.o
+ .debug_line    0x000078aa      0x998 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
+ .debug_line    0x00008242      0xb84 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
+ .debug_line    0x00008dc6      0xa31 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
+ .debug_line    0x000097f7      0xda1 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
+ .debug_line    0x0000a598     0x34bd ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
+ .debug_line    0x0000da55     0x18e7 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
 
 .debug_str      0x00000000    0x9544c
  .debug_str     0x00000000    0x82227 ./Core/Src/API.o
@@ -4345,25 +4348,25 @@ LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
                                0xb99e (size before relaxing)
  .debug_str     0x0008a772      0x284 ./Core/Src/gpio.o
                               0x81c09 (size before relaxing)
- .debug_str     0x0008a9f6      0x20e ./Core/Src/main.o
-                              0x82821 (size before relaxing)
- .debug_str     0x0008ac04     0x2c7e ./Core/Src/navigation_algorithm.o
+ .debug_str     0x0008a9f6      0x218 ./Core/Src/main.o
+                              0x82878 (size before relaxing)
+ .debug_str     0x0008ac0e     0x2c7e ./Core/Src/navigation_algorithm.o
                                0xa207 (size before relaxing)
- .debug_str     0x0008d882       0x5a ./Core/Src/stm32f1xx_hal_msp.o
+ .debug_str     0x0008d88c       0x5a ./Core/Src/stm32f1xx_hal_msp.o
                               0x81bcd (size before relaxing)
- .debug_str     0x0008d8dc       0xc9 ./Core/Src/stm32f1xx_it.o
+ .debug_str     0x0008d8e6       0xc9 ./Core/Src/stm32f1xx_it.o
                               0x81be2 (size before relaxing)
- .debug_str     0x0008d9a5     0x5782 ./Core/Src/syscalls.o
+ .debug_str     0x0008d9af     0x5782 ./Core/Src/syscalls.o
                                0x986b (size before relaxing)
- .debug_str     0x00093127       0x75 ./Core/Src/sysmem.o
+ .debug_str     0x00093131       0x75 ./Core/Src/sysmem.o
                                0x6083 (size before relaxing)
- .debug_str     0x0009319c       0x7e ./Core/Src/system_stm32f1xx.o
+ .debug_str     0x000931a6       0x7e ./Core/Src/system_stm32f1xx.o
                               0x81add (size before relaxing)
- .debug_str     0x0009321a      0x21a ./Core/Src/tim.o
+ .debug_str     0x00093224      0x21a ./Core/Src/tim.o
                               0x82313 (size before relaxing)
- .debug_str     0x00093434       0x44 ./Core/Startup/startup_stm32f103c8tx.o
+ .debug_str     0x0009343e       0x44 ./Core/Startup/startup_stm32f103c8tx.o
                                  0x8e (size before relaxing)
- .debug_str     0x00093478      0x60c ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
+ .debug_str     0x00093482      0x602 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
                               0x82210 (size before relaxing)
  .debug_str     0x00093a84      0x2b2 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
                               0x8215c (size before relaxing)
@@ -4396,44 +4399,44 @@ LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .comment       0x00000043       0x44 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
  .comment       0x00000043       0x44 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
 
-.debug_frame    0x00000000     0x4de4
- .debug_frame   0x00000000       0xec ./Core/Src/API.o
- .debug_frame   0x000000ec      0xfb4 ./Core/Src/floodfill_library.o
- .debug_frame   0x000010a0       0x34 ./Core/Src/gpio.o
- .debug_frame   0x000010d4       0x6c ./Core/Src/main.o
- .debug_frame   0x00001140      0xd70 ./Core/Src/navigation_algorithm.o
- .debug_frame   0x00001eb0       0x38 ./Core/Src/stm32f1xx_hal_msp.o
- .debug_frame   0x00001ee8      0x104 ./Core/Src/stm32f1xx_it.o
- .debug_frame   0x00001fec      0x2ac ./Core/Src/syscalls.o
- .debug_frame   0x00002298       0x34 ./Core/Src/sysmem.o
- .debug_frame   0x000022cc       0x58 ./Core/Src/system_stm32f1xx.o
- .debug_frame   0x00002324       0xa8 ./Core/Src/tim.o
- .debug_frame   0x000023cc      0x334 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
- .debug_frame   0x00002700      0x428 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
- .debug_frame   0x00002b28      0x14c ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
- .debug_frame   0x00002c74      0x218 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
- .debug_frame   0x00002e8c     0x11b8 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
- .debug_frame   0x00004044      0x638 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
- .debug_frame   0x0000467c       0x20 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(del_ops.o)
- .debug_frame   0x0000469c       0x28 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(new_op.o)
- .debug_frame   0x000046c4       0x70 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(allocator-inst.o)
- .debug_frame   0x00004734      0x184 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(functexcept.o)
- .debug_frame   0x000048b8       0x20 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(del_op.o)
- .debug_frame   0x000048d8       0x30 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(new_handler.o)
- .debug_frame   0x00004908       0x28 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-abort.o)
- .debug_frame   0x00004930       0x30 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-malloc.o)
- .debug_frame   0x00004960       0x50 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
- .debug_frame   0x000049b0       0x30 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-mlock.o)
- .debug_frame   0x000049e0      0x144 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
- .debug_frame   0x00004b24       0x20 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
- .debug_frame   0x00004b44       0xcc C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-signal.o)
- .debug_frame   0x00004c10       0x38 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-reent.o)
- .debug_frame   0x00004c48       0x3c C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-signalr.o)
- .debug_frame   0x00004c84       0x2c C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-sbrkr.o)
- .debug_frame   0x00004cb0       0x20 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-errno.o)
- .debug_frame   0x00004cd0       0x2c C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
- .debug_frame   0x00004cfc       0xb0 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
- .debug_frame   0x00004dac       0x38 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-freer.o)
+.debug_frame    0x00000000     0x4de0
+ .debug_frame   0x00000000       0xe8 ./Core/Src/API.o
+ .debug_frame   0x000000e8      0xfb4 ./Core/Src/floodfill_library.o
+ .debug_frame   0x0000109c       0x34 ./Core/Src/gpio.o
+ .debug_frame   0x000010d0       0x6c ./Core/Src/main.o
+ .debug_frame   0x0000113c      0xd70 ./Core/Src/navigation_algorithm.o
+ .debug_frame   0x00001eac       0x38 ./Core/Src/stm32f1xx_hal_msp.o
+ .debug_frame   0x00001ee4      0x104 ./Core/Src/stm32f1xx_it.o
+ .debug_frame   0x00001fe8      0x2ac ./Core/Src/syscalls.o
+ .debug_frame   0x00002294       0x34 ./Core/Src/sysmem.o
+ .debug_frame   0x000022c8       0x58 ./Core/Src/system_stm32f1xx.o
+ .debug_frame   0x00002320       0xa8 ./Core/Src/tim.o
+ .debug_frame   0x000023c8      0x334 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
+ .debug_frame   0x000026fc      0x428 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
+ .debug_frame   0x00002b24      0x14c ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
+ .debug_frame   0x00002c70      0x218 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
+ .debug_frame   0x00002e88     0x11b8 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim.o
+ .debug_frame   0x00004040      0x638 ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_tim_ex.o
+ .debug_frame   0x00004678       0x20 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(del_ops.o)
+ .debug_frame   0x00004698       0x28 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(new_op.o)
+ .debug_frame   0x000046c0       0x70 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(allocator-inst.o)
+ .debug_frame   0x00004730      0x184 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(functexcept.o)
+ .debug_frame   0x000048b4       0x20 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(del_op.o)
+ .debug_frame   0x000048d4       0x30 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libstdc++_nano.a(new_handler.o)
+ .debug_frame   0x00004904       0x28 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-abort.o)
+ .debug_frame   0x0000492c       0x30 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-malloc.o)
+ .debug_frame   0x0000495c       0x50 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-mallocr.o)
+ .debug_frame   0x000049ac       0x30 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-mlock.o)
+ .debug_frame   0x000049dc      0x144 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-findfp.o)
+ .debug_frame   0x00004b20       0x20 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-memset.o)
+ .debug_frame   0x00004b40       0xcc C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-signal.o)
+ .debug_frame   0x00004c0c       0x38 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-reent.o)
+ .debug_frame   0x00004c44       0x3c C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-signalr.o)
+ .debug_frame   0x00004c80       0x2c C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-sbrkr.o)
+ .debug_frame   0x00004cac       0x20 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-errno.o)
+ .debug_frame   0x00004ccc       0x2c C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-init.o)
+ .debug_frame   0x00004cf8       0xb0 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-lock.o)
+ .debug_frame   0x00004da8       0x38 C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7-m/nofp\libc_nano.a(libc_a-freer.o)
 
 .debug_line_str
                 0x00000000       0x72

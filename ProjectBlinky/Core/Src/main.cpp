@@ -21,6 +21,7 @@
 #include "tim.h"
 #include "gpio.h"
 #include "API.h"
+#include "floodfill_library.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -112,7 +113,12 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  moveForward(50);
+	  HAL_Delay(500);
+	  turnLeft();
+	  HAL_Delay(500);
 	  turnRight();
+	  HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }
