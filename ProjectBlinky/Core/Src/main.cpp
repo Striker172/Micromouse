@@ -24,17 +24,31 @@
 #include "floodfill_library.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+	unsigned long int overflowT4 = 0;
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+	void HAL_TIM_IC_CaptureCallBack(TIM_HandleTypeDef *htim){
+		if(htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1){
 
+		} else if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_2){
+
+		} else if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_3){
+
+		} else if(htim->Channel == HAL_TIM_ACTIVE_CHANNEL_4){
+
+		}
+	}
+	void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+		if(htim == &htim4){
+			overflowT4++;
+		}
+	}
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -87,13 +101,19 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_TIM1_Init();
+  MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_2);
   HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_3);
   HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_4);
-
+  HAL_TIM_IC_Start_IT(&htim4, TIM_CHANNEL_1);
+  HAL_TIM_IC_Start_IT(&htim4, TIM_CHANNEL_2);
+  HAL_TIM_IC_Start_IT(&htim4, TIM_CHANNEL_3);
+  HAL_TIM_IC_Start_IT(&htim4, TIM_CHANNEL_4);
+  HAL_TIM_Base_Start_IT(&htim4);
   bool speedModeReady = false;
 
   //the mouses run loop #TODO
